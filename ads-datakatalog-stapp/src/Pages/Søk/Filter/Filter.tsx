@@ -2,8 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Checkbox } from '../../../Components/Checkbox/Checkbox';
 import { CheckboxGroup } from '../../../Components/CheckboxGroup/CheckboxGroup';
-import { Heading, HeadingLevel } from '../../../Components/Heading/Heading';
-import { Legend } from '../../../Components/Legend/Legend';
 import { Søkefilter } from '../../../datakatalog/søkefilter';
 
 const fixUrl = (gammeltFilter: string, nyttFilter: string) => {
