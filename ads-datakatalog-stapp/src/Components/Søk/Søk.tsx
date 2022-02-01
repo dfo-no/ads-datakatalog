@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { SearchBox } from '../SearchBox/SearchBox';
 import { useSearchParams } from 'react-router-dom';
 import { GlossaryResults } from './GlossaryResults/GlossaryResults';
@@ -11,7 +11,7 @@ import { LoadIndicator } from '../LoadIndicator/LoadIndicator';
 export const Søk = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const { isLoading, data, error, isError } = useGetGlossaryQuery();
+    const { isLoading, data, isError } = useGetGlossaryQuery();
 
     const query = searchParams.get('query') ?? '';
     const urlFilter = searchParams.get('filter') ?? '';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Søkefilter } from '../../../datakatalog/søkefilter';
 
 const fixUrl = (gammeltFilter: string, nyttFilter: string) => {

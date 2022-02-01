@@ -7,12 +7,13 @@ import { LoadIndicator } from '../LoadIndicator/LoadIndicator';
 export const Term = () => {
     const { id } = useParams();
 
-    const { isLoading, data, error, isError } = useGetGlossaryQuery();
+    const { isLoading, data, isError } = useGetGlossaryQuery();
 
     const term = id && data ? TermModel.mapFraApi(data, id) : undefined;
 
     return (
         <div>
+            {isError && <p>Det har skjedd en feil.</p>}
             <LoadIndicator isLoading={isLoading}>
                 {term && (
                     <>

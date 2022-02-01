@@ -7,12 +7,13 @@ import { LoadIndicator } from '../LoadIndicator/LoadIndicator';
 export const Entitet = () => {
     const { id } = useParams();
 
-    const { isError, data, isLoading, error } = useGetEntityQuery(id ?? '');
+    const { isError, data, isLoading } = useGetEntityQuery(id ?? '');
 
     const entitet = data ? EntitetModel.mapFraApi(data) : undefined;
 
     return (
         <div>
+            {isError && <p>Det har skjedd en feil.</p>}
             <LoadIndicator isLoading={isLoading}>
                 {entitet && (
                     <>
