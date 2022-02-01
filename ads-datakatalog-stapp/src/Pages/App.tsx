@@ -2,14 +2,15 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Entitet } from './Entitet/Entitet';
 import { Søk } from './Søk/Søk';
-import { Term } from './Term/Term';
-import { Toppmeny } from './Toppmeny/Toppmeny';
+import { Term } from '../Pages/Term/Term';
+import { Header } from '../Components/Header/Header';
+import './App.css';
 
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                <Toppmeny />
+                <Header />
                 <Routes>
                     <Route path="/">
                         <Route index element={<Søk />} />

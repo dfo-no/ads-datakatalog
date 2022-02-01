@@ -5,4 +5,14 @@ interface ILoadIndicator {
     children: React.ReactNode;
 }
 
-export const LoadIndicator = ({ isLoading, children }: ILoadIndicator) => <>{isLoading ? <p>Laster</p> : children}</>;
+export const LoadIndicator = ({ isLoading, children }: ILoadIndicator) => (
+    <>
+        {isLoading ? (
+            <div>
+                <h5>Laster....</h5>
+            </div>
+        ) : (
+            children
+        )}
+    </>
+);

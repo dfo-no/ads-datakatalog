@@ -1,0 +1,4 @@
+.Layout {
+    display: flex;
+    gap: var(--base-gap);
+}

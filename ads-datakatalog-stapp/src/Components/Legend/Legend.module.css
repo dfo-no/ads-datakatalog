@@ -1,0 +1,5 @@
+.Legend {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--small-gap);
+}

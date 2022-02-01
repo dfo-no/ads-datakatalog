@@ -1,0 +1,9 @@
+.CheckboxGroup-title {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--small-gap);
+}
+
+.CheckboxGroup-items > li {
+    margin-bottom: var(--tiny-gap);
+}

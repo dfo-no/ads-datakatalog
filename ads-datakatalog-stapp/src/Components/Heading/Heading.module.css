@@ -1,0 +1,29 @@
+.h1 {
+    font-size: 3rem;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}
+
+.h2 {
+    font-size: 2.2rem;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}
+
+.h3 {
+    font-size: 1.5rem;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}
+
+.h4 {
+    font-size: 1.4rem;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}
+
+.h5 {
+    font-size: 1.2rem;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}
+
+.h6 {
+    font-size: 1.1rem;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}

@@ -1,0 +1,14 @@
+.Searchbox {
+    display: flex;
+}
+
+.Searchbox-input {
+    background-color: #fff;
+    border: 2px solid var(--primary-light-color);
+}
+
+.Searchbox-button {
+    background-color: var(--primary-light-color);
+    color: #fff;
+    padding: 0.4rem var(--tiny-padding);
+}
