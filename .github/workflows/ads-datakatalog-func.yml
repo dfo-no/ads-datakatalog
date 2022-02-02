@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'ads-datakatalog-func/**'
 
 env:
   AZURE_FUNCTIONAPP_NAME: ads-datakatalog-prod-func # set this to your application's name
