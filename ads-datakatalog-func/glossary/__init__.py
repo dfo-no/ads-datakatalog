@@ -1,8 +1,6 @@
 import azure.functions as func
-from azure.identity import DefaultAzureCredential
-from azure.purview.catalog import PurviewCatalogClient
+from purview_api.purview_api import get_purview_client
 import json
-import os
 
 glossary_id = 'ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1'
 
