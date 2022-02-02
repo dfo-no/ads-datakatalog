@@ -5,6 +5,7 @@ import { Søk } from './Søk/Søk';
 import { Term } from '../Pages/Term/Term';
 import { Header } from '../Components/Header/Header';
 import './App.css';
+import Footer from '../Components/Footer/Footer';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     </Route>
                 </Routes>
             </BrowserRouter>
+            <Footer />
         </div>
     );
 }

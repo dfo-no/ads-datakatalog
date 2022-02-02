@@ -74,12 +74,14 @@
 
 * {
     box-sizing: border-box;
+}
+
+html {
     font-size: var(--font-size-base);
 }
 
 html,
 body {
-    width: 100vw;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -89,6 +91,7 @@ body {
     background: var(--background-color);
     color: var(--primary-color);
     font-family: var(--primary-font);
+    line-height: 1.5;
 }
 
 a,
@@ -132,6 +135,16 @@ h6 {
     font-family: var(--secondary-font);
     font-weight: 700;
     color: var(--primary-color);
-    margin: 1rem 0 0.125em;
-    line-height: 1.25em;
+    margin: 1rem 0 0.125rem;
+    line-height: 1.25rem;
+}
+
+ol,
+ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+ul > li {
+    list-style: disc;
 }
