@@ -22,7 +22,6 @@
     max-width: 50%;
     margin: 10px 0 20px 0;
     padding: 0;
-    max-width: 50%;
 }
 
 .Footer-menuitem {
@@ -67,4 +66,22 @@
 
 .Footer-contact a:link {
     text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+    .Footer-wrapper {
+        flex-direction: column;
+    }
+
+    .Footer-menu {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .Footer-contact {
+        margin-top: var(--tiny-gap);
+        max-width: 100%;
+        flex: 0 0 100%;
+        align-self: center;
+    }
 }

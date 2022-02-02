@@ -5,6 +5,7 @@ import { useGetGlossaryQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
 import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
 import { Container } from '../../Components/Container/Container';
+import { AttributtVisning } from './AttributtVisning/AttributtVisning';
 
 export const Term = () => {
     const { id } = useParams();
@@ -23,17 +24,18 @@ export const Term = () => {
                             {term.type}: {term.tittel}
                         </Heading>
                         <p>{term.beskrivelse}</p>
-                        <Heading level={HeadingLevel.h3}>Attributter</Heading>
-                        <table>
-                            <tbody>
-                                {term.attributter.map((attrib) => (
-                                    <tr key={attrib.navn}>
-                                        <th style={{ textAlign: 'left' }}>{attrib.navn}</th>
-                                        <td>{attrib.beskrivelse}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        {term.attributter && (
+                            <>
+                                <Heading level={HeadingLevel.h3}>Attributter</Heading>
+                                <table>
+                                    <tbody>
+                                        {term.attributter.map((attrib) => (
+                                            <AttributtVisning attributt={attrib} />
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </>
+                        )}
                         <Heading level={HeadingLevel.h3}>Tildelte entiteter</Heading>
                         <ul>
                             {term.tildelteEntiteter.map((entitet) => (
