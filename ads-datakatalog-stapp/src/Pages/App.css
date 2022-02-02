@@ -80,8 +80,19 @@ html {
     font-size: var(--font-size-base);
 }
 
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
+.App-maincontent {
+    margin-bottom: var(--base-padding);
+}
+
 html,
-body {
+body,
+#root,
+.App {
     height: 100%;
     margin: 0;
     padding: 0;

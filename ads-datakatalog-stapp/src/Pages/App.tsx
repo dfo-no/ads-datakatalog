@@ -12,17 +12,19 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Header />
-                <Routes>
-                    <Route path="/">
-                        <Route index element={<Søk />} />
-                        <Route path="search" element={<Søk />} />
-                        <Route path="term/:id/:tittel" element={<Term />} />
-                        <Route path="term/:id" element={<Term />} />
-                        <Route path="entitet/:id/:tittel" element={<Entitet />} />
-                        <Route path="entitet/:id" element={<Entitet />} />
-                        <Route path="*" element={<h2>Siden finnes ikke</h2>} />
-                    </Route>
-                </Routes>
+                <div className="App-maincontent">
+                    <Routes>
+                        <Route path="/">
+                            <Route index element={<Søk />} />
+                            <Route path="search" element={<Søk />} />
+                            <Route path="term/:id/:tittel" element={<Term />} />
+                            <Route path="term/:id" element={<Term />} />
+                            <Route path="entitet/:id/:tittel" element={<Entitet />} />
+                            <Route path="entitet/:id" element={<Entitet />} />
+                            <Route path="*" element={<h2>Siden finnes ikke</h2>} />
+                        </Route>
+                    </Routes>
+                </div>
             </BrowserRouter>
             <Footer />
         </div>

@@ -1,0 +1,39 @@
+@keyframes animation {
+    0% {
+        stroke-dasharray: 1 98;
+        stroke-dashoffset: -105;
+        stroke-opacity: 0.1;
+    }
+    50% {
+        stroke-dasharray: 80 10;
+        stroke-dashoffset: -160;
+        stroke-opacity: 1;
+    }
+    100% {
+        stroke-dasharray: 1 98;
+        stroke-dashoffset: -300;
+        stroke-opacity: 1;
+    }
+}
+
+.Spinner-circle {
+    transform-origin: center;
+    animation-name: animation;
+    animation-duration: 2.2s;
+    animation-timing-function: cubic-bezier;
+    animation-iteration-count: infinite;
+    stroke: var(--primary-color);
+    fill: transparent;
+    stroke-width: 7px;
+    stroke-linecap: round;
+}
+
+.Spinner {
+    width: 50px;
+}
+
+.LoadIndicator {
+    padding: var(--tiny-padding);
+    display: flex;
+    justify-content: center;
+}
