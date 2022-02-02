@@ -21,7 +21,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     entity_id = req.route_params.get('id')
 
     if(not re.match(guid_pattern, entity_id)):
-        return create_error(f'ID ({entity_id}) er ikke en gyldig GUID.')
+        return create_error(f'ID <{entity_id}> er ikke en gyldig GUID.')
 
     credential = DefaultAzureCredential()
     purview_client = PurviewCatalogClient(
