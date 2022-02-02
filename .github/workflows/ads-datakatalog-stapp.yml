@@ -16,10 +16,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'ads-datakatalog-stapp/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
+    paths:
+      - 'ads-datakatalog-stapp/**'
 
 # Environment variables available to all jobs and steps in this workflow
 env:
