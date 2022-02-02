@@ -1,11 +1,8 @@
 import azure.functions as func
-from azure.identity import DefaultAzureCredential
-from azure.purview.catalog import PurviewCatalogClient
 import json
 import re
-import os
+from purview_api.purview_api import get_purview_client
 
-default_datacatalog_id = 'ads-datakatalog-prod'
 guid_pattern = '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
 
 
@@ -19,15 +16,12 @@ def create_error(error_message: str) -> func.HttpResponse:
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    datacatalog_id = os.getenv('DATACATALOG-ID', default_datacatalog_id)
     entity_id = req.route_params.get('id')
 
     if(not re.match(guid_pattern, entity_id)):
         return create_error(f'ID <{entity_id}> er ikke en gyldig GUID.')
 
-    credential = DefaultAzureCredential()
-    purview_client = PurviewCatalogClient(
-        endpoint=f"https://{datacatalog_id}.purview.azure.com", credential=credential)
+    purview_client = get_purview_client()
 
     response = purview_client.entity.get_by_guid(entity_id)
 
