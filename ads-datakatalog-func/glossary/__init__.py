@@ -1,4 +1,3 @@
-from urllib import request
 import azure.functions as func
 from azure.identity import DefaultAzureCredential
 from azure.purview.catalog import PurviewCatalogClient
@@ -18,5 +17,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     return func.HttpResponse(
         json.dumps(terms),
-        status_code=200
+        status_code=200,
+        mimetype='application/json'
     )
