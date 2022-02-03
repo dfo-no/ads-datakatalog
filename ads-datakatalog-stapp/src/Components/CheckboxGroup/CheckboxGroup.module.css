@@ -1,12 +1,13 @@
 .CheckboxGroup-title {
     font-weight: bold;
     color: var(--primary-color);
-    margin-bottom: var(--small-gap);
+    margin-bottom: var(--tiny-gap);
 }
 
 .CheckboxGroup-items {
     padding-left: 0;
     margin: unset;
+    margin-bottom: var(--small-gap);
 }
 
 .CheckboxGroup-items > li {

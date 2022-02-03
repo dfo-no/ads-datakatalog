@@ -27,24 +27,6 @@ export const Filter = ({ filter, query, type, frequency, publisher }: FilterProp
     const navigate = useNavigate();
     return (
         <>
-            <CheckboxGroup title="Type">
-                {filter.typer.map((t) => (
-                    <Checkbox
-                        checked={type.split(',').includes(t)}
-                        onChange={() =>
-                            navigate(
-                                `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${fixUrl(
-                                    type,
-                                    t
-                                )}`
-                            )
-                        }
-                        key={`type-${t}`}
-                    >
-                        {t}
-                    </Checkbox>
-                ))}
-            </CheckboxGroup>
             <CheckboxGroup title="Utgiver">
                 {filter.publisher.map((o) => (
                     <Checkbox
@@ -78,6 +60,24 @@ export const Filter = ({ filter, query, type, frequency, publisher }: FilterProp
                         key={`type-${o}`}
                     >
                         {o}
+                    </Checkbox>
+                ))}
+            </CheckboxGroup>
+            <CheckboxGroup title="Type">
+                {filter.typer.map((t) => (
+                    <Checkbox
+                        checked={type.split(',').includes(t)}
+                        onChange={() =>
+                            navigate(
+                                `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${fixUrl(
+                                    type,
+                                    t
+                                )}`
+                            )
+                        }
+                        key={`type-${t}`}
+                    >
+                        {t}
                     </Checkbox>
                 ))}
             </CheckboxGroup>

@@ -1,0 +1,15 @@
+.Term-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}
+
+.Term-header > h2 {
+    margin: 0;
+}
+
+.Term-type {
+    font-size: 0.8rem;
+}

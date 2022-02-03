@@ -1,4 +1,5 @@
 import { IGlossary } from '../db/glossaryType';
+import { TermReference } from './termReference';
 
 export class Attributt {
     public navn: string;
@@ -6,16 +7,6 @@ export class Attributt {
 
     constructor(navn: string, beskrivelse: string) {
         this.navn = navn;
-        this.beskrivelse = beskrivelse;
-    }
-}
-
-export class TermReferanse {
-    public id: string;
-    public beskrivelse: string;
-
-    constructor(id: string, beskrivelse: string) {
-        this.id = id;
         this.beskrivelse = beskrivelse;
     }
 }
@@ -40,7 +31,7 @@ export class Term {
     public type: string;
     public ressurser: Attributt[];
     public attributter: Attributt[];
-    public referanser: TermReferanse[];
+    public referanser: TermReference[];
     public tildelteEntiteter: EntitetReferanse[];
 
     constructor(
@@ -51,7 +42,7 @@ export class Term {
         type: string,
         ressurser: Attributt[],
         attributter: Attributt[],
-        referanser: TermReferanse[],
+        referanser: TermReference[],
         tildelteEntiteter: EntitetReferanse[]
     ) {
         this.id = id;
@@ -83,7 +74,7 @@ export class Term {
             'Term',
             entitet.resources?.map((r) => new Attributt(r.displayName, r.url)) || [],
             attributter,
-            entitet.seeAlso?.map((r) => new TermReferanse(r.termGuid, r.displayText)) || [],
+            entitet.seeAlso?.map((r) => new TermReference(r.termGuid, r.displayText)) || [],
             entitet.assignedEntities?.map((e) => new EntitetReferanse(e.guid, e.displayText, e.typeName)) || []
         );
     }

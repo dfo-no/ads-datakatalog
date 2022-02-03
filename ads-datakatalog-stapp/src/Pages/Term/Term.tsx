@@ -5,9 +5,11 @@ import { useGetGlossaryQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
 import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
 import { Container } from '../../Components/Container/Container';
-import { AttributtVisning } from './AttributtVisning/AttributtVisning';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
 import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
+import { Skjemavisning } from './Skjemavisning/Skjemavisning';
+import { Attributtvisning } from './Attributtvisning/Attributtvisning';
+import Style from './Term.module.css';
 
 export const Term = () => {
     const { id } = useParams();
@@ -22,9 +24,10 @@ export const Term = () => {
             <LoadIndicator isLoading={isLoading}>
                 {term && (
                     <>
-                        <Heading level={HeadingLevel.h2}>
-                            {term.type}: {term.tittel}
-                        </Heading>
+                        <div className={Style['Term-header']}>
+                            <Heading level={HeadingLevel.h2}>{term.tittel}</Heading>
+                            <div className={Style['Term-type']}>{term.type}</div>
+                        </div>
                         <p>{term.beskrivelse}</p>
                         {term.attributter && (
                             <>
@@ -32,7 +35,7 @@ export const Term = () => {
                                 <table>
                                     <tbody>
                                         {term.attributter.map((attrib) => (
-                                            <AttributtVisning attributt={attrib} />
+                                            <Attributtvisning attributt={attrib} />
                                         ))}
                                     </tbody>
                                 </table>
@@ -40,17 +43,20 @@ export const Term = () => {
                         )}
                         {term.tildelteEntiteter.length !== 0 && (
                             <>
-                                <Heading level={HeadingLevel.h3}>Tildelte entiteter</Heading>
+                                <Heading level={HeadingLevel.h3}>Informasjonsmodell</Heading>
 
-                                <NavigationLinkList>
-                                    {term.tildelteEntiteter.map((entitet) => (
-                                        <NavigationLink key={entitet.id}>
+                                {term.tildelteEntiteter.map((entitet) => (
+                                    <>
+                                        {term.tildelteEntiteter.length !== 1 && <h4>{entitet.navn}</h4>}
+                                        <Skjemavisning id={entitet.id} />
+                                        <p>
+                                            <br />
                                             <Link to={`/entitet/${entitet.id}/${encodeURIComponent(entitet.navn)}`}>
-                                                {entitet.navn} ({entitet.type})
+                                                Detaljert visning av {entitet.navn}.
                                             </Link>
-                                        </NavigationLink>
-                                    ))}
-                                </NavigationLinkList>
+                                        </p>
+                                    </>
+                                ))}
                             </>
                         )}
                         {term.referanser.length !== 0 && (
@@ -59,8 +65,8 @@ export const Term = () => {
                                 <NavigationLinkList>
                                     {term.referanser.map((r) => (
                                         <NavigationLink key={r.id}>
-                                            <Link to={`/term/${r.id}/${encodeURIComponent(r.beskrivelse)}`}>
-                                                {r.beskrivelse}
+                                            <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
+                                                {r.description}
                                             </Link>
                                         </NavigationLink>
                                     ))}

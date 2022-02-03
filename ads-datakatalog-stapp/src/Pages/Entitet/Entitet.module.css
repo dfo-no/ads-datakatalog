@@ -1,0 +1,15 @@
+.Entitet-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--small-padding) 0 var(--tiny-padding) 0;
+}
+
+.Entitet-header > h2 {
+    margin: 0;
+}
+
+.Entitet-type {
+    font-size: 0.8rem;
+}

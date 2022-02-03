@@ -1,4 +1,5 @@
 import { IEntity } from '../db/entityType';
+import { TermReference } from './termReference';
 
 export class Entitet {
     public id: string;
@@ -7,6 +8,7 @@ export class Entitet {
     public sistOppdatert: Date;
     public type: string;
     public skjemaId?: string;
+    public meanings: TermReference[];
 
     constructor(
         id: string,
@@ -14,7 +16,8 @@ export class Entitet {
         beskrivelse: string,
         sistOppdatert: Date,
         type: string,
-        skjemaId?: string
+        skjemaId?: string,
+        meanings?: TermReference[]
     ) {
         this.id = id;
         this.tittel = tittel;
@@ -22,6 +25,7 @@ export class Entitet {
         this.sistOppdatert = sistOppdatert;
         this.type = type;
         this.skjemaId = skjemaId;
+        this.meanings = meanings ?? [];
     }
 
     public static mapFraApi(apiEntitet: IEntity) {
@@ -32,8 +36,8 @@ export class Entitet {
             e.attributes.description ?? '',
             new Date(e.updateTime),
             e.typeName,
-            e.relationshipAttributes.tabular_schema?.guid ??
-                e.relationshipAttributes.dbSchema?.guid
+            e.relationshipAttributes.tabular_schema?.guid ?? e.relationshipAttributes.dbSchema?.guid,
+            e.relationshipAttributes.meanings.map((m) => new TermReference(m.guid, m.displayText))
         );
     }
 }
