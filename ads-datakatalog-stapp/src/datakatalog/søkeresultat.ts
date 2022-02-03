@@ -11,10 +11,20 @@ export default class Søkeresultat {
     public static mapFraApi(glossary: IGlossary) {
         const resultatsett: SøkeresultatEntitet[] = [];
 
-        // Map noe
         for (const key of Object.keys(glossary.termInfo)) {
             const entitet = glossary.termInfo[key];
-            resultatsett.push(new SøkeresultatEntitet(key, entitet.name, entitet.longDescription, 'term', 'term'));
+            resultatsett.push(
+                new SøkeresultatEntitet(
+                    key,
+                    entitet.name,
+                    entitet.longDescription,
+                    'term',
+                    'term',
+                    entitet.attributes?.Datakatalog.Oppdateringsfrekvens,
+                    entitet.attributes?.Datakatalog.Tilgangsnivå,
+                    entitet.attributes?.Datakatalog.Utgiver
+                )
+            );
 
             entitet.assignedEntities?.forEach((underEntitet) => {
                 // Pass på at det kun er en av hver id

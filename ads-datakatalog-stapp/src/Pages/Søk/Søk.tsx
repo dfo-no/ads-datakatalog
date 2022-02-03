@@ -20,11 +20,15 @@ export const Søk = () => {
     const { isLoading, data } = useGetGlossaryQuery();
 
     const query = searchParams.get('query') ?? '';
-    const urlFilter = searchParams.get('filter') ?? '';
+    const type = searchParams.get('type') ?? '';
+    const frequency = searchParams.get('frequency') ?? '';
+    const publisher = searchParams.get('publisher') ?? '';
 
     const søkeresultat = data ? Søkeresultat.mapFraApi(data) : undefined;
 
-    const urlFilterSet = urlFilter ? new Set(urlFilter.split(',')) : new Set<string>();
+    const urlTypeSet = type ? new Set(type.split(',')) : new Set<string>();
+    const urlFrequencySet = frequency ? new Set(frequency.split(',')) : new Set<string>();
+    const urlPublisherSet = publisher ? new Set(publisher.split(',')) : new Set<string>();
 
     const filtrertSøk =
         søkeresultat?.resultater.filter((se) => {
@@ -34,7 +38,11 @@ export const Søk = () => {
     const filter = Søkefilter.genererFraSøkeresultat(filtrertSøk);
 
     const filtrertSøkEtterTermer = filtrertSøk.filter((se) => {
-        return urlFilterSet.size === 0 || urlFilterSet.has(se.type);
+        return (
+            (urlTypeSet.size === 0 || urlTypeSet.has(se.type)) &&
+            (urlFrequencySet.size === 0 || urlFrequencySet.has(se.frequency ?? '_______')) &&
+            (urlPublisherSet.size === 0 || urlPublisherSet.has(se.publisher ?? '_______'))
+        );
     });
 
     return (
@@ -46,7 +54,13 @@ export const Søk = () => {
                     </div>
                     <Layout type={LayoutTypes.Sidebar}>
                         <Sidebar>
-                            <Filter filter={filter} query={query} urlFilter={urlFilter} />
+                            <Filter
+                                filter={filter}
+                                query={query}
+                                type={type}
+                                frequency={frequency}
+                                publisher={publisher}
+                            />
                         </Sidebar>
                         <MainArea>
                             {filtrertSøkEtterTermer.length !== 0 ? (

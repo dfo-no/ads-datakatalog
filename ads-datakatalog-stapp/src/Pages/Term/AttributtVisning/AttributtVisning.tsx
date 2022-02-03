@@ -1,21 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Attributt } from '../../../datakatalog/term';
 
 class AttributtDefinisjon {
-    private _verdier: Map<string, string>;
     private _url: string;
+    private _søkefilterAttributt: string;
 
-    constructor(url: string, verdier: Map<string, string>) {
-        this._verdier = verdier;
+    constructor(url: string, søkefilterAttributt: string) {
         this._url = url;
+        this._søkefilterAttributt = søkefilterAttributt;
     }
 
     public get url(): string {
         return this._url;
     }
 
-    public get verdier(): Map<string, string> {
-        return this._verdier;
+    public get søkefilterAttributt(): string {
+        return this._søkefilterAttributt;
     }
 }
 
@@ -24,27 +25,19 @@ const attributtDefinisjoner = new Map<string, AttributtDefinisjon>([
         'Oppdateringsfrekvens',
         new AttributtDefinisjon(
             'https://data.norge.no/guide/veileder-beskrivelse-av-datasett/#datasett-frekvens',
-            new Map([
-                ['Daglig', 'http://publications.europa.eu/resource/authority/frequency/DAILY'],
-                ['Månedlig', 'http://publications.europa.eu/resource/authority/frequency/MONTHLY'],
-                ['Årlig', 'http://publications.europa.eu/resource/authority/frequency/ANNUAL'],
-                ['Kontinuerlig', 'http://publications.europa.eu/resource/authority/frequency/CONT']
-            ])
+            'frequency'
         )
     ],
     [
         'Tilgangsnivå',
         new AttributtDefinisjon(
             'https://data.norge.no/guide/veileder-beskrivelse-av-datasett/#datasett-tilgangsniv%C3%A5',
-            new Map([
-                ['Åpne data', 'http://publications.europa.eu/resource/authority/access-right/PUBLIC'],
-                ['Offentlig', 'http://publications.europa.eu/resource/authority/access-right/NON_PUBLIC'],
-                ['Begrenset offentlighet', 'http://publications.europa.eu/resource/authority/access-right/RESTRICTED'],
-                ['Unntatt offentlighet', 'http://publications.europa.eu/resource/authority/access-right/RESTRICTED'],
-                ['Sensitiv', 'http://publications.europa.eu/resource/authority/access-right/SENSITIVE'],
-                ['Konfidensiell', 'http://publications.europa.eu/resource/authority/access-right/CONFIDENTIAL']
-            ])
+            'access-right'
         )
+    ],
+    [
+        'Utgiver',
+        new AttributtDefinisjon('https://data.norge.no/specification/dcat-ap-no/#Datasett-utgiver', 'publisher')
     ]
 ]);
 
@@ -64,15 +57,14 @@ export const AttributtVisning = ({ attributt }: AttributtVisningProps) => (
             )}
         </th>
         <td>
-            {attributtDefinisjoner.has(attributt.navn) &&
-            attributtDefinisjoner.get(attributt.navn)?.verdier.has(attributt.beskrivelse) ? (
-                <a
-                    target="_blank"
-                    href={attributtDefinisjoner.get(attributt.navn)?.verdier.get(attributt.beskrivelse)}
-                    rel="noreferrer"
+            {attributtDefinisjoner.has(attributt.navn) ? (
+                <Link
+                    to={`/search?${attributtDefinisjoner.get(attributt.navn)?.søkefilterAttributt}=${
+                        attributt.beskrivelse
+                    }`}
                 >
                     {attributt.beskrivelse}
-                </a>
+                </Link>
             ) : (
                 attributt.beskrivelse
             )}

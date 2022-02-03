@@ -18,24 +18,69 @@ const fixUrl = (gammeltFilter: string, nyttFilter: string) => {
 interface FilterProps {
     filter: Søkefilter;
     query: string;
-    urlFilter: string;
+    type: string;
+    frequency: string;
+    publisher: string;
 }
 
-export const Filter = ({ filter, query, urlFilter }: FilterProps) => {
+export const Filter = ({ filter, query, type, frequency, publisher }: FilterProps) => {
     const navigate = useNavigate();
     return (
-        <div>
-            <CheckboxGroup title="Filter type">
+        <>
+            <CheckboxGroup title="Type">
                 {filter.typer.map((t) => (
                     <Checkbox
-                        checked={urlFilter.split(',').includes(t)}
-                        onChange={() => navigate(`/search?query=${query}&filter=${fixUrl(urlFilter, t)}`)}
+                        checked={type.split(',').includes(t)}
+                        onChange={() =>
+                            navigate(
+                                `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${fixUrl(
+                                    type,
+                                    t
+                                )}`
+                            )
+                        }
                         key={`type-${t}`}
                     >
                         {t}
                     </Checkbox>
                 ))}
             </CheckboxGroup>
-        </div>
+            <CheckboxGroup title="Utgiver">
+                {filter.publisher.map((o) => (
+                    <Checkbox
+                        checked={publisher.split(',').includes(o)}
+                        onChange={() =>
+                            navigate(
+                                `/search?query=${query}&publisher=${fixUrl(
+                                    publisher,
+                                    o
+                                )}&frequency=${frequency}&type=${type}`
+                            )
+                        }
+                        key={`type-${o}`}
+                    >
+                        {o}
+                    </Checkbox>
+                ))}
+            </CheckboxGroup>
+            <CheckboxGroup title="Oppdateringsfrekvens">
+                {filter.oppdateringsfrekvenser.map((o) => (
+                    <Checkbox
+                        checked={frequency.split(',').includes(o)}
+                        onChange={() =>
+                            navigate(
+                                `/search?query=${query}&publisher=${publisher}&frequency=${fixUrl(
+                                    frequency,
+                                    o
+                                )}&type=${type}`
+                            )
+                        }
+                        key={`type-${o}`}
+                    >
+                        {o}
+                    </Checkbox>
+                ))}
+            </CheckboxGroup>
+        </>
     );
 };
