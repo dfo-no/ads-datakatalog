@@ -6,6 +6,8 @@ import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
 import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
 import { Container } from '../../Components/Container/Container';
 import { AttributtVisning } from './AttributtVisning/AttributtVisning';
+import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
+import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
 
 export const Term = () => {
     const { id } = useParams();
@@ -36,36 +38,49 @@ export const Term = () => {
                                 </table>
                             </>
                         )}
-                        <Heading level={HeadingLevel.h3}>Tildelte entiteter</Heading>
-                        <ul>
-                            {term.tildelteEntiteter.map((entitet) => (
-                                <li key={entitet.id}>
-                                    <Link to={`/entitet/${entitet.id}/${encodeURIComponent(entitet.navn)}`}>
-                                        {entitet.navn} ({entitet.type})
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                        <Heading level={HeadingLevel.h3}>Se også</Heading>
-                        <ul>
-                            {term.referanser.map((r) => (
-                                <li key={r.id}>
-                                    <Link to={`/term/${r.id}/${encodeURIComponent(r.beskrivelse)}`}>
-                                        {r.beskrivelse}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                        <Heading level={HeadingLevel.h3}>Ressurser</Heading>
-                        <ul>
-                            {term.ressurser.map((r) => (
-                                <li>
-                                    <a href={r.beskrivelse} target="_blank" rel="noreferrer">
-                                        {r.navn}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
+                        {term.tildelteEntiteter.length !== 0 && (
+                            <>
+                                <Heading level={HeadingLevel.h3}>Tildelte entiteter</Heading>
+
+                                <NavigationLinkList>
+                                    {term.tildelteEntiteter.map((entitet) => (
+                                        <NavigationLink key={entitet.id}>
+                                            <Link to={`/entitet/${entitet.id}/${encodeURIComponent(entitet.navn)}`}>
+                                                {entitet.navn} ({entitet.type})
+                                            </Link>
+                                        </NavigationLink>
+                                    ))}
+                                </NavigationLinkList>
+                            </>
+                        )}
+                        {term.referanser.length !== 0 && (
+                            <>
+                                <Heading level={HeadingLevel.h3}>Se også</Heading>
+                                <NavigationLinkList>
+                                    {term.referanser.map((r) => (
+                                        <NavigationLink key={r.id}>
+                                            <Link to={`/term/${r.id}/${encodeURIComponent(r.beskrivelse)}`}>
+                                                {r.beskrivelse}
+                                            </Link>
+                                        </NavigationLink>
+                                    ))}
+                                </NavigationLinkList>
+                            </>
+                        )}
+                        {term.ressurser.length !== 0 && (
+                            <>
+                                <Heading level={HeadingLevel.h3}>Ressurser</Heading>
+                                <NavigationLinkList>
+                                    {term.ressurser.map((r) => (
+                                        <NavigationLink key={r.navn}>
+                                            <a href={r.beskrivelse} target="_blank" rel="noreferrer">
+                                                {r.navn}
+                                            </a>
+                                        </NavigationLink>
+                                    ))}
+                                </NavigationLinkList>
+                            </>
+                        )}
                     </>
                 )}
             </LoadIndicator>

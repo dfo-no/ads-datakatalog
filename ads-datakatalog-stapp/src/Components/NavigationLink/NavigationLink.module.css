@@ -1,0 +1,21 @@
+.NavigationLink > a:link {
+    background-image: url('../../../public/img/icons/arrow-link-blue.svg');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 20px) center;
+    background-size: 21px;
+    padding: 10px 82px 10px 20px;
+    display: block;
+    width: 100%;
+}
+
+.NavigationLink > a:link,
+.NavigationLink > a:visited,
+.NavigationLink > a:active {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+.NavigationLink > a:hover {
+    color: var(--secondary-color);
+}

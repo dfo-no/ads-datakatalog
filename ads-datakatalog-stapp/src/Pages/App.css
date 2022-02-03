@@ -100,7 +100,7 @@ body,
 
 body {
     background: var(--background-color);
-    color: var(--primary-color);
+    color: var(--text-color);
     font-family: var(--primary-font);
     line-height: 1.5;
 }
