@@ -77,7 +77,7 @@ export const Term = () => {
                                 <NavigationLinkList>
                                     {term.ressurser.map((r) => (
                                         <NavigationLink key={r.navn}>
-                                            <a href={r.beskrivelse} target="_blank" rel="noreferrer">
+                                            <a href={r.beskrivelse} target="_blank" rel="noopener noreferrer">
                                                 {r.navn}
                                             </a>
                                         </NavigationLink>
