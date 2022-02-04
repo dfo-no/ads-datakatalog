@@ -8,7 +8,7 @@ import { Container } from '../../Components/Container/Container';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
 import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
 import { Skjemavisning } from './Skjemavisning/Skjemavisning';
-import { Attributtvisning } from './Attributtvisning/Attributtvisning';
+import { Attributtvisning } from './AttributtVisning/AttributtVisning';
 import Style from './Term.module.css';
 
 export const Term = () => {
