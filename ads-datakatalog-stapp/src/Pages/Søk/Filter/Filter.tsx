@@ -21,9 +21,10 @@ interface FilterProps {
     type: string;
     frequency: string;
     publisher: string;
+    accessRight: string;
 }
 
-export const Filter = ({ filter, query, type, frequency, publisher }: FilterProps) => {
+export const Filter = ({ filter, query, type, frequency, publisher, accessRight }: FilterProps) => {
     const navigate = useNavigate();
     return (
         <>
@@ -39,14 +40,32 @@ export const Filter = ({ filter, query, type, frequency, publisher }: FilterProp
                                 )}&frequency=${frequency}&type=${type}`
                             )
                         }
-                        key={`type-${o}`}
+                        key={`publisher-${o}`}
+                    >
+                        {o}
+                    </Checkbox>
+                ))}
+            </CheckboxGroup>
+            <CheckboxGroup title="Tilgangsnivå">
+                {filter.accessRight.map((o) => (
+                    <Checkbox
+                        checked={accessRight.split(',').includes(o)}
+                        onChange={() =>
+                            navigate(
+                                `/search?access-right=${fixUrl(
+                                    accessRight,
+                                    o
+                                )}&query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}`
+                            )
+                        }
+                        key={`access-right-${o}`}
                     >
                         {o}
                     </Checkbox>
                 ))}
             </CheckboxGroup>
             <CheckboxGroup title="Oppdateringsfrekvens">
-                {filter.oppdateringsfrekvenser.map((o) => (
+                {filter.frequency.map((o) => (
                     <Checkbox
                         checked={frequency.split(',').includes(o)}
                         onChange={() =>
@@ -57,7 +76,7 @@ export const Filter = ({ filter, query, type, frequency, publisher }: FilterProp
                                 )}&type=${type}`
                             )
                         }
-                        key={`type-${o}`}
+                        key={`frequency-${o}`}
                     >
                         {o}
                     </Checkbox>

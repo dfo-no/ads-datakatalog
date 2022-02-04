@@ -35,7 +35,10 @@ export default class Søkeresultat {
                             underEntitet.displayText,
                             '',
                             underEntitet.typeName,
-                            'entitet'
+                            'entitet',
+                            entitet.attributes?.Datakatalog.Oppdateringsfrekvens,
+                            entitet.attributes?.Datakatalog.Tilgangsnivå,
+                            entitet.attributes?.Datakatalog.Utgiver
                         )
                     );
                 }
