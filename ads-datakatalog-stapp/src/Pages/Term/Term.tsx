@@ -8,7 +8,7 @@ import { Container } from '../../Components/Container/Container';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
 import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
 import { Skjemavisning } from './Skjemavisning/Skjemavisning';
-import { Attributtvisning } from './AttributtVisning/AttributtVisning';
+import { Attributt } from './Attributt/Attributt';
 import Style from './Term.module.css';
 
 export const Term = () => {
@@ -35,7 +35,7 @@ export const Term = () => {
                                 <table>
                                     <tbody>
                                         {term.attributter.map((attrib) => (
-                                            <Attributtvisning attributt={attrib} />
+                                            <Attributt attributt={attrib} />
                                         ))}
                                     </tbody>
                                 </table>
