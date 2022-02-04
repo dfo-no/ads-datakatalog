@@ -1,5 +1,5 @@
 .NavigationLink > a:link {
-    background-image: url('../../../public/img/icons/arrow-link-blue.svg');
+    background-image: url('../../icons/arrow-link-blue.svg');
     background-repeat: no-repeat;
     background-position: calc(100% - 20px) center;
     background-size: 21px;

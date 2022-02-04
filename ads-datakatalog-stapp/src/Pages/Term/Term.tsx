@@ -14,7 +14,6 @@ import Style from './Term.module.css';
 export const Term = () => {
     const { id } = useParams();
     const { isLoading, data, isError } = useGetGlossaryQuery();
-
     const term = id && data ? TermModel.mapFraApi(data, id) : undefined;
 
     return (

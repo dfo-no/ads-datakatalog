@@ -37,7 +37,7 @@
 }
 
 .Footer-menuitem > a:link {
-    background-image: url('../../../public/img/icons/arrow-link.svg');
+    background-image: url('../../icons/arrow-link.svg');
     background-repeat: no-repeat;
     background-position: calc(100% - 20px) center;
     background-size: 21px;

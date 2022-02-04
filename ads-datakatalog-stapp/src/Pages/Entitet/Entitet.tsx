@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Entitet as EntitetModel } from '../../datakatalog/entietet';
 import { Skjema } from './Skjema/Skjema';
