@@ -4,3 +4,7 @@
     margin-right: auto;
     padding: 0 20px;
 }
+
+.Container__withPadding {
+    padding-top: var(--base-padding);
+}

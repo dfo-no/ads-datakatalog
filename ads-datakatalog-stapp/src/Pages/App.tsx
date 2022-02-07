@@ -6,6 +6,7 @@ import { Term } from '../Pages/Term/Term';
 import { Header } from '../Components/Header/Header';
 import './App.css';
 import Footer from '../Components/Footer/Footer';
+import { Forside } from './Forside/Forside';
 
 function App() {
     return (
@@ -15,7 +16,7 @@ function App() {
                 <div className="App-maincontent">
                     <Routes>
                         <Route path="/">
-                            <Route index element={<Søk />} />
+                            <Route index element={<Forside />} />
                             <Route path="search" element={<Søk />} />
                             <Route path="term/:id/:tittel" element={<Term />} />
                             <Route path="term/:id" element={<Term />} />

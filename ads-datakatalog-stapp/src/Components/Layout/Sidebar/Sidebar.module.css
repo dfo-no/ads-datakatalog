@@ -1,4 +1,5 @@
 .Sidebar {
-    flex-basis: 20%;
-    max-width: 20%;
+    flex-basis: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
 }

@@ -1,7 +1,7 @@
-.Searchbox {
+/* .Searchbox {
     display: flex;
-}
-
+} */
+/*
 .Searchbox-input {
     background-color: #fff;
     border: 2px solid var(--primary-light-color);
@@ -11,4 +11,44 @@
     background-color: var(--primary-light-color);
     color: #fff;
     padding: 0.4rem var(--tiny-padding);
+} */
+
+.Searchbox-wrapper {
+    display: flex;
+}
+
+.Searchbox-input {
+    position: relative;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+
+.Searchbox-input::after,
+.Searchbox-input::before {
+    margin: 0;
+}
+
+.Searchbox-button {
+    /* position: absolute; */
+    /*bottom: 25%; */
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0;
+}
+
+.Searchbox-buttonIcon {
+    /* padding: var(--small-gap) var(--tiny-gap); */
+    position: absolute;
+    right: var(--small-gap);
+    padding: var(--small-gap) var(--tiny-gap);
+    background-color: transparent;
+    border: none;
+    background-image: url('../../icons/search-blue.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: calc(50% - 1rem);
+    cursor: pointer;
 }

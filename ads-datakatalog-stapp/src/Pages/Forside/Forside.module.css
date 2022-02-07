@@ -1,0 +1,5 @@
+.Forside {
+    padding: var(--big-padding) 0;
+    background-color: var(--frontpage-header-color);
+    min-height: calc(var(--big-padding) * 5);
+}

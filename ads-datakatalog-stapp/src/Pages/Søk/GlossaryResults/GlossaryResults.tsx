@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { EntityType } from '../../../Components/EntityType/EntityType';
 import SøkeresultatEntitet from '../../../datakatalog/søkeresultatEntitet';
 import Style from './GlossaryResults.module.css';
 
@@ -18,7 +19,9 @@ export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
                         </h3>
                     </div>
                     <div>
-                        <p>{sr.type}</p>
+                        <p>
+                            <EntityType type={sr.type} />
+                        </p>
                     </div>
                 </div>
                 <p>{sr.beskrivelse}</p>

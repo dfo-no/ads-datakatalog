@@ -1,4 +1,5 @@
 .Søk-searchbar {
     padding-top: var(--tiny-padding);
     padding-bottom: var(--tiny-padding);
+    margin-left: calc(var(--sidebar-width) + var(--base-gap));
 }

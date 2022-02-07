@@ -13,3 +13,7 @@
 .Term-type {
     font-size: 0.8rem;
 }
+
+.Term-section {
+    margin: var(--base-padding) 0;
+}

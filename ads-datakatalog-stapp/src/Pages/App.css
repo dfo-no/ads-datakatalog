@@ -5,6 +5,8 @@
     --background-color-filtering: #efefef;
     --background-color-chips: #979797;
 
+    --frontpage-header-color: #bfd6e3;
+
     --primary-color: #012a4c;
     --primary-light-color: #005b91;
     --secondary-color: #009ee1;
@@ -31,16 +33,18 @@
     --semibold: 500;
     --bold: 600;
 
-    --base-padding: 4rem;
+    --base-padding: 2rem;
     --base-gap: 2rem;
     --small-gap: 1rem;
     --tiny-gap: 0.5rem;
-    --tiny-padding: 1.2rem;
-    --small-padding: 2rem;
+    --tiny-padding: 1rem;
+    --small-padding: 1.2rem;
     --medium-padding: 4rem;
-    --big-padding: 8rem;
+    --big-padding: 4rem;
 
     --font-size-base: 18px;
+
+    --sidebar-width: 220px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -158,4 +162,73 @@ ul {
 
 ul > li {
     list-style: disc;
+}
+
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='text'],
+textarea {
+    width: 100%;
+    max-width: 100%;
+    height: 1rem;
+    padding: var(--small-padding) var(--tiny-padding);
+    box-sizing: border-box;
+    font-family: var(--primary-font);
+    border: 2px solid var(--primary-light-color);
+    outline-color: none;
+    background-color: #fff;
+}
+
+input[type='number']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+input[type='text']:focus,
+textarea:focus {
+    border: 2px solid var(--secondary-color);
+}
+
+textarea {
+    padding: var(--small-padding) var(--tiny-padding);
+    border: 2px solid var(--border-color);
+    outline-color: var(--secondary-color);
+}
+
+select {
+    appearance: none;
+    position: relative;
+    width: 100%;
+    max-width: 75.6rem;
+    margin-bottom: 0.7rem;
+    padding: 1rem 5rem 1rem 2rem;
+    border: 0.2rem solid var(--border-color);
+    box-sizing: border-box;
+    background-position: 95% 55%;
+    background-size: 2rem;
+    background-repeat: no-repeat;
+    font-family: var(--font-family);
+    font-size: 1.8rem;
+    font-weight: 400;
+    outline-color: var(--secondary-color);
+}
+
+button {
+    padding: var(--small-gap) var(--tiny-gap);
+    border: 0;
+    background-color: var(--primary-light-color);
+    color: white;
+    font-family: var(--primary-font);
+}
+
+button:disabled {
+    background-color: var(--disabled-color);
+}
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }

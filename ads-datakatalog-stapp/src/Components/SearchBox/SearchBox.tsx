@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { SyntheticEvent, useEffect, useRef, useState } from 'react';
 import Style from './SearchBox.module.css';
 
 interface SearchBoxProps {
@@ -9,30 +9,40 @@ interface SearchBoxProps {
 
 export const SearchBox = ({ onSearch, value = '', tabIndex }: SearchBoxProps) => {
     const searchFieldRef = useRef<HTMLInputElement>(null);
+    const [query, setQuery] = useState(value);
 
     useEffect(() => {
         searchFieldRef.current?.focus();
     }, []);
 
+    const searchAction = (e: SyntheticEvent) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        onSearch(query);
+    };
+
     return (
-        <div className={Style['Searchbox']}>
-            <label htmlFor="søk" style={{ display: 'none' }}>
+        <form className={Style['Searchbox']} onSubmit={searchAction}>
+            <label htmlFor="søk" className="sr-only">
                 Søk
             </label>
-            <input
-                className={Style['Searchbox-input']}
-                id="søk"
-                tabIndex={tabIndex}
-                onChange={(e) => onSearch(e.currentTarget.value)}
-                value={value}
-                ref={searchFieldRef}
-            />
-            <button
-                className={Style['Searchbox-button']}
-                onClick={(e) => onSearch(searchFieldRef.current?.value ?? '')}
-            >
-                Søk
-            </button>
-        </div>
+            <div className={Style['Searchbox-wrapper']}>
+                <input
+                    className={Style['Searchbox-input']}
+                    id="søk"
+                    tabIndex={tabIndex}
+                    onChange={(e) => setQuery(e.currentTarget.value)}
+                    value={query}
+                    ref={searchFieldRef}
+                    type="search"
+                    placeholder="Søk i datakatalogen"
+                />
+                <button type="submit" className={Style['Searchbox-button']} onClick={searchAction} title="Søk">
+                    <i className={Style['Searchbox-buttonIcon']} />
+                    <div className="sr-only">Søk</div>
+                </button>
+            </div>
+        </form>
     );
 };

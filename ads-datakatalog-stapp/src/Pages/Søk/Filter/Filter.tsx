@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Checkbox } from '../../../Components/Checkbox/Checkbox';
 import { CheckboxGroup } from '../../../Components/CheckboxGroup/CheckboxGroup';
+import { EntityType } from '../../../Components/EntityType/EntityType';
 import { Søkefilter } from '../../../datakatalog/søkefilter';
 
 const fixUrl = (gammeltFilter: string, nyttFilter: string) => {
@@ -96,7 +97,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight 
                         }
                         key={`type-${t}`}
                     >
-                        {t}
+                        <EntityType type={t} />
                     </Checkbox>
                 ))}
             </CheckboxGroup>

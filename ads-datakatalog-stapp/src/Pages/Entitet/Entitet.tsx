@@ -9,6 +9,10 @@ import { Container } from '../../Components/Container/Container';
 import Style from './Entitet.module.css';
 import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
+import { Layout, LayoutTypes } from '../../Components/Layout/Layout/Layout';
+import { MainArea } from '../../Components/Layout/MainArea/MainArea';
+import { Sidebar } from '../../Components/Layout/Sidebar/Sidebar';
+import { EntityType } from '../../Components/EntityType/EntityType';
 
 export const Entitet = () => {
     const { id } = useParams();
@@ -19,38 +23,45 @@ export const Entitet = () => {
 
     return (
         <Container>
-            {isError && <p>Det har skjedd en feil.</p>}
-            <LoadIndicator isLoading={isLoading}>
-                {entitet && (
-                    <>
-                        <div className={Style['Entitet-header']}>
-                            <Heading level={HeadingLevel.h2}>{entitet.tittel}</Heading>
-                            <div className={Style['Entitet-type']}>{entitet.type}</div>
-                        </div>
-                        <p>{entitet.beskrivelse}</p>
-                        {entitet.skjemaId && (
+            <Layout type={LayoutTypes.Sidebar}>
+                <MainArea>
+                    {isError && <p>Det har skjedd en feil.</p>}
+                    <LoadIndicator isLoading={isLoading}>
+                        {entitet && (
                             <>
-                                <Heading level={HeadingLevel.h3}>Skjema</Heading>
-                                <Skjema id={entitet.skjemaId} />
+                                <div className={Style['Entitet-header']}>
+                                    <Heading level={HeadingLevel.h2}>{entitet.tittel}</Heading>
+                                    <div className={Style['Entitet-type']}>
+                                        <EntityType type={entitet.type} />
+                                    </div>
+                                </div>
+                                <p>{entitet.beskrivelse}</p>
+                                {entitet.skjemaId && (
+                                    <>
+                                        <Heading level={HeadingLevel.h3}>Skjema</Heading>
+                                        <Skjema id={entitet.skjemaId} />
+                                    </>
+                                )}
+                                {entitet.meanings.length !== 0 && (
+                                    <>
+                                        <Heading level={HeadingLevel.h3}>Benyttet i</Heading>
+                                        <NavigationLinkList>
+                                            {entitet.meanings.map((r) => (
+                                                <NavigationLink key={r.id}>
+                                                    <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
+                                                        {r.description}
+                                                    </Link>
+                                                </NavigationLink>
+                                            ))}
+                                        </NavigationLinkList>
+                                    </>
+                                )}
                             </>
                         )}
-                        {entitet.meanings.length !== 0 && (
-                            <>
-                                <Heading level={HeadingLevel.h3}>Benyttet i</Heading>
-                                <NavigationLinkList>
-                                    {entitet.meanings.map((r) => (
-                                        <NavigationLink key={r.id}>
-                                            <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
-                                                {r.description}
-                                            </Link>
-                                        </NavigationLink>
-                                    ))}
-                                </NavigationLinkList>
-                            </>
-                        )}
-                    </>
-                )}
-            </LoadIndicator>
+                    </LoadIndicator>
+                </MainArea>
+                <Sidebar>&nbsp;</Sidebar>
+            </Layout>
         </Container>
     );
 };

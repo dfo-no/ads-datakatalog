@@ -47,15 +47,7 @@ interface AttributtProps {
 
 export const Attributt = ({ attributt }: AttributtProps) => (
     <tr>
-        <th style={{ textAlign: 'left' }}>
-            {attributtDefinisjoner.has(attributt.navn) ? (
-                <a target="_blank" href={attributtDefinisjoner.get(attributt.navn)?.url} rel="noreferrer noopener">
-                    {attributt.navn}
-                </a>
-            ) : (
-                attributt.navn
-            )}
-        </th>
+        <th style={{ textAlign: 'left' }}>{attributt.navn}</th>
         <td>
             {attributtDefinisjoner.has(attributt.navn) ? (
                 <Link

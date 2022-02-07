@@ -50,13 +50,16 @@ export const Søk = () => {
 
     return (
         <div className={Style['Søk']}>
-            <Container>
+            <Container withPadding>
                 <LoadIndicator isLoading={isLoading}>
-                    <div className={Style['Søk-searchbar']}>
-                        <SearchBox onSearch={(query) => setSearchParams({ query: query })} value={query} tabIndex={0} />
-                    </div>
                     <Layout type={LayoutTypes.Sidebar}>
                         <Sidebar>
+                            <SearchBox
+                                onSearch={(query) => setSearchParams({ query: query })}
+                                value={query}
+                                tabIndex={0}
+                            />
+                            <br />
                             <Filter
                                 filter={filter}
                                 query={query}

@@ -10,6 +10,10 @@ import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
 import { Skjemavisning } from './Skjemavisning/Skjemavisning';
 import { Attributt } from './Attributt/Attributt';
 import Style from './Term.module.css';
+import { Layout, LayoutTypes } from '../../Components/Layout/Layout/Layout';
+import { MainArea } from '../../Components/Layout/MainArea/MainArea';
+import { Sidebar } from '../../Components/Layout/Sidebar/Sidebar';
+import { EntityType } from '../../Components/EntityType/EntityType';
 
 export const Term = () => {
     const { id } = useParams();
@@ -18,76 +22,88 @@ export const Term = () => {
 
     return (
         <Container>
-            {isError && <p>Det har skjedd en feil.</p>}
-            <LoadIndicator isLoading={isLoading}>
-                {term && (
-                    <>
-                        <div className={Style['Term-header']}>
-                            <Heading level={HeadingLevel.h2}>{term.tittel}</Heading>
-                            <div className={Style['Term-type']}>{term.type}</div>
-                        </div>
-                        <p>{term.beskrivelse}</p>
-                        {term.attributter && (
+            <Layout type={LayoutTypes.Sidebar}>
+                <MainArea>
+                    {isError && <p>Det har skjedd en feil.</p>}
+                    <LoadIndicator isLoading={isLoading}>
+                        {term && (
                             <>
-                                <Heading level={HeadingLevel.h3}>Attributter</Heading>
-                                <table>
-                                    <tbody>
-                                        {term.attributter.map((attrib) => (
-                                            <Attributt attributt={attrib} />
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </>
-                        )}
-                        {term.tildelteEntiteter.length !== 0 && (
-                            <>
-                                <Heading level={HeadingLevel.h3}>Informasjonsmodell</Heading>
-
-                                {term.tildelteEntiteter.map((entitet) => (
+                                <section className={Style['Term-section']}>
+                                    <div className={Style['Term-header']}>
+                                        <Heading level={HeadingLevel.h2}>{term.tittel}</Heading>
+                                        <div className={Style['Term-type']}>
+                                            <EntityType type={term.type} />
+                                        </div>
+                                    </div>
+                                    <p>{term.beskrivelse}</p>
+                                </section>
+                                {term.attributter && (
+                                    <section className={Style['Term-section']}>
+                                        <table>
+                                            <tbody>
+                                                {term.attributter.map((attrib) => (
+                                                    <Attributt attributt={attrib} />
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </section>
+                                )}
+                                {term.tildelteEntiteter.length !== 0 && (
                                     <>
-                                        {term.tildelteEntiteter.length !== 1 && <h4>{entitet.navn}</h4>}
-                                        <Skjemavisning id={entitet.id} />
-                                        <p>
-                                            <br />
-                                            <Link to={`/entitet/${entitet.id}/${encodeURIComponent(entitet.navn)}`}>
-                                                Detaljert visning av {entitet.navn}.
-                                            </Link>
-                                        </p>
+                                        <Heading level={HeadingLevel.h3}>Informasjonsmodell</Heading>
+
+                                        {term.tildelteEntiteter.map((entitet) => (
+                                            <>
+                                                {term.tildelteEntiteter.length !== 1 && <h4>{entitet.navn}</h4>}
+                                                <Skjemavisning id={entitet.id} />
+                                                <p>
+                                                    <br />
+                                                    <Link
+                                                        to={`/entitet/${entitet.id}/${encodeURIComponent(
+                                                            entitet.navn
+                                                        )}`}
+                                                    >
+                                                        Detaljert visning av {entitet.navn}.
+                                                    </Link>
+                                                </p>
+                                            </>
+                                        ))}
                                     </>
-                                ))}
+                                )}
+                                {term.referanser.length !== 0 && (
+                                    <>
+                                        <Heading level={HeadingLevel.h3}>Se også</Heading>
+                                        <NavigationLinkList>
+                                            {term.referanser.map((r) => (
+                                                <NavigationLink key={r.id}>
+                                                    <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
+                                                        {r.description}
+                                                    </Link>
+                                                </NavigationLink>
+                                            ))}
+                                        </NavigationLinkList>
+                                    </>
+                                )}
+                                {term.ressurser.length !== 0 && (
+                                    <>
+                                        <Heading level={HeadingLevel.h3}>Ressurser</Heading>
+                                        <NavigationLinkList>
+                                            {term.ressurser.map((r) => (
+                                                <NavigationLink key={r.navn}>
+                                                    <a href={r.beskrivelse} target="_blank" rel="noopener noreferrer">
+                                                        {r.navn}
+                                                    </a>
+                                                </NavigationLink>
+                                            ))}
+                                        </NavigationLinkList>
+                                    </>
+                                )}
                             </>
                         )}
-                        {term.referanser.length !== 0 && (
-                            <>
-                                <Heading level={HeadingLevel.h3}>Se også</Heading>
-                                <NavigationLinkList>
-                                    {term.referanser.map((r) => (
-                                        <NavigationLink key={r.id}>
-                                            <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
-                                                {r.description}
-                                            </Link>
-                                        </NavigationLink>
-                                    ))}
-                                </NavigationLinkList>
-                            </>
-                        )}
-                        {term.ressurser.length !== 0 && (
-                            <>
-                                <Heading level={HeadingLevel.h3}>Ressurser</Heading>
-                                <NavigationLinkList>
-                                    {term.ressurser.map((r) => (
-                                        <NavigationLink key={r.navn}>
-                                            <a href={r.beskrivelse} target="_blank" rel="noopener noreferrer">
-                                                {r.navn}
-                                            </a>
-                                        </NavigationLink>
-                                    ))}
-                                </NavigationLinkList>
-                            </>
-                        )}
-                    </>
-                )}
-            </LoadIndicator>
+                    </LoadIndicator>
+                </MainArea>
+                <Sidebar>&nbsp;</Sidebar>
+            </Layout>
         </Container>
     );
 };
