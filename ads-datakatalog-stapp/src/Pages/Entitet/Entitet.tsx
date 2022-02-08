@@ -4,15 +4,14 @@ import { Entitet as EntitetModel } from '../../datakatalog/entietet';
 import { Skjema } from './Skjema/Skjema';
 import { useGetEntityQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
-import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
 import { Container } from '../../Components/Container/Container';
 import Style from './Entitet.module.css';
 import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
 import { Layout, LayoutTypes } from '../../Components/Layout/Layout/Layout';
 import { MainArea } from '../../Components/Layout/MainArea/MainArea';
-import { Sidebar } from '../../Components/Layout/Sidebar/Sidebar';
 import { EntityType } from '../../Components/EntityType/EntityType';
+import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
 
 export const Entitet = () => {
     const { id } = useParams();
@@ -23,28 +22,29 @@ export const Entitet = () => {
 
     return (
         <Container>
-            <Layout type={LayoutTypes.Sidebar}>
-                <MainArea>
-                    {isError && <p>Det har skjedd en feil.</p>}
-                    <LoadIndicator isLoading={isLoading}>
+            <LoadIndicator isLoading={isLoading}>
+                <Layout type={LayoutTypes.Sidebar}>
+                    <MainArea>
+                        {isError && <p>Det har skjedd en feil.</p>}
                         {entitet && (
-                            <>
-                                <div className={Style['Entitet-header']}>
-                                    <Heading level={HeadingLevel.h2}>{entitet.tittel}</Heading>
+                            <article>
+                                <Breadcrumbs currentLabel={entitet.tittel} />
+                                <header className={Style['Entitet-header']}>
+                                    <h2>{entitet.tittel}</h2>
                                     <div className={Style['Entitet-type']}>
                                         <EntityType type={entitet.type} />
                                     </div>
-                                </div>
+                                </header>
                                 <p>{entitet.beskrivelse}</p>
                                 {entitet.skjemaId && (
                                     <>
-                                        <Heading level={HeadingLevel.h3}>Skjema</Heading>
+                                        <h3>Skjema</h3>
                                         <Skjema id={entitet.skjemaId} />
                                     </>
                                 )}
                                 {entitet.meanings.length !== 0 && (
                                     <>
-                                        <Heading level={HeadingLevel.h3}>Benyttet i</Heading>
+                                        <h3>Benyttet i</h3>
                                         <NavigationLinkList>
                                             {entitet.meanings.map((r) => (
                                                 <NavigationLink key={r.id}>
@@ -56,12 +56,11 @@ export const Entitet = () => {
                                         </NavigationLinkList>
                                     </>
                                 )}
-                            </>
+                            </article>
                         )}
-                    </LoadIndicator>
-                </MainArea>
-                <Sidebar>&nbsp;</Sidebar>
-            </Layout>
+                    </MainArea>
+                </Layout>
+            </LoadIndicator>
         </Container>
     );
 };

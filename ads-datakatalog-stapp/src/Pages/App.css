@@ -33,13 +33,13 @@
     --semibold: 500;
     --bold: 600;
 
-    --base-padding: 2rem;
-    --base-gap: 2rem;
+    --base-padding: 1.5rem;
+    --base-gap: 1.5rem;
     --small-gap: 1rem;
     --tiny-gap: 0.5rem;
-    --tiny-padding: 1rem;
+    --tiny-padding: 0.5rem;
     --small-padding: 1.2rem;
-    --medium-padding: 4rem;
+    --medium-padding: 3rem;
     --big-padding: 4rem;
 
     --font-size-base: 18px;
@@ -49,20 +49,20 @@
 
 @media only screen and (max-width: 1024px) {
     :root {
-        --big-padding: 4rem;
+        --big-padding: 3.5rem;
     }
 }
 
 @media only screen and (max-width: 768px) {
     :root {
-        --base-gap: 2rem;
+        --base-gap: 1rem;
         --small-gap: 0.5rem;
     }
 }
 
 @media only screen and (max-width: 600px) {
     :root {
-        --base-padding: 2rem;
+        --base-padding: 0.9rem;
         --tiny-padding: 1rem;
     }
 }
@@ -150,8 +150,29 @@ h6 {
     font-family: var(--secondary-font);
     font-weight: 700;
     color: var(--primary-color);
-    margin: 1rem 0 0.125rem;
-    line-height: 1.25rem;
+    margin: var(--base-padding) 0 var(--tiny-padding);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 2.7rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+h5 {
+    font-size: 1.2rem;
+}
+h6 {
+    font-size: 1rem;
 }
 
 ol,

@@ -45,3 +45,13 @@ a.Shortcut:focus {
     display: block;
     padding-top: 100%;
 }
+
+@media only screen and (max-width: 1024px) {
+    .Shortcut {
+        margin: 0 var(--base-padding);
+    }
+
+    .Shortcut-icon {
+        display: none;
+    }
+}

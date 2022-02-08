@@ -1,6 +1,6 @@
 .GlossaryResults-result {
-    margin-bottom: var(--tiny-padding);
-    padding: var(--tiny-padding);
+    margin-bottom: var(--base-padding);
+    padding: var(--small-padding);
     background-color: #fff;
 }
 

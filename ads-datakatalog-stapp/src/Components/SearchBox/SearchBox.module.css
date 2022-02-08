@@ -17,11 +17,11 @@
     display: flex;
 }
 
-.Searchbox-input {
+input[type='search'].Searchbox-input {
     position: relative;
     width: 100%;
-    outline: none;
-    border: none;
+    padding: var(--base-gap) var(--small-gap);
+    font-size: 1.2rem;
 }
 
 .Searchbox-input::after,
@@ -42,13 +42,13 @@
     /* padding: var(--small-gap) var(--tiny-gap); */
     position: absolute;
     right: var(--small-gap);
-    padding: var(--small-gap) var(--tiny-gap);
+    padding: var(--base-gap) var(--small-gap);
     background-color: transparent;
     border: none;
     background-image: url('../../icons/search-blue.svg');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: contain;
-    top: calc(50% - 1rem);
+    background-size: 70%;
+    top: calc(50% - var(--base-gap));
     cursor: pointer;
 }

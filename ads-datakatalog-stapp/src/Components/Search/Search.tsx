@@ -7,6 +7,9 @@ import { Filter } from './Filter/Filter';
 import { Søkefilter } from '../../datakatalog/søkefilter';
 import { useGetGlossaryQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../LoadIndicator/LoadIndicator';
+import { Layout, LayoutTypes } from '../Layout/Layout/Layout';
+import { Sidebar } from '../Layout/Sidebar/Sidebar';
+import { MainArea } from '../Layout/MainArea/MainArea';
 
 export const Søk = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -44,26 +47,28 @@ export const Søk = () => {
             >
                 <SearchBox onSearch={(query) => setSearchParams({ query: query })} value={query} tabIndex={0} />
             </div>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-                <LoadIndicator isLoading={isLoading}>
-                    {isError ? (
+            <Layout type={LayoutTypes.Sidebar}>
+                {isError ? (
+                    <MainArea>
                         <p>Det har oppstått en feil.</p>
-                    ) : (
-                        <>
-                            <aside style={{ flexBasis: '200px', maxWidth: '200px' }}>
-                                <Filter filter={filter} query={query} urlFilter={urlFilter} />
-                            </aside>
-                            <main>
+                    </MainArea>
+                ) : (
+                    <>
+                        <Sidebar>
+                            <Filter filter={filter} query={query} urlFilter={urlFilter} />
+                        </Sidebar>
+                        <MainArea>
+                            <LoadIndicator isLoading={isLoading}>
                                 {filtrertSøkEtterTermer.length !== 0 ? (
                                     <GlossaryResults resultater={filtrertSøkEtterTermer} />
                                 ) : (
-                                    <h3>Ingen resultat</h3>
+                                    <h4>Ingen resultat</h4>
                                 )}
-                            </main>
-                        </>
-                    )}
-                </LoadIndicator>
-            </div>
+                            </LoadIndicator>
+                        </MainArea>
+                    </>
+                )}
+            </Layout>
         </>
     );
 };

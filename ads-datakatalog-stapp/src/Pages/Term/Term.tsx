@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import { Term as TermModel } from '../../datakatalog/term';
 import { useGetGlossaryQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
-import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
 import { Container } from '../../Components/Container/Container';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
 import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
@@ -12,8 +11,8 @@ import { Attributt } from './Attributt/Attributt';
 import Style from './Term.module.css';
 import { Layout, LayoutTypes } from '../../Components/Layout/Layout/Layout';
 import { MainArea } from '../../Components/Layout/MainArea/MainArea';
-import { Sidebar } from '../../Components/Layout/Sidebar/Sidebar';
 import { EntityType } from '../../Components/EntityType/EntityType';
+import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
 
 export const Term = () => {
     const { id } = useParams();
@@ -22,19 +21,20 @@ export const Term = () => {
 
     return (
         <Container>
-            <Layout type={LayoutTypes.Sidebar}>
-                <MainArea>
-                    {isError && <p>Det har skjedd en feil.</p>}
-                    <LoadIndicator isLoading={isLoading}>
+            <LoadIndicator isLoading={isLoading}>
+                <Layout type={LayoutTypes.Sidebar}>
+                    <MainArea>
+                        {isError && <p>Det har skjedd en feil.</p>}
                         {term && (
-                            <>
-                                <section className={Style['Term-section']}>
-                                    <div className={Style['Term-header']}>
-                                        <Heading level={HeadingLevel.h2}>{term.tittel}</Heading>
-                                        <div className={Style['Term-type']}>
-                                            <EntityType type={term.type} />
-                                        </div>
+                            <article>
+                                <Breadcrumbs currentLabel={term.tittel} />
+                                <header className={Style['Term-header']}>
+                                    <h2>{term.tittel}</h2>
+                                    <div className={Style['Term-type']}>
+                                        <EntityType type={term.type} />
                                     </div>
+                                </header>
+                                <section className={Style['Term-section']}>
                                     <p>{term.beskrivelse}</p>
                                 </section>
                                 {term.attributter && (
@@ -49,8 +49,8 @@ export const Term = () => {
                                     </section>
                                 )}
                                 {term.tildelteEntiteter.length !== 0 && (
-                                    <>
-                                        <Heading level={HeadingLevel.h3}>Informasjonsmodell</Heading>
+                                    <section>
+                                        <h3>Informasjonsmodell</h3>
 
                                         {term.tildelteEntiteter.map((entitet) => (
                                             <>
@@ -68,11 +68,11 @@ export const Term = () => {
                                                 </p>
                                             </>
                                         ))}
-                                    </>
+                                    </section>
                                 )}
                                 {term.referanser.length !== 0 && (
-                                    <>
-                                        <Heading level={HeadingLevel.h3}>Se også</Heading>
+                                    <section>
+                                        <h3>Se også</h3>
                                         <NavigationLinkList>
                                             {term.referanser.map((r) => (
                                                 <NavigationLink key={r.id}>
@@ -82,11 +82,11 @@ export const Term = () => {
                                                 </NavigationLink>
                                             ))}
                                         </NavigationLinkList>
-                                    </>
+                                    </section>
                                 )}
                                 {term.ressurser.length !== 0 && (
-                                    <>
-                                        <Heading level={HeadingLevel.h3}>Ressurser</Heading>
+                                    <section>
+                                        <h3>Ressurser</h3>
                                         <NavigationLinkList>
                                             {term.ressurser.map((r) => (
                                                 <NavigationLink key={r.navn}>
@@ -96,14 +96,13 @@ export const Term = () => {
                                                 </NavigationLink>
                                             ))}
                                         </NavigationLinkList>
-                                    </>
+                                    </section>
                                 )}
-                            </>
+                            </article>
                         )}
-                    </LoadIndicator>
-                </MainArea>
-                <Sidebar>&nbsp;</Sidebar>
-            </Layout>
+                    </MainArea>
+                </Layout>
+            </LoadIndicator>
         </Container>
     );
 };

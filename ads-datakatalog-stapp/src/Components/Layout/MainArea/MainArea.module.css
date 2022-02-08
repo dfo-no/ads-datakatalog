@@ -1,3 +1,8 @@
 .MainArea {
     flex-grow: 1;
 }
+
+.MainArea-article {
+    max-width: 705px;
+    flex-basis: 705px;
+}

@@ -33,6 +33,10 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .Forside-search-searchBox {
+        max-width: 100%;
+    }
+
     .Forside-shortcuts-grid {
         grid-template-columns: repeat(1, 1fr);
     }

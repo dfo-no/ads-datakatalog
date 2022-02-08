@@ -33,7 +33,7 @@
 }
 
 .LoadIndicator {
-    padding: var(--tiny-padding);
+    padding: var(--base-padding);
     display: flex;
     justify-content: center;
 }
