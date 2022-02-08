@@ -4,11 +4,20 @@ import Style from './SearchBox.module.css';
 interface SearchBoxProps {
     value?: string;
     onSearch: (searchTerm: string) => void;
+    placeholder?: string;
     tabIndex?: number;
     setFocus?: boolean;
+    size?: 'sm' | 'lg';
 }
 
-export const SearchBox = ({ onSearch, value = '', tabIndex, setFocus = false }: SearchBoxProps) => {
+export const SearchBox = ({
+    onSearch,
+    value = '',
+    placeholder = '',
+    tabIndex,
+    setFocus = false,
+    size = 'sm'
+}: SearchBoxProps) => {
     const searchFieldRef = useRef<HTMLInputElement>(null);
     const [query, setQuery] = useState(value);
 
@@ -26,7 +35,7 @@ export const SearchBox = ({ onSearch, value = '', tabIndex, setFocus = false }: 
     };
 
     return (
-        <form className={Style['Searchbox']} onSubmit={searchAction}>
+        <form className={`${Style['Searchbox']} ${Style[`Searchbox_${size}`]}`} onSubmit={searchAction}>
             <label htmlFor="søk" className="sr-only">
                 Søk
             </label>
@@ -39,7 +48,7 @@ export const SearchBox = ({ onSearch, value = '', tabIndex, setFocus = false }: 
                     value={query}
                     ref={searchFieldRef}
                     type="search"
-                    placeholder="Søk i datakatalogen"
+                    placeholder={placeholder}
                 />
                 <button type="submit" className={Style['Searchbox-button']} onClick={searchAction} title="Søk">
                     <i className={Style['Searchbox-buttonIcon']} />

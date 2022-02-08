@@ -1,11 +1,13 @@
 a.Shortcut {
     display: flex;
     border: 2px solid var(--border-color-secondary);
-    color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
     text-decoration: none;
     padding: var(--small-padding);
     flex-direction: column;
     gap: var(--tiny-gap);
+    font-size: 1.2rem;
 }
 
 a.Shortcut:hover,
@@ -13,16 +15,21 @@ a.Shortcut:focus {
     border-color: var(--primary-color);
 }
 
-.Shortcut_primary > .Shortcut-icon {
+.Shortcut_primary {
     background-color: var(--primary-light-color);
 }
 
-.Shortcut_secondary > .Shortcut-icon {
+.Shortcut_secondary {
     background-color: var(--secondary-color);
 }
 
-.Shortcut_tertiary > .Shortcut-icon {
+.Shortcut_tertiary {
     background-color: var(--tertiary-color);
+}
+
+a.Shortcut_tertiary:hover,
+a.Shortcut_tertiary:focus {
+    border-color: var(--tertiary-color);
 }
 
 .Shortcut-title {
@@ -53,5 +60,11 @@ a.Shortcut:focus {
 
     .Shortcut-icon {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .Shortcut {
+        margin: 0;
     }
 }

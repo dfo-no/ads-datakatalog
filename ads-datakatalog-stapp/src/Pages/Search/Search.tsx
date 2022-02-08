@@ -24,6 +24,7 @@ export const Search = () => {
     const frequency = searchParams.get('frequency') ?? '';
     const publisher = searchParams.get('publisher') ?? '';
     const accessRight = searchParams.get('access-right') ?? '';
+    const theme = searchParams.get('theme') ?? '';
 
     const søkeresultat = data ? Søkeresultat.mapFraApi(data) : undefined;
 
@@ -31,6 +32,7 @@ export const Search = () => {
     const urlFrequencySet = frequency ? new Set(frequency.split(',')) : new Set<string>();
     const urlPublisherSet = publisher ? new Set(publisher.split(',')) : new Set<string>();
     const urlAccessRightSet = accessRight ? new Set(accessRight.split(',')) : new Set<string>();
+    const urlThemeSet = theme ? new Set(theme.split(',')) : new Set<string>();
 
     const filtrertSøk =
         søkeresultat?.resultater.filter((se) => {
@@ -44,7 +46,9 @@ export const Search = () => {
             (urlTypeSet.size === 0 || urlTypeSet.has(se.type)) &&
             (urlPublisherSet.size === 0 || urlPublisherSet.has(se.publisher ?? '_______')) &&
             (urlFrequencySet.size === 0 || urlFrequencySet.has(se.frequency ?? '_______')) &&
-            (urlAccessRightSet.size === 0 || urlAccessRightSet.has(se.accessRight ?? '_______'))
+            (urlAccessRightSet.size === 0 || urlAccessRightSet.has(se.accessRight ?? '_______')) &&
+            (urlThemeSet.size === 0 ||
+                se.theme?.some((theme) => urlThemeSet.has(theme.split('|')[0].trim() ?? '_______')))
         );
     });
 
@@ -67,6 +71,7 @@ export const Search = () => {
                                 frequency={frequency}
                                 publisher={publisher}
                                 accessRight={accessRight}
+                                theme={theme}
                             />
                         </Sidebar>
                         <MainArea>

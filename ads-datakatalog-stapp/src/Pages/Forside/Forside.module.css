@@ -1,22 +1,26 @@
 .Forside-search {
-    padding: var(--big-padding) 0;
-    background-color: var(--frontpage-header-color);
+    padding: var(--big-padding) 0 var(--base-padding);
 }
 
-.Forside-search-searchBox {
+.Forside-search-wrapper {
     max-width: 66%;
 }
 
 .Forside-search-container {
-    background-image: url('/img/doctor.svg');
+    background-image: url('/img/robotisering.svg');
     background-repeat: no-repeat;
-    background-position: 80% 0;
+    background-position: calc(100% - var(--base-padding)) 0;
     background-size: contain;
-    min-height: calc(var(--big-padding) * 3);
+    min-height: calc(var(--big-padding) * 3.5);
+}
+
+.Forside-welcomeText {
+    color: var(--primary-color);
+    margin: var(--base-padding) 0;
 }
 
 .Forside-shortcuts-grid {
-    padding: var(--big-padding) 0;
+    padding: var(--base-padding) 0;
 }
 
 .Forside-shortcuts-grid {
@@ -42,7 +46,7 @@
         padding: var(--base-padding) 0;
     }
 
-    .Forside-search-searchBox {
+    .Forside-search-wrapper {
         max-width: 100%;
     }
 

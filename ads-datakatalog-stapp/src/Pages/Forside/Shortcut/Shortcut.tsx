@@ -12,9 +12,6 @@ interface ShortcutProps {
 export const Shortcut = ({ url, title, icon = 'equalizer', variant = 'primary' }: ShortcutProps) =>
     url.startsWith('http') ? (
         <a className={`${Style['Shortcut']} ${Style[`Shortcut_${variant}`]}`} href={url}>
-            <div className={Style['Shortcut-icon']}>
-                <i className={`icon-${icon}`} />
-            </div>
             <div className={Style['Shortcut-title']}>
                 <div>{title}</div>
                 <div>
@@ -24,9 +21,6 @@ export const Shortcut = ({ url, title, icon = 'equalizer', variant = 'primary' }
         </a>
     ) : (
         <Link className={`${Style['Shortcut']} ${Style[`Shortcut_${variant}`]}`} to={url}>
-            <div className={Style['Shortcut-icon']}>
-                <i className={`icon-${icon}`} />
-            </div>
             <div className={Style['Shortcut-title']}>
                 <div>{title}</div>
                 <div>

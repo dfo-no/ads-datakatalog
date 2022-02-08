@@ -23,12 +23,31 @@ interface FilterProps {
     frequency: string;
     publisher: string;
     accessRight: string;
+    theme: string;
 }
 
-export const Filter = ({ filter, query, type, frequency, publisher, accessRight }: FilterProps) => {
+export const Filter = ({ filter, query, type, frequency, publisher, accessRight, theme }: FilterProps) => {
     const navigate = useNavigate();
     return (
         <>
+            <CheckboxGroup title="Tema">
+                {filter.theme.map((t) => (
+                    <Checkbox
+                        checked={theme.split(',').includes(t.split('|')[0].trim())}
+                        onChange={() =>
+                            navigate(
+                                `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}&theme=${fixUrl(
+                                    theme,
+                                    t.split('|')[0].trim()
+                                )}`
+                            )
+                        }
+                        key={`theme-${t}`}
+                    >
+                        {t.split('|')[1]?.trim() ?? t}
+                    </Checkbox>
+                ))}
+            </CheckboxGroup>
             <CheckboxGroup title="Utgiver">
                 {filter.publisher.map((o) => (
                     <Checkbox
@@ -38,7 +57,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight 
                                 `/search?query=${query}&publisher=${fixUrl(
                                     publisher,
                                     o
-                                )}&frequency=${frequency}&type=${type}`
+                                )}&frequency=${frequency}&type=${type}&theme=${type}`
                             )
                         }
                         key={`publisher-${o}`}
@@ -56,7 +75,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight 
                                 `/search?access-right=${fixUrl(
                                     accessRight,
                                     o
-                                )}&query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}`
+                                )}&query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}&theme=${type}`
                             )
                         }
                         key={`access-right-${o}`}
@@ -74,7 +93,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight 
                                 `/search?query=${query}&publisher=${publisher}&frequency=${fixUrl(
                                     frequency,
                                     o
-                                )}&type=${type}`
+                                )}&type=${type}&theme=${type}`
                             )
                         }
                         key={`frequency-${o}`}
@@ -92,7 +111,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight 
                                 `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${fixUrl(
                                     type,
                                     t
-                                )}`
+                                )}&theme=${type}`
                             )
                         }
                         key={`type-${t}`}

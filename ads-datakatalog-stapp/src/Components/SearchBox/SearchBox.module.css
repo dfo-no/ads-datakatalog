@@ -20,8 +20,8 @@
 input[type='search'].Searchbox-input {
     position: relative;
     width: 100%;
-    padding: var(--base-gap) var(--small-gap);
-    font-size: 1.2rem;
+    padding: var(--small-gap) var(--tiny-gap);
+    font-size: 1rem;
 }
 
 .Searchbox-input::after,
@@ -29,9 +29,12 @@ input[type='search'].Searchbox-input {
     margin: 0;
 }
 
+.Searchbox_lg input[type='search'].Searchbox-input {
+    padding: var(--base-gap) var(--small-gap);
+    font-size: 1.2rem;
+}
+
 .Searchbox-button {
-    /* position: absolute; */
-    /*bottom: 25%; */
     position: relative;
     cursor: pointer;
     background-color: transparent;
@@ -39,16 +42,23 @@ input[type='search'].Searchbox-input {
 }
 
 .Searchbox-buttonIcon {
-    /* padding: var(--small-gap) var(--tiny-gap); */
     position: absolute;
-    right: var(--small-gap);
-    padding: var(--base-gap) var(--small-gap);
+    right: var(--tiny-gap);
+    padding: var(--small-gap) var(--tiny-gap);
     background-color: transparent;
     border: none;
     background-image: url('../../icons/search-blue.svg');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 70%;
-    top: calc(50% - var(--base-gap));
+    background-size: 90%;
+    top: calc(50% - var(--small-gap));
     cursor: pointer;
+}
+
+.Searchbox_lg .Searchbox-buttonIcon {
+    padding: var(--base-gap) var(--small-gap);
+    right: var(--small-gap);
+    top: calc(50% - var(--base-gap));
+    font-size: 1.2rem;
+    background-size: 70%;
 }

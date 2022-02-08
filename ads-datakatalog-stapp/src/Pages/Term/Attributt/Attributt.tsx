@@ -1,65 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Attributt as AttrinuttModel } from '../../../datakatalog/term';
+import { Attribute as AttributeModel } from '../../../datakatalog/attribute';
 
-class AttributtDefinisjon {
-    private _url: string;
-    private _søkefilterAttributt: string;
+class AttributeDefinition {
+    private _filter: string;
 
-    constructor(url: string, søkefilterAttributt: string) {
-        this._url = url;
-        this._søkefilterAttributt = søkefilterAttributt;
+    constructor(filter: string) {
+        this._filter = filter;
     }
 
-    public get url(): string {
-        return this._url;
-    }
-
-    public get søkefilterAttributt(): string {
-        return this._søkefilterAttributt;
+    public get filter(): string {
+        return this._filter;
     }
 }
 
-const attributtDefinisjoner = new Map<string, AttributtDefinisjon>([
-    [
-        'Oppdateringsfrekvens',
-        new AttributtDefinisjon(
-            'https://data.norge.no/guide/veileder-beskrivelse-av-datasett/#datasett-frekvens',
-            'frequency'
-        )
-    ],
-    [
-        'Tilgangsnivå',
-        new AttributtDefinisjon(
-            'https://data.norge.no/guide/veileder-beskrivelse-av-datasett/#datasett-tilgangsniv%C3%A5',
-            'access-right'
-        )
-    ],
-    [
-        'Utgiver',
-        new AttributtDefinisjon('https://data.norge.no/specification/dcat-ap-no/#Datasett-utgiver', 'publisher')
-    ]
+const attributtDefinisjoner = new Map<string, AttributeDefinition>([
+    ['Oppdateringsfrekvens', new AttributeDefinition('frequency')],
+    ['Tilgangsnivå', new AttributeDefinition('access-right')],
+    ['Utgiver', new AttributeDefinition('publisher')],
+    ['Tema', new AttributeDefinition('theme')]
 ]);
 
 interface AttributtProps {
-    attributt: AttrinuttModel;
+    description: string;
+    attributes?: AttributeModel[];
 }
 
-export const Attributt = ({ attributt }: AttributtProps) => (
+export const Attributt = ({ description, attributes }: AttributtProps) => (
     <tr>
-        <th style={{ textAlign: 'left' }}>{attributt.navn}</th>
+        <th style={{ textAlign: 'left' }}>{description}</th>
         <td>
-            {attributtDefinisjoner.has(attributt.navn) ? (
-                <Link
-                    to={`/search?${attributtDefinisjoner.get(attributt.navn)?.søkefilterAttributt}=${
-                        attributt.beskrivelse
-                    }`}
-                >
-                    {attributt.beskrivelse}
-                </Link>
-            ) : (
-                attributt.beskrivelse
-            )}
+            {attributes &&
+                (attributtDefinisjoner.has(description)
+                    ? attributes.map((attrib, i) => (
+                          <span key={attrib.code}>
+                              <Link to={`/search?${attributtDefinisjoner.get(description)?.filter}=${attrib.code}`}>
+                                  {attrib.description}
+                              </Link>
+                              {i !== attributes.length && <span>, </span>}
+                          </span>
+                      ))
+                    : attributes.map((attrib) => <div key={attrib.code}>{attrib.description}</div>))}
         </td>
     </tr>
 );

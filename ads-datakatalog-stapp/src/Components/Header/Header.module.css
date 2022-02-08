@@ -20,8 +20,8 @@
     align-self: center;
     display: grid;
     grid-template-areas:
-        'logo     border  name'
-        'spacing  border  subtext';
+        'logo   border  name'
+        'logo   border  subtext';
     color: var(--primary-color);
     height: 3rem;
     text-decoration: none;
@@ -32,8 +32,9 @@
 }
 
 .Header-logoImage {
+    align-self: center;
     grid-area: logo;
-    height: 1.5rem;
+    width: 110px;
 }
 
 .Header-logoBorder {

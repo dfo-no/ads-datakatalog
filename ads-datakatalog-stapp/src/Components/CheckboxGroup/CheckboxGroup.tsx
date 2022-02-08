@@ -12,7 +12,7 @@ export const CheckboxGroup = ({ children, title }: CheckboxGroupProps) => (
         <legend className={Style['CheckboxGroup-title']}>{title}</legend>
         <ul className={Style['CheckboxGroup-items']}>
             {children.map((item) => (
-                <li>{item}</li>
+                <li key={item.key}>{item}</li>
             ))}
         </ul>
     </fieldset>

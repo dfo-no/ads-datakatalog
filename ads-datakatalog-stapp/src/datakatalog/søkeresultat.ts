@@ -22,7 +22,8 @@ export default class Søkeresultat {
                     'term',
                     entitet.attributes?.Datakatalog.Oppdateringsfrekvens,
                     entitet.attributes?.Datakatalog.Tilgangsnivå,
-                    entitet.attributes?.Datakatalog.Utgiver
+                    entitet.attributes?.Datakatalog.Utgiver,
+                    entitet.attributes?.Datakatalog.Tema?.split(',').map((t) => t.trim())
                 )
             );
 
@@ -38,7 +39,8 @@ export default class Søkeresultat {
                             'entitet',
                             entitet.attributes?.Datakatalog.Oppdateringsfrekvens,
                             entitet.attributes?.Datakatalog.Tilgangsnivå,
-                            entitet.attributes?.Datakatalog.Utgiver
+                            entitet.attributes?.Datakatalog.Utgiver,
+                            entitet.attributes?.Datakatalog.Tema?.split(',').map((t) => t.trim())
                         )
                     );
                 }

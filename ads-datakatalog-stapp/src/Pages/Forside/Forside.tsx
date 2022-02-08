@@ -3,7 +3,6 @@ import { SearchBox } from '../../Components/SearchBox/SearchBox';
 import { useNavigate } from 'react-router-dom';
 import Styles from './Forside.module.css';
 import { Container } from '../../Components/Container/Container';
-import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
 import { Shortcut } from './Shortcut/Shortcut';
 
 export const Forside = () => {
@@ -11,24 +10,35 @@ export const Forside = () => {
     return (
         <div className="Forside">
             <section className={Styles['Forside-search']}>
+                <Container>
+                    <h1>Datakatalog</h1>
+                </Container>
                 <Container className={Styles['Forside-search-container']}>
-                    <Heading level={HeadingLevel.h1}>ANS Datakatalog</Heading>
-                    <div className={`${Styles['Forside-search-searchBox']}`}>
-                        <SearchBox onSearch={(query) => navigate(`/search?query=${query}`)} setFocus={true} />
+                    <div className={Styles['Forside-search-wrapper']}>
+                        <p className={Styles['Forside-welcomeText']}>
+                            data.anskaffelser.no gir en strukturert oversikt over data som anskaffelser.no har
+                            tilgjengelig. Dette gir deg mulighet for å kunne oppdage, vurdere og ta i bruk data. Her
+                            finner du detaljert informasjon om datasett, informasjonsmodeller og åpne data som vi har.
+                        </p>
+                        <div className={`${Styles['Forside-search-searchBox']}`}>
+                            <SearchBox
+                                onSearch={(query) => navigate(`/search?query=${query}`)}
+                                setFocus={true}
+                                size="lg"
+                            />
+                        </div>
                     </div>
                 </Container>
             </section>
             <section className={Styles['Forside-shortcuts']}>
-                <Container className={Styles['Forside-shortcuts-grid']}>
-                    <Shortcut title="Anskaffelser.no" url="https://anskaffelser.no" icon="rocket" variant="primary" />
-                    <Shortcut title="Dfo.no" url="https://dfo.no" icon="reading" variant="secondary" />
-                    <Shortcut title="Datasett" url="/search?type=term" icon="list" variant="primary" />
-                    <Shortcut
-                        icon="envelope"
-                        title="Informasjonsmodeller"
-                        url="/search?type=azure_datalake_gen2_resource_set"
-                        variant="secondary"
-                    />
+                <Container>
+                    <h2>Aktuelle tema</h2>
+                    <div className={Styles['Forside-shortcuts-grid']}>
+                        <Shortcut title="Anskaffelser" url="/search?theme=offentlig-innkjop" variant="primary" />
+                        <Shortcut title="Miljø" url="/search?theme=natur-klima-og-miljo" variant="primary" />
+                        <Shortcut title="Regnskap" url="/search?theme=GOVE" variant="primary" />
+                        <Shortcut title="Åpne data" url="/search?access-right=Offentlig" variant="tertiary" />
+                    </div>
                 </Container>
             </section>
         </div>

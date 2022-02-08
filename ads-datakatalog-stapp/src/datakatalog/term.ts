@@ -1,15 +1,7 @@
 import { IGlossary } from '../db/glossaryType';
+import { Attributes } from './attributes';
+import { Resource } from './resource';
 import { TermReference } from './termReference';
-
-export class Attributt {
-    public navn: string;
-    public beskrivelse: string;
-
-    constructor(navn: string, beskrivelse: string) {
-        this.navn = navn;
-        this.beskrivelse = beskrivelse;
-    }
-}
 
 export class EntitetReferanse {
     public id: string;
@@ -29,8 +21,8 @@ export class Term {
     public beskrivelse: string;
     public sistOppdatert: Date;
     public type: string;
-    public ressurser: Attributt[];
-    public attributter: Attributt[];
+    public ressurser: Resource[];
+    public attributtes: Attributes;
     public referanser: TermReference[];
     public tildelteEntiteter: EntitetReferanse[];
 
@@ -40,8 +32,8 @@ export class Term {
         beskrivelse: string,
         sistOppdatert: Date,
         type: string,
-        ressurser: Attributt[],
-        attributter: Attributt[],
+        ressurser: Resource[],
+        attributtes: Attributes,
         referanser: TermReference[],
         tildelteEntiteter: EntitetReferanse[]
     ) {
@@ -51,7 +43,7 @@ export class Term {
         this.sistOppdatert = sistOppdatert;
         this.type = type;
         this.ressurser = ressurser;
-        this.attributter = attributter;
+        this.attributtes = attributtes;
         this.referanser = referanser;
         this.tildelteEntiteter = tildelteEntiteter;
     }
@@ -59,11 +51,11 @@ export class Term {
     public static mapFraApi(glossary: IGlossary, id: string) {
         const entitet = glossary.termInfo[id];
 
-        const attributter = [] as Attributt[];
+        let attributes: Attributes;
         if (entitet.attributes) {
-            Object.entries(entitet.attributes.Datakatalog).forEach(([key, value]) => {
-                attributter.push(new Attributt(key, value));
-            });
+            attributes = Attributes.mapFraApi(entitet.attributes.Datakatalog);
+        } else {
+            attributes = new Attributes();
         }
 
         return new Term(
@@ -72,8 +64,8 @@ export class Term {
             entitet.longDescription,
             new Date(entitet.lastModifiedTS),
             'Term',
-            entitet.resources?.map((r) => new Attributt(r.displayName, r.url)) || [],
-            attributter,
+            entitet.resources?.map((r) => new Resource(r.displayName, r.url)) || [],
+            attributes,
             entitet.seeAlso?.map((r) => new TermReference(r.termGuid, r.displayText)) || [],
             entitet.assignedEntities?.map((e) => new EntitetReferanse(e.guid, e.displayText, e.typeName)) || []
         );

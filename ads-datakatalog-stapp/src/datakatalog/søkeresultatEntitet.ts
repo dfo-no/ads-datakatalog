@@ -9,7 +9,8 @@ export default class SøkeresultatEntitet {
         visning: VisningsValg,
         frequency?: string | null,
         accessRight?: string | null,
-        publisher?: string | null
+        publisher?: string | null,
+        theme?: string[] | null
     ) {
         this.id = id;
         this.tittel = tittel;
@@ -19,6 +20,7 @@ export default class SøkeresultatEntitet {
         this.frequency = frequency ?? undefined;
         this.accessRight = accessRight ?? undefined;
         this.publisher = publisher ?? undefined;
+        this.theme = theme ?? undefined;
     }
 
     public id: string;
@@ -27,10 +29,11 @@ export default class SøkeresultatEntitet {
     public frequency?: string;
     public accessRight?: string;
     public publisher?: string;
+    public theme?: string[];
     public type: string;
     public visning: VisningsValg;
 
     public get søkestreng(): string {
-        return `${this.id} ${this.tittel} ${this.beskrivelse}`.toLowerCase();
+        return `${this.id} ${this.tittel} ${this.beskrivelse}  ${this.theme}`.toLowerCase();
     }
 }

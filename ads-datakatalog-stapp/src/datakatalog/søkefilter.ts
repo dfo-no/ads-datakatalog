@@ -5,12 +5,14 @@ export class Søkefilter {
     public frequency: string[];
     public publisher: string[];
     public accessRight: string[];
+    public theme: string[];
 
-    constructor(typer: string[], frequency: string[], publisher: string[], accessRight: string[]) {
+    constructor(typer: string[], frequency: string[], publisher: string[], accessRight: string[], theme: string[]) {
         this.typer = typer;
         this.frequency = frequency;
         this.publisher = publisher;
         this.accessRight = accessRight;
+        this.theme = theme;
     }
 
     public static genererFraSøkeresultat(søkeresultatEntiteter: SøkeresultatEntitet[]): Søkefilter {
@@ -37,6 +39,14 @@ export class Søkefilter {
                     søkeresultatEntiteter
                         .filter((se) => !!se.accessRight)
                         .map((se) => se.accessRight ?? '')
+                        .sort()
+                )
+            ),
+            Array.from(
+                new Set(
+                    søkeresultatEntiteter
+                        .filter((se) => !!se.theme)
+                        .flatMap((se) => se.theme?.map((t) => t.trim()) ?? [''])
                         .sort()
                 )
             )

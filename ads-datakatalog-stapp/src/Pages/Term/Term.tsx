@@ -37,12 +37,16 @@ export const Term = () => {
                                 <section className={Style['Term-section']}>
                                     <p>{term.beskrivelse}</p>
                                 </section>
-                                {term.attributter && (
+                                {term.attributtes && (
                                     <section className={Style['Term-section']}>
                                         <table>
                                             <tbody>
-                                                {term.attributter.map((attrib) => (
-                                                    <Attributt attributt={attrib} />
+                                                {Array.from(term.attributtes.attributeList.keys()).map((attrib, i) => (
+                                                    <Attributt
+                                                        key={attrib}
+                                                        description={attrib}
+                                                        attributes={term.attributtes.attributeList.get(attrib)}
+                                                    />
                                                 ))}
                                             </tbody>
                                         </table>
@@ -53,7 +57,7 @@ export const Term = () => {
                                         <h3>Informasjonsmodell</h3>
 
                                         {term.tildelteEntiteter.map((entitet) => (
-                                            <>
+                                            <div key={entitet.id}>
                                                 {term.tildelteEntiteter.length !== 1 && <h4>{entitet.navn}</h4>}
                                                 <Skjemavisning id={entitet.id} />
                                                 <p>
@@ -66,7 +70,7 @@ export const Term = () => {
                                                         Detaljert visning av {entitet.navn}.
                                                     </Link>
                                                 </p>
-                                            </>
+                                            </div>
                                         ))}
                                     </section>
                                 )}
@@ -89,9 +93,9 @@ export const Term = () => {
                                         <h3>Ressurser</h3>
                                         <NavigationLinkList>
                                             {term.ressurser.map((r) => (
-                                                <NavigationLink key={r.navn}>
-                                                    <a href={r.beskrivelse} target="_blank" rel="noopener noreferrer">
-                                                        {r.navn}
+                                                <NavigationLink key={r.name}>
+                                                    <a href={r.description} target="_blank" rel="noopener noreferrer">
+                                                        {r.name}
                                                     </a>
                                                 </NavigationLink>
                                             ))}
