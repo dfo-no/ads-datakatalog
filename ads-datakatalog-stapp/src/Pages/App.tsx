@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Entitet } from './Entitet/Entitet';
-import { Søk } from './Søk/Søk';
+import { Search } from './Search/Search';
 import { Term } from '../Pages/Term/Term';
 import { Header } from '../Components/Header/Header';
 import './App.css';
@@ -17,7 +17,7 @@ function App() {
                     <Routes>
                         <Route path="/">
                             <Route index element={<Forside />} />
-                            <Route path="search" element={<Søk />} />
+                            <Route path="search" element={<Search />} />
                             <Route path="term/:id/:tittel" element={<Term />} />
                             <Route path="term/:id" element={<Term />} />
                             <Route path="entitet/:id/:tittel" element={<Entitet />} />
