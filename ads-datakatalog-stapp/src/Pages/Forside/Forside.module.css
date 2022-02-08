@@ -1,5 +1,43 @@
-.Forside {
+.Forside-search {
     padding: var(--big-padding) 0;
     background-color: var(--frontpage-header-color);
-    min-height: calc(var(--big-padding) * 5);
+}
+
+.Forside-search-searchBox {
+    max-width: 66%;
+}
+
+.Forside-search-container {
+    background-image: url('/img/doctor.svg');
+    background-repeat: no-repeat;
+    background-position: 80% 0;
+    background-size: contain;
+    min-height: calc(var(--big-padding) * 3);
+}
+
+.Forside-shortcuts-grid {
+    padding: var(--big-padding) 0;
+}
+
+.Forside-shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: var(--base-gap);
+}
+
+@media only screen and (max-width: 1024px) {
+    .Forside-shortcuts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Forside-shortcuts-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .Forside-search-container {
+        background-image: none;
+    }
 }

@@ -5,15 +5,18 @@ interface SearchBoxProps {
     value?: string;
     onSearch: (searchTerm: string) => void;
     tabIndex?: number;
+    setFocus?: boolean;
 }
 
-export const SearchBox = ({ onSearch, value = '', tabIndex }: SearchBoxProps) => {
+export const SearchBox = ({ onSearch, value = '', tabIndex, setFocus = false }: SearchBoxProps) => {
     const searchFieldRef = useRef<HTMLInputElement>(null);
     const [query, setQuery] = useState(value);
 
     useEffect(() => {
-        searchFieldRef.current?.focus();
-    }, []);
+        if (setFocus) {
+            searchFieldRef.current?.focus();
+        }
+    }, [setFocus]);
 
     const searchAction = (e: SyntheticEvent) => {
         e.stopPropagation();

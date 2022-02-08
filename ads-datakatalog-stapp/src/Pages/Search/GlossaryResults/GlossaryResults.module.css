@@ -2,7 +2,6 @@
     margin-bottom: var(--tiny-padding);
     padding: var(--tiny-padding);
     background-color: #fff;
-    border: 1px solid var(--border-color-secondary);
 }
 
 .GlossaryResults-result-header {
