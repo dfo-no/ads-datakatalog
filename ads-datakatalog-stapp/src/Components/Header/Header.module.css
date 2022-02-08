@@ -4,6 +4,60 @@
     padding: 1rem 0;
 }
 
-.Header h1 {
+.Header-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: var(--app-max-width);
+    justify-content: space-between;
+    position: relative;
+}
+
+.Header-menu {
+    display: flex;
+}
+
+.Header-logo {
+    align-self: center;
+    display: grid;
+    grid-template-areas:
+        'logo     border  name'
+        'spacing  border  subtext';
+    color: var(--primary-color);
+    height: 3rem;
+    text-decoration: none;
+}
+
+.Header-logo:hover {
+    text-decoration: none;
+}
+
+.Header-logoImage {
+    grid-area: logo;
+    height: 1.5rem;
+}
+
+.Header-logoBorder {
+    display: block;
+    grid-area: border;
+    width: 2px;
+    background: var(--primary-color);
+    margin: 0 var(--small-gap);
+}
+
+.Header-logoTitle {
+    grid-area: name;
+    font-family: var(--primary-font);
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    height: 1.7rem;
     margin: 0;
+    color: var(--primary-color);
+}
+
+.Header-logoSubtitle {
+    grid-area: subtext;
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--primary-color);
 }

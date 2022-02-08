@@ -33,6 +33,15 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .Forside-search {
+        padding: var(--base-padding) 0;
+        background-color: transparent;
+    }
+
+    .Forside-shortcuts-grid {
+        padding: var(--base-padding) 0;
+    }
+
     .Forside-search-searchBox {
         max-width: 100%;
     }
