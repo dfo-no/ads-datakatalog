@@ -14,7 +14,6 @@
     outline: 0;
     flex-grow: 0;
     background-color: #ffffff;
-    transition: background 300ms;
     cursor: pointer;
 }
 
@@ -45,11 +44,16 @@
 }
 
 .Checkbox-box:hover::before {
-    border-width: 4px;
+    border-color: var(--secondary-color);
 }
 
 .Checkbox-box:checked:hover::before {
-    border-width: 2px;
+    background-color: var(--secondary-color);
+}
+
+.Checkbox-box:checked:focus::before {
+    background-color: var(--primary-light-color);
+    border-color: var(--primary-light-color);
 }
 
 .Checkbox-box:focus ~ .Checkbox-label {
