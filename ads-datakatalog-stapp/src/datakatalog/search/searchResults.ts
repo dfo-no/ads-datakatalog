@@ -1,20 +1,20 @@
-import { IGlossary } from '../db/glossaryType';
-import SøkeresultatEntitet from './søkeresultatEntitet';
+import { IGlossary } from '../../db/glossaryType';
+import SearchResult from './searchResult';
 
-export default class Søkeresultat {
-    constructor(resultater: SøkeresultatEntitet[]) {
-        this.resultater = resultater;
+export default class SearchResults {
+    constructor(results: SearchResult[]) {
+        this.resultList = results;
     }
 
-    public resultater: SøkeresultatEntitet[];
+    public resultList: SearchResult[];
 
     public static mapFraApi(glossary: IGlossary) {
-        const resultatsett: SøkeresultatEntitet[] = [];
+        const resultatsett: SearchResult[] = [];
 
         for (const key of Object.keys(glossary.termInfo)) {
             const entitet = glossary.termInfo[key];
             resultatsett.push(
-                new SøkeresultatEntitet(
+                new SearchResult(
                     key,
                     entitet.name,
                     entitet.longDescription,
@@ -27,16 +27,16 @@ export default class Søkeresultat {
                 )
             );
 
-            entitet.assignedEntities?.forEach((underEntitet) => {
+            entitet.assignedEntities?.forEach((subEntity) => {
                 // Pass på at det kun er en av hver id
-                if (!resultatsett.some((rs) => rs.id === underEntitet.guid)) {
+                if (!resultatsett.some((rs) => rs.id === subEntity.guid)) {
                     resultatsett.push(
-                        new SøkeresultatEntitet(
-                            underEntitet.guid,
-                            underEntitet.displayText,
+                        new SearchResult(
+                            subEntity.guid,
+                            subEntity.displayText,
                             '',
-                            underEntitet.typeName,
-                            'entitet',
+                            subEntity.typeName,
+                            'entity',
                             entitet.attributes?.Datakatalog.Oppdateringsfrekvens,
                             entitet.attributes?.Datakatalog.Tilgangsnivå,
                             entitet.attributes?.Datakatalog.Utgiver,
@@ -47,6 +47,6 @@ export default class Søkeresultat {
             });
         }
 
-        return new Søkeresultat(resultatsett);
+        return new SearchResults(resultatsett);
     }
 }

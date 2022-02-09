@@ -2,9 +2,9 @@ import React from 'react';
 import { SearchBox } from '../../Components/SearchBox/SearchBox';
 import { useSearchParams } from 'react-router-dom';
 import { GlossaryResults } from './GlossaryResults/GlossaryResults';
-import Søkeresultat from '../../datakatalog/søkeresultat';
+import SearchResults from '../../datakatalog/search/searchResults';
 import { Filter } from './Filter/Filter';
-import { Søkefilter } from '../../datakatalog/søkefilter';
+import { SearchFilter } from '../../datakatalog/search/searchFilter';
 import { useGetGlossaryQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
 import Style from './Search.module.css';
@@ -26,7 +26,7 @@ export const Search = () => {
     const accessRight = searchParams.get('access-right') ?? '';
     const theme = searchParams.get('theme') ?? '';
 
-    const søkeresultat = data ? Søkeresultat.mapFraApi(data) : undefined;
+    const søkeresultat = data ? SearchResults.mapFraApi(data) : undefined;
 
     const urlTypeSet = type ? new Set(type.split(',')) : new Set<string>();
     const urlFrequencySet = frequency ? new Set(frequency.split(',')) : new Set<string>();
@@ -35,11 +35,11 @@ export const Search = () => {
     const urlThemeSet = theme ? new Set(theme.split(',')) : new Set<string>();
 
     const filtrertSøk =
-        søkeresultat?.resultater.filter((se) => {
+        søkeresultat?.resultList.filter((se) => {
             return se.søkestreng.indexOf(query.toLowerCase()) !== -1;
         }) ?? [];
 
-    const filter = Søkefilter.genererFraSøkeresultat(filtrertSøk);
+    const filter = SearchFilter.genererFraSøkeresultat(filtrertSøk);
 
     const filtrertSøkEtterTermer = filtrertSøk.filter((se) => {
         return (
@@ -64,15 +64,7 @@ export const Search = () => {
                                 tabIndex={0}
                             />
                             <br />
-                            <Filter
-                                filter={filter}
-                                query={query}
-                                type={type}
-                                frequency={frequency}
-                                publisher={publisher}
-                                accessRight={accessRight}
-                                theme={theme}
-                            />
+                            <Filter filter={filter} />
                         </Sidebar>
                         <MainArea>
                             {filtrertSøkEtterTermer.length !== 0 ? (

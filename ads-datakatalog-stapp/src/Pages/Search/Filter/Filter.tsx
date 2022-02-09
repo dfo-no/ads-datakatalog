@@ -1,122 +1,74 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Checkbox } from '../../../Components/Checkbox/Checkbox';
 import { CheckboxGroup } from '../../../Components/CheckboxGroup/CheckboxGroup';
 import { EntityType } from '../../../Components/EntityType/EntityType';
-import { Søkefilter } from '../../../datakatalog/søkefilter';
-
-const fixUrl = (gammeltFilter: string, nyttFilter: string) => {
-    const settMedFilter = gammeltFilter ? new Set(gammeltFilter.split(',')) : new Set<string>();
-    if (settMedFilter.has(nyttFilter)) {
-        settMedFilter.delete(nyttFilter);
-    } else {
-        settMedFilter.add(nyttFilter);
-    }
-
-    return Array.from(settMedFilter).join(',');
-};
+import { SearchFilter } from '../../../datakatalog/search/searchFilter';
 
 interface FilterProps {
-    filter: Søkefilter;
-    query: string;
-    type: string;
-    frequency: string;
-    publisher: string;
-    accessRight: string;
-    theme: string;
+    filter: SearchFilter;
 }
 
-export const Filter = ({ filter, query, type, frequency, publisher, accessRight, theme }: FilterProps) => {
+export const Filter = ({ filter }: FilterProps) => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const query = location.search;
+
     return (
         <>
             <CheckboxGroup title="Tema">
                 {filter.theme.map((t) => (
                     <Checkbox
-                        checked={theme.split(',').includes(t.split('|')[0].trim())}
-                        onChange={() =>
-                            navigate(
-                                `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}&theme=${fixUrl(
-                                    theme,
-                                    t.split('|')[0].trim()
-                                )}`
-                            )
-                        }
-                        key={`theme-${t}`}
+                        checked={filter.filterIsOn(query, 'theme', t)}
+                        onChange={() => navigate(filter.generateUrl(query, 'theme', t.code))}
+                        key={`theme2-${t.code}`}
                     >
-                        {t.split('|')[1]?.trim() ?? t}
+                        {t.description}
                     </Checkbox>
                 ))}
             </CheckboxGroup>
             <CheckboxGroup title="Utgiver">
-                {filter.publisher.map((o) => (
+                {filter.publisher.map((p) => (
                     <Checkbox
-                        checked={publisher.split(',').includes(o)}
-                        onChange={() =>
-                            navigate(
-                                `/search?query=${query}&publisher=${fixUrl(
-                                    publisher,
-                                    o
-                                )}&frequency=${frequency}&type=${type}&theme=${theme}`
-                            )
-                        }
-                        key={`publisher-${o}`}
+                        checked={filter.filterIsOn(query, 'publisher', p)}
+                        onChange={() => navigate(filter.generateUrl(query, 'publisher', p.code))}
+                        key={`publisher-${p.code}`}
                     >
-                        {o}
+                        {p.description}
                     </Checkbox>
                 ))}
             </CheckboxGroup>
             <CheckboxGroup title="Tilgangsnivå">
-                {filter.accessRight.map((o) => (
+                {filter.accessRight.map((ar) => (
                     <Checkbox
-                        checked={accessRight.split(',').includes(o)}
-                        onChange={() =>
-                            navigate(
-                                `/search?access-right=${fixUrl(
-                                    accessRight,
-                                    o
-                                )}&query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}&theme=${theme}`
-                            )
-                        }
-                        key={`access-right-${o}`}
+                        checked={filter.filterIsOn(query, 'access-right', ar)}
+                        onChange={() => navigate(filter.generateUrl(query, 'access-right', ar.code))}
+                        key={`access-right-${ar.code}`}
                     >
-                        {o}
+                        {ar.description}
                     </Checkbox>
                 ))}
             </CheckboxGroup>
             <CheckboxGroup title="Oppdateringsfrekvens">
-                {filter.frequency.map((o) => (
+                {filter.frequency.map((f) => (
                     <Checkbox
-                        checked={frequency.split(',').includes(o)}
-                        onChange={() =>
-                            navigate(
-                                `/search?query=${query}&publisher=${publisher}&frequency=${fixUrl(
-                                    frequency,
-                                    o
-                                )}&type=${type}&theme=${theme}`
-                            )
-                        }
-                        key={`frequency-${o}`}
+                        checked={filter.filterIsOn(query, 'frequency', f)}
+                        onChange={() => navigate(filter.generateUrl(query, 'frequency', f.code))}
+                        key={`frequency-${f.code}`}
                     >
-                        {o}
+                        {f.description}
                     </Checkbox>
                 ))}
             </CheckboxGroup>
             <CheckboxGroup title="Type">
                 {filter.typer.map((t) => (
                     <Checkbox
-                        checked={type.split(',').includes(t)}
-                        onChange={() =>
-                            navigate(
-                                `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${fixUrl(
-                                    type,
-                                    t
-                                )}&theme=${theme}`
-                            )
-                        }
-                        key={`type-${t}`}
+                        checked={filter.filterIsOn(query, 'type', t)}
+                        onChange={() => navigate(filter.generateUrl(query, 'type', t.code))}
+                        key={`type-${t.code}`}
                     >
-                        <EntityType type={t} />
+                        <EntityType type={t.description} />
                     </Checkbox>
                 ))}
             </CheckboxGroup>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Entitet } from './Entitet/Entitet';
+import { Entity } from './Entitet/Entity';
 import { Search } from './Search/Search';
 import { Term } from '../Pages/Term/Term';
 import { Header } from '../Components/Header/Header';
@@ -20,8 +20,8 @@ function App() {
                             <Route path="search" element={<Search />} />
                             <Route path="term/:id/:tittel" element={<Term />} />
                             <Route path="term/:id" element={<Term />} />
-                            <Route path="entitet/:id/:tittel" element={<Entitet />} />
-                            <Route path="entitet/:id" element={<Entitet />} />
+                            <Route path="entity/:id/:tittel" element={<Entity />} />
+                            <Route path="entity/:id" element={<Entity />} />
                             <Route path="*" element={<h2>Siden finnes ikke</h2>} />
                         </Route>
                     </Routes>

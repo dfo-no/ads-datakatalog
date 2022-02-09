@@ -1,22 +1,22 @@
-type VisningsValg = 'term' | 'entitet';
+type TypeOfResult = 'term' | 'entity';
 
-export default class SøkeresultatEntitet {
+export default class SearchResult {
     constructor(
         id: string,
-        tittel: string,
-        beskrivelse: string,
+        title: string,
+        description: string,
         type: string,
-        visning: VisningsValg,
+        typeOfResult: TypeOfResult,
         frequency?: string | null,
         accessRight?: string | null,
         publisher?: string | null,
         theme?: string[] | null
     ) {
         this.id = id;
-        this.tittel = tittel;
+        this.title = title;
         this.type = type;
-        this.visning = visning;
-        this.beskrivelse = beskrivelse;
+        this.typeOfResult = typeOfResult;
+        this.description = description;
         this.frequency = frequency ?? undefined;
         this.accessRight = accessRight ?? undefined;
         this.publisher = publisher ?? undefined;
@@ -24,16 +24,16 @@ export default class SøkeresultatEntitet {
     }
 
     public id: string;
-    public tittel: string;
-    public beskrivelse: string;
+    public title: string;
+    public description: string;
     public frequency?: string;
     public accessRight?: string;
     public publisher?: string;
     public theme?: string[];
     public type: string;
-    public visning: VisningsValg;
+    public typeOfResult: TypeOfResult;
 
     public get søkestreng(): string {
-        return `${this.id} ${this.tittel} ${this.beskrivelse}  ${this.theme}`.toLowerCase();
+        return `${this.id} ${this.title} ${this.description}  ${this.theme}`.toLowerCase();
     }
 }

@@ -13,7 +13,7 @@ import { MainArea } from '../../Components/Layout/MainArea/MainArea';
 import { EntityType } from '../../Components/EntityType/EntityType';
 import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
 
-export const Entitet = () => {
+export const Entity = () => {
     const { id } = useParams();
 
     const { isError, data, isLoading } = useGetEntityQuery(id ?? '');

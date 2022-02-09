@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { EntityType } from '../../../Components/EntityType/EntityType';
-import SøkeresultatEntitet from '../../../datakatalog/søkeresultatEntitet';
+import SearchResult from '../../../datakatalog/search/searchResult';
 import Style from './GlossaryResults.module.css';
 
 interface GlossaryResultsProps {
-    resultater: SøkeresultatEntitet[];
+    resultater: SearchResult[];
 }
 
 export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
@@ -15,7 +15,7 @@ export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
                 <div className={Style['GlossaryResults-result-header']}>
                     <div>
                         <h3 className={Style['GlossaryResults-link']}>
-                            <Link to={`/${sr.visning}/${sr.id}/${sr.tittel}`}>{sr.tittel}</Link>
+                            <Link to={`/${sr.typeOfResult}/${sr.id}/${sr.title}`}>{sr.title}</Link>
                         </h3>
                     </div>
                     <div>
@@ -24,7 +24,7 @@ export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
                         </p>
                     </div>
                 </div>
-                <p>{sr.beskrivelse}</p>
+                <p>{sr.description}</p>
                 <hr />
             </div>
         ))}

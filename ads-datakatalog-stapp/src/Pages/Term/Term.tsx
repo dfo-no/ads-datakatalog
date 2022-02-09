@@ -58,16 +58,16 @@ export const Term = () => {
 
                                         {term.tildelteEntiteter.map((entitet) => (
                                             <div key={entitet.id}>
-                                                {term.tildelteEntiteter.length !== 1 && <h4>{entitet.navn}</h4>}
+                                                {term.tildelteEntiteter.length !== 1 && <h4>{entitet.name}</h4>}
                                                 <Skjemavisning id={entitet.id} />
                                                 <p>
                                                     <br />
                                                     <Link
                                                         to={`/entitet/${entitet.id}/${encodeURIComponent(
-                                                            entitet.navn
+                                                            entitet.name
                                                         )}`}
                                                     >
-                                                        Detaljert visning av {entitet.navn}.
+                                                        Detaljert visning av {entitet.name}.
                                                     </Link>
                                                 </p>
                                             </div>

@@ -1,19 +1,8 @@
 import { IGlossary } from '../db/glossaryType';
 import { Attributes } from './attributes';
+import { EntityReference } from './entityReference';
 import { Resource } from './resource';
 import { TermReference } from './termReference';
-
-export class EntitetReferanse {
-    public id: string;
-    public navn: string;
-    public type: string;
-
-    constructor(id: string, navn: string, type: string) {
-        this.id = id;
-        this.navn = navn;
-        this.type = type;
-    }
-}
 
 export class Term {
     public id: string;
@@ -24,7 +13,7 @@ export class Term {
     public ressurser: Resource[];
     public attributtes: Attributes;
     public referanser: TermReference[];
-    public tildelteEntiteter: EntitetReferanse[];
+    public tildelteEntiteter: EntityReference[];
 
     constructor(
         id: string,
@@ -35,7 +24,7 @@ export class Term {
         ressurser: Resource[],
         attributtes: Attributes,
         referanser: TermReference[],
-        tildelteEntiteter: EntitetReferanse[]
+        tildelteEntiteter: EntityReference[]
     ) {
         this.id = id;
         this.tittel = tittel;
@@ -67,7 +56,7 @@ export class Term {
             entitet.resources?.map((r) => new Resource(r.displayName, r.url)) || [],
             attributes,
             entitet.seeAlso?.map((r) => new TermReference(r.termGuid, r.displayText)) || [],
-            entitet.assignedEntities?.map((e) => new EntitetReferanse(e.guid, e.displayText, e.typeName)) || []
+            entitet.assignedEntities?.map((e) => new EntityReference(e.guid, e.displayText, e.typeName)) || []
         );
     }
 }
