@@ -2,4 +2,13 @@
     flex-basis: var(--sidebar-width);
     max-width: var(--sidebar-width);
     min-width: var(--sidebar-width);
+    background: var(--background-color);
+}
+
+@media only screen and (max-width: 768px) {
+    .Sidebar {
+        flex-basis: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
 }

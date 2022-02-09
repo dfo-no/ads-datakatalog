@@ -47,7 +47,7 @@
     border-color: var(--secondary-color);
 }
 
-.Checkbox-box:checked:hover::before {
+.Checkbox-box:checked:hover:not(:focus):before {
     background-color: var(--secondary-color);
 }
 
