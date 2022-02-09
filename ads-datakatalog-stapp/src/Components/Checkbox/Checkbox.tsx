@@ -10,7 +10,7 @@ export interface CheckboxProps {
 export const Checkbox = ({ children, checked, onChange }: CheckboxProps) => (
     <label className={Style['Checkbox']}>
         <input
-            className={Style['Checkbox-box']}
+            className={`${Style['Checkbox-box']}`}
             type="checkbox"
             checked={checked}
             onChange={(e) => onChange(e.currentTarget.checked)}
