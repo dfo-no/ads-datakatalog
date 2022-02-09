@@ -12,7 +12,6 @@ interface FilterProps {
 export const Filter = ({ filter }: FilterProps) => {
     const navigate = useNavigate();
     const location = useLocation();
-
     const query = location.search;
 
     return (
