@@ -57,7 +57,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight,
                                 `/search?query=${query}&publisher=${fixUrl(
                                     publisher,
                                     o
-                                )}&frequency=${frequency}&type=${type}&theme=${type}`
+                                )}&frequency=${frequency}&type=${type}&theme=${theme}`
                             )
                         }
                         key={`publisher-${o}`}
@@ -75,7 +75,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight,
                                 `/search?access-right=${fixUrl(
                                     accessRight,
                                     o
-                                )}&query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}&theme=${type}`
+                                )}&query=${query}&publisher=${publisher}&frequency=${frequency}&type=${type}&theme=${theme}`
                             )
                         }
                         key={`access-right-${o}`}
@@ -93,7 +93,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight,
                                 `/search?query=${query}&publisher=${publisher}&frequency=${fixUrl(
                                     frequency,
                                     o
-                                )}&type=${type}&theme=${type}`
+                                )}&type=${type}&theme=${theme}`
                             )
                         }
                         key={`frequency-${o}`}
@@ -111,7 +111,7 @@ export const Filter = ({ filter, query, type, frequency, publisher, accessRight,
                                 `/search?query=${query}&publisher=${publisher}&frequency=${frequency}&type=${fixUrl(
                                     type,
                                     t
-                                )}&theme=${type}`
+                                )}&theme=${theme}`
                             )
                         }
                         key={`type-${t}`}
