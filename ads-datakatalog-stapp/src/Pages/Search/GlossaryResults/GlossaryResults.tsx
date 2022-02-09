@@ -20,7 +20,7 @@ export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
                     </div>
                     <div>
                         <p>
-                            <EntityType type={sr.type} />
+                            <EntityType type={sr.type[0].code} />
                         </p>
                     </div>
                 </div>

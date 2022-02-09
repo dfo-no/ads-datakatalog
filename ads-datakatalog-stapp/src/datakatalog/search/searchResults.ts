@@ -1,4 +1,5 @@
 import { IGlossary } from '../../db/glossaryType';
+import { Attribute } from '../attribute';
 import SearchResult from './searchResult';
 
 export default class SearchResults {
@@ -18,12 +19,12 @@ export default class SearchResults {
                     key,
                     entitet.name,
                     entitet.longDescription,
+                    [new Attribute('term', 'Datasett')],
                     'term',
-                    'term',
-                    entitet.attributes?.Datakatalog.Oppdateringsfrekvens,
-                    entitet.attributes?.Datakatalog.Tilgangsnivå,
-                    entitet.attributes?.Datakatalog.Utgiver,
-                    entitet.attributes?.Datakatalog.Tema?.split(',').map((t) => t.trim())
+                    Attribute.mapFraApi(entitet.attributes?.Datakatalog.Oppdateringsfrekvens),
+                    Attribute.mapFraApi(entitet.attributes?.Datakatalog.Tilgangsnivå),
+                    Attribute.mapFraApi(entitet.attributes?.Datakatalog.Utgiver),
+                    Attribute.mapFraApi(entitet.attributes?.Datakatalog.Tema)
                 )
             );
 
@@ -35,12 +36,12 @@ export default class SearchResults {
                             subEntity.guid,
                             subEntity.displayText,
                             '',
-                            subEntity.typeName,
+                            [new Attribute(subEntity.typeName, subEntity.typeName)],
                             'entity',
-                            entitet.attributes?.Datakatalog.Oppdateringsfrekvens,
-                            entitet.attributes?.Datakatalog.Tilgangsnivå,
-                            entitet.attributes?.Datakatalog.Utgiver,
-                            entitet.attributes?.Datakatalog.Tema?.split(',').map((t) => t.trim())
+                            Attribute.mapFraApi(entitet.attributes?.Datakatalog.Oppdateringsfrekvens),
+                            Attribute.mapFraApi(entitet.attributes?.Datakatalog.Tilgangsnivå),
+                            Attribute.mapFraApi(entitet.attributes?.Datakatalog.Utgiver),
+                            Attribute.mapFraApi(entitet.attributes?.Datakatalog.Tema)
                         )
                     );
                 }

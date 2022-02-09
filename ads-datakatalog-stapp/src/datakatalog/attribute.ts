@@ -7,7 +7,7 @@ export class Attribute {
         this.description = description;
     }
 
-    public static mapFraApi(attributt: string): Attribute[] {
+    public static mapFraApi(attributt: string | null = ''): Attribute[] {
         if (!attributt) {
             return [];
         } else if (attributt.indexOf('|') || attributt.indexOf('|')) {

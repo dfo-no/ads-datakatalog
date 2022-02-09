@@ -1,16 +1,8 @@
 import { parse, stringify } from 'query-string';
+import { makeSureArray, removeItem } from '../../arrayUtils';
+import { ObjectSet } from '../../objectSet';
 import { Attribute } from '../attribute';
 import SearchResult from './searchResult';
-
-const makeSureArray = (item: string | string[] | null) => (Array.isArray(item) ? item : [item as string]);
-
-const removeItem = <T>(arr: Array<T>, value: T): Array<T> => {
-    const index = arr.indexOf(value);
-    if (index > -1) {
-        arr.splice(index, 1);
-    }
-    return arr;
-};
 
 export class SearchFilter {
     public typer: Attribute[];
@@ -19,49 +11,27 @@ export class SearchFilter {
     public accessRight: Attribute[];
     public theme: Attribute[];
 
-    constructor(typer: string[], frequency: string[], publisher: string[], accessRight: string[], theme: string[]) {
-        this.typer = typer.flatMap(Attribute.mapFraApi);
-        this.frequency = frequency.flatMap(Attribute.mapFraApi);
-        this.publisher = publisher.flatMap(Attribute.mapFraApi);
-        this.accessRight = accessRight.flatMap(Attribute.mapFraApi);
-        this.theme = theme.flatMap(Attribute.mapFraApi);
+    constructor(
+        typer: Attribute[],
+        frequency: Attribute[],
+        publisher: Attribute[],
+        accessRight: Attribute[],
+        theme: Attribute[]
+    ) {
+        this.typer = typer;
+        this.frequency = frequency;
+        this.publisher = publisher;
+        this.accessRight = accessRight;
+        this.theme = theme;
     }
 
     public static genererFraSøkeresultat(searchResults: SearchResult[]): SearchFilter {
         return new SearchFilter(
-            Array.from(new Set(searchResults.map((se) => se.type))).sort(),
-            Array.from(
-                new Set(
-                    searchResults
-                        .filter((se) => !!se.frequency)
-                        .map((se) => se.frequency ?? '')
-                        .sort()
-                )
-            ),
-            Array.from(
-                new Set(
-                    searchResults
-                        .filter((se) => !!se.publisher)
-                        .map((se) => se.publisher ?? '')
-                        .sort()
-                )
-            ),
-            Array.from(
-                new Set(
-                    searchResults
-                        .filter((se) => !!se.accessRight)
-                        .map((se) => se.accessRight ?? '')
-                        .sort()
-                )
-            ),
-            Array.from(
-                new Set(
-                    searchResults
-                        .filter((se) => !!se.theme)
-                        .flatMap((se) => se.theme?.map((t) => t.trim()) ?? [''])
-                        .sort()
-                )
-            )
+            new ObjectSet(searchResults.filter((se) => !!se.type).flatMap((se) => se.type)).asArray(),
+            new ObjectSet(searchResults.filter((se) => !!se.frequency).flatMap((se) => se.frequency)).asArray(),
+            new ObjectSet(searchResults.filter((se) => !!se.publisher).flatMap((se) => se.publisher)).asArray(),
+            new ObjectSet(searchResults.filter((se) => !!se.accessRight).flatMap((se) => se.accessRight)).asArray(),
+            new ObjectSet(searchResults.filter((se) => !!se.theme).flatMap((se) => se.theme)).asArray()
         );
     }
 

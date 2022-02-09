@@ -13,6 +13,7 @@ import { Layout, LayoutTypes } from '../../Components/Layout/Layout/Layout';
 import { Sidebar } from '../../Components/Layout/Sidebar/Sidebar';
 import { MainArea } from '../../Components/Layout/MainArea/MainArea';
 import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
+import { doesIntersect } from '../../arrayUtils';
 
 export const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -43,12 +44,14 @@ export const Search = () => {
 
     const filtrertSøkEtterTermer = filtrertSøk.filter((se) => {
         return (
-            (urlTypeSet.size === 0 || urlTypeSet.has(se.type)) &&
-            (urlPublisherSet.size === 0 || urlPublisherSet.has(se.publisher ?? '_______')) &&
-            (urlFrequencySet.size === 0 || urlFrequencySet.has(se.frequency ?? '_______')) &&
-            (urlAccessRightSet.size === 0 || urlAccessRightSet.has(se.accessRight ?? '_______')) &&
-            (urlThemeSet.size === 0 ||
-                se.theme?.some((theme) => urlThemeSet.has(theme.split('|')[0].trim() ?? '_______')))
+            (urlTypeSet.size === 0 || doesIntersect(se.type.map((p) => p.code) ?? [], Array.from(urlTypeSet))) &&
+            (urlPublisherSet.size === 0 ||
+                doesIntersect(se.publisher.map((p) => p.code) ?? [], Array.from(urlPublisherSet))) &&
+            (urlFrequencySet.size === 0 ||
+                doesIntersect(se.frequency.map((p) => p.code) ?? [], Array.from(urlFrequencySet))) &&
+            (urlAccessRightSet.size === 0 ||
+                doesIntersect(se.accessRight.map((p) => p.code) ?? [], Array.from(urlAccessRightSet))) &&
+            (urlThemeSet.size === 0 || doesIntersect(se.theme.map((p) => p.code) ?? [], Array.from(urlThemeSet)))
         );
     });
 
