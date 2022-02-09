@@ -22,6 +22,7 @@ export const Forside = () => {
                         </p>
                         <div className={`${Styles['Forside-search-searchBox']}`}>
                             <SearchBox
+                                placeholder="Søk i datakatalogen"
                                 onSearch={(query) => navigate(`/search?query=${query}`)}
                                 setFocus={true}
                                 size="lg"
