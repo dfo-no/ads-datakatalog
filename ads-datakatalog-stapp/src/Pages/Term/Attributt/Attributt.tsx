@@ -37,7 +37,7 @@ export const Attributt = ({ description, attributes }: AttributtProps) => (
                               <Link to={`/search?${attributtDefinisjoner.get(description)?.filter}=${attrib.code}`}>
                                   {attrib.description}
                               </Link>
-                              {i !== attributes.length && <span>, </span>}
+                              {i !== attributes.length - 1 && <span>, </span>}
                           </span>
                       ))
                     : attributes.map((attrib) => <div key={attrib.code}>{attrib.description}</div>))}
