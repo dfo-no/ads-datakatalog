@@ -10,7 +10,7 @@ export const Header = () => (
                 <Link to="/" className={styles['Header-logo']}>
                     <img src="/img/logo.svg" alt="DFØ Logo" className={styles['Header-logoImage']} />
                     <div className={styles['Header-logoBorder']} />
-                    <h1 className={styles['Header-logoTitle']}>data.anskaffelser.no</h1>
+                    <h1 className={styles['Header-logoTitle']}>data.dfo.no</h1>
                     <p className={styles['Header-logoSubtitle']}>En del av anskaffelser.no</p>
                 </Link>
                 <nav className={styles['Header-menu']}></nav>
