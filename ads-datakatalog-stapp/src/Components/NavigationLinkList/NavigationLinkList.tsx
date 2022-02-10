@@ -8,8 +8,8 @@ export interface NavigationLinkListProps {
 
 export const NavigationLinkList = ({ children }: NavigationLinkListProps) => (
     <ul className={styles['NavigationLinkList']}>
-        {(Array.isArray(children) ? children : [children]).map((c) => (
-            <li key={c.props.toString()} className={styles['NavigationLinkList-item']}>
+        {(Array.isArray(children) ? children : [children]).map((c, i) => (
+            <li key={`linked-${i}`} className={styles['NavigationLinkList-item']}>
                 {c}
             </li>
         ))}

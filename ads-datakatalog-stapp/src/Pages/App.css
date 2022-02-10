@@ -63,16 +63,11 @@
 @media only screen and (max-width: 600px) {
     :root {
         --base-padding: 0.9rem;
-        --tiny-padding: 1rem;
     }
 }
 
 @media only screen and (max-width: 400px) {
     :root {
-        --base-padding: 1rem;
-        --small-padding: 1rem;
-        --medium-padding: 2rem;
-        --base-gap: 1rem;
     }
 }
 

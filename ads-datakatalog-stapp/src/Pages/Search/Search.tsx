@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SearchBox } from '../../Components/SearchBox/SearchBox';
 import { useSearchParams } from 'react-router-dom';
 import { GlossaryResults } from './GlossaryResults/GlossaryResults';
@@ -17,8 +17,8 @@ import { doesIntersect } from '../../arrayUtils';
 
 export const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-
     const { isLoading, data } = useGetGlossaryQuery();
+    const [expandedFilter, setExpandedFilter] = useState(false);
 
     const query = searchParams.get('query') ?? '';
     const type = searchParams.get('type') ?? '';
@@ -61,13 +61,29 @@ export const Search = () => {
                 <LoadIndicator isLoading={isLoading}>
                     <Layout type={LayoutTypes.Sidebar}>
                         <Sidebar>
-                            <SearchBox
-                                onSearch={(query) => setSearchParams({ query: query })}
-                                value={query}
-                                tabIndex={0}
-                            />
-                            <br />
-                            <Filter filter={filter} />
+                            <div className={Style['Search-header']}>
+                                <div className={Style['Search-field']}>
+                                    <SearchBox
+                                        onSearch={(query) => setSearchParams({ query: query })}
+                                        value={query}
+                                        tabIndex={0}
+                                    />
+                                </div>
+                                <div className={Style['Search-expandFilter']}>
+                                    <button onClick={() => setExpandedFilter(!expandedFilter)}>
+                                        {expandedFilter ? 'Skjul filter' : 'Vis filter'}
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                className={`${Style['Search-filter']} ${
+                                    expandedFilter
+                                        ? Style['Search-filter__expanded']
+                                        : Style['Search-filter__collapsed']
+                                }`}
+                            >
+                                <Filter filter={filter} />
+                            </div>
                         </Sidebar>
                         <MainArea>
                             {filtrertSøkEtterTermer.length !== 0 ? (

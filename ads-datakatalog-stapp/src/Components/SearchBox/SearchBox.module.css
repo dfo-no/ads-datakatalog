@@ -20,7 +20,7 @@
 input[type='search'].Searchbox-input {
     position: relative;
     width: 100%;
-    padding: var(--small-gap) var(--tiny-gap);
+    padding: var(--small-padding) var(--tiny-padding);
     font-size: 1rem;
 }
 
@@ -30,7 +30,7 @@ input[type='search'].Searchbox-input {
 }
 
 .Searchbox_lg input[type='search'].Searchbox-input {
-    padding: var(--base-gap) var(--small-gap);
+    padding: var(--base-padding) var(--small-padding);
     font-size: 1.2rem;
 }
 
