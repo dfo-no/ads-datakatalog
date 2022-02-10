@@ -1,4 +1,4 @@
-import { IDatakatalog } from '../db/glossaryType';
+import { IDatakatalog } from '../atlasTypes/glossaryType';
 import { Attribute } from './attribute';
 
 export class Attributes {

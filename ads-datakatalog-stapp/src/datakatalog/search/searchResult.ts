@@ -5,10 +5,10 @@ type TypeOfResult = 'term' | 'entity';
 export default class SearchResult {
     constructor(
         id: string,
+        typeOfResult: TypeOfResult,
         title: string,
         description: string,
         type: Attribute[],
-        typeOfResult: TypeOfResult,
         frequency?: Attribute[] | null,
         accessRight?: Attribute[] | null,
         publisher?: Attribute[] | null,

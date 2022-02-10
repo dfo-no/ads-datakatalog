@@ -63,9 +63,7 @@ export const Term = () => {
                                                 <p>
                                                     <br />
                                                     <Link
-                                                        to={`/entitet/${entitet.id}/${encodeURIComponent(
-                                                            entitet.name
-                                                        )}`}
+                                                        to={`/entity/${entitet.id}/${encodeURIComponent(entitet.name)}`}
                                                     >
                                                         Detaljert visning av {entitet.name}.
                                                     </Link>

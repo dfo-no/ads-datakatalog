@@ -1,4 +1,4 @@
-import { IEntity } from '../db/entityType';
+import { IEntity } from '../atlasTypes/entityType';
 
 class Kolonne {
     constructor(id: string, tittel: string, beskrivelse: string, type: string) {

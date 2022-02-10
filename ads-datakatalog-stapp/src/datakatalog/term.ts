@@ -1,4 +1,4 @@
-import { IGlossary } from '../db/glossaryType';
+import { IGlossary } from '../atlasTypes/glossaryType';
 import { Attributes } from './attributes';
 import { EntityReference } from './entityReference';
 import { Resource } from './resource';

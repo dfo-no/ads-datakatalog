@@ -1,4 +1,4 @@
-import { IEntity } from '../db/entityType';
+import { IEntity } from '../atlasTypes/entityType';
 import { TermReference } from './termReference';
 
 export class Entitet {

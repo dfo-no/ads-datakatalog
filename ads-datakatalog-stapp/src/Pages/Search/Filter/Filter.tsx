@@ -22,6 +22,7 @@ export const Filter = ({ filter }: FilterProps) => {
                         checked={filter.filterIsOn(query, 'theme', t)}
                         onChange={() => navigate(filter.generateUrl(query, 'theme', t.code))}
                         key={`theme2-${t.code}`}
+                        title={t.description}
                     >
                         {t.description}
                     </Checkbox>
@@ -33,6 +34,7 @@ export const Filter = ({ filter }: FilterProps) => {
                         checked={filter.filterIsOn(query, 'publisher', p)}
                         onChange={() => navigate(filter.generateUrl(query, 'publisher', p.code))}
                         key={`publisher-${p.code}`}
+                        title={p.description}
                     >
                         {p.description}
                     </Checkbox>
@@ -44,6 +46,7 @@ export const Filter = ({ filter }: FilterProps) => {
                         checked={filter.filterIsOn(query, 'access-right', ar)}
                         onChange={() => navigate(filter.generateUrl(query, 'access-right', ar.code))}
                         key={`access-right-${ar.code}`}
+                        title={ar.description}
                     >
                         {ar.description}
                     </Checkbox>
@@ -55,6 +58,7 @@ export const Filter = ({ filter }: FilterProps) => {
                         checked={filter.filterIsOn(query, 'frequency', f)}
                         onChange={() => navigate(filter.generateUrl(query, 'frequency', f.code))}
                         key={`frequency-${f.code}`}
+                        title={f.description}
                     >
                         {f.description}
                     </Checkbox>
@@ -66,6 +70,7 @@ export const Filter = ({ filter }: FilterProps) => {
                         checked={filter.filterIsOn(query, 'type', t)}
                         onChange={() => navigate(filter.generateUrl(query, 'type', t.code))}
                         key={`type-${t.code}`}
+                        title={t.description}
                     >
                         <EntityType type={t.description} />
                     </Checkbox>

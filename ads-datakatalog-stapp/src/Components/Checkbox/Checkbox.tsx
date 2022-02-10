@@ -4,10 +4,11 @@ import Style from './Checkbox.module.css';
 export interface CheckboxProps {
     checked: boolean;
     children?: React.ReactNode;
+    title?: string;
     onChange: (newValue: boolean) => void;
 }
 
-export const Checkbox = ({ children, checked, onChange }: CheckboxProps) => (
+export const Checkbox = ({ children, checked, onChange, title }: CheckboxProps) => (
     <label className={Style['Checkbox']}>
         <input
             className={`${Style['Checkbox-box']}`}
@@ -15,6 +16,8 @@ export const Checkbox = ({ children, checked, onChange }: CheckboxProps) => (
             checked={checked}
             onChange={(e) => onChange(e.currentTarget.checked)}
         />{' '}
-        <div className={Style['Checkbox-label']}>{children}</div>
+        <div className={Style['Checkbox-label']} title={title}>
+            {children}
+        </div>
     </label>
 );
