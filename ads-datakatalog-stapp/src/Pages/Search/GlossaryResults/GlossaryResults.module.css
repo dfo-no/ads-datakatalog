@@ -18,3 +18,10 @@
     font-weight: bold;
     font-size: 1.2rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .GlossaryResults-result-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
