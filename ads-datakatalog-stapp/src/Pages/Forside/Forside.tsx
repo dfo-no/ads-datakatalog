@@ -37,7 +37,7 @@ export const Forside = () => {
                     <div className={Styles['Forside-shortcuts-grid']}>
                         <Shortcut title="Anskaffelser" url="/search?theme=offentlig-innkjop" variant="primary" />
                         <Shortcut title="Miljø" url="/search?theme=natur-klima-og-miljo" variant="primary" />
-                        <Shortcut title="Regnskap" url="/search?theme=GOVE" variant="primary" />
+                        <Shortcut title="Regnskap" url="/search?theme=gove" variant="primary" />
                         <Shortcut title="Åpne data" url="/search?access-right=offentlig" variant="tertiary" />
                     </div>
                 </Container>
