@@ -20,7 +20,7 @@ export const Search = () => {
     const { isLoading, data } = useGetGlossaryQuery();
     const [expandedFilter, setExpandedFilter] = useState(false);
 
-    const query = searchParams.get('query') ?? '';
+    const query = searchParams.get('query')?.trim() ?? '';
     const type = searchParams.get('type') ?? '';
     const frequency = searchParams.get('frequency') ?? '';
     const publisher = searchParams.get('publisher') ?? '';
@@ -37,23 +37,25 @@ export const Search = () => {
 
     const filtrertSøk =
         søkeresultat?.resultList.filter((se) => {
-            return se.søkestreng.indexOf(query.toLowerCase()) !== -1;
+            return se.hitScore(query) > 0;
         }) ?? [];
 
     const filter = SearchFilter.genererFraSøkeresultat(filtrertSøk);
 
-    const filtrertSøkEtterTermer = filtrertSøk.filter((se) => {
-        return (
-            (urlTypeSet.size === 0 || doesIntersect(se.type.map((p) => p.code) ?? [], Array.from(urlTypeSet))) &&
-            (urlPublisherSet.size === 0 ||
-                doesIntersect(se.publisher.map((p) => p.code) ?? [], Array.from(urlPublisherSet))) &&
-            (urlFrequencySet.size === 0 ||
-                doesIntersect(se.frequency.map((p) => p.code) ?? [], Array.from(urlFrequencySet))) &&
-            (urlAccessRightSet.size === 0 ||
-                doesIntersect(se.accessRight.map((p) => p.code) ?? [], Array.from(urlAccessRightSet))) &&
-            (urlThemeSet.size === 0 || doesIntersect(se.theme.map((p) => p.code) ?? [], Array.from(urlThemeSet)))
-        );
-    });
+    const filtrertSøkEtterTermer = filtrertSøk
+        .filter((se) => {
+            return (
+                (urlTypeSet.size === 0 || doesIntersect(se.type.map((p) => p.code) ?? [], Array.from(urlTypeSet))) &&
+                (urlPublisherSet.size === 0 ||
+                    doesIntersect(se.publisher.map((p) => p.code) ?? [], Array.from(urlPublisherSet))) &&
+                (urlFrequencySet.size === 0 ||
+                    doesIntersect(se.frequency.map((p) => p.code) ?? [], Array.from(urlFrequencySet))) &&
+                (urlAccessRightSet.size === 0 ||
+                    doesIntersect(se.accessRight.map((p) => p.code) ?? [], Array.from(urlAccessRightSet))) &&
+                (urlThemeSet.size === 0 || doesIntersect(se.theme.map((p) => p.code) ?? [], Array.from(urlThemeSet)))
+            );
+        })
+        .sort((a, b) => b.hitScore(query) - a.hitScore(query));
 
     return (
         <div className={Style['Search']}>

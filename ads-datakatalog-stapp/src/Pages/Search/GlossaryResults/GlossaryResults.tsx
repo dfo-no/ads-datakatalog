@@ -25,7 +25,6 @@ export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
                     </div>
                 </div>
                 <p>{sr.description}</p>
-                <hr />
             </div>
         ))}
     </div>
