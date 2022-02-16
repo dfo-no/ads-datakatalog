@@ -63,7 +63,7 @@ export interface EntityRelationshipAttributes {
     dbSchema: DBSchema;
     columns: DBSchema[];
     attachedSchema: any[];
-    meanings: Meaning[];
+    meanings: IMeaning[];
     outputFromProcesses: any[];
     tabular_schema: TabularSchema | null;
 }
@@ -98,7 +98,7 @@ export enum TypeName {
     AzureSQLTable = 'azure_sql_table'
 }
 
-export interface Meaning {
+export interface IMeaning {
     guid: string;
     typeName: string;
     entityStatus: Status;

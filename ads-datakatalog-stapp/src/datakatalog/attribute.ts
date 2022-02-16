@@ -10,7 +10,9 @@ export class Attribute {
     public static mapFraApi(attributt: string | null = ''): Attribute[] {
         if (!attributt) {
             return [];
-        } else if (attributt.indexOf('|') || attributt.indexOf('|')) {
+        } else if (typeof attributt === 'number') {
+            return [new Attribute(attributt, attributt)];
+        } else if (attributt.indexOf('|')) {
             return attributt.split(';').map((part) => {
                 const [code, description] = part.split('|');
 

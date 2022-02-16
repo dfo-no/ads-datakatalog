@@ -11,8 +11,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     terms = purview_client.glossary.get_detailed_glossary(
         glossary_id, include_term_hierarchy=True)
 
+
     return func.HttpResponse(
-        json.dumps(terms),
+        json.dumps(terms.termInfo),
         status_code=200,
         mimetype='application/json'
     )

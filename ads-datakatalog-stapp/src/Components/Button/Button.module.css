@@ -1,0 +1,29 @@
+.Button,
+.Button:visited {
+    background-color: var(--primary-light-color);
+    color: white;
+    padding: calc(var(--tiny-padding) - 4px) calc(var(--small-padding) - 4px);
+    border: 4px solid var(--primary-light-color);
+}
+
+.Button:hover {
+    background-color: var(--secondary-light-color);
+    border-color: var(--secondary-light-color);
+    text-decoration: none;
+}
+
+.Button:focus {
+    background-color: var(--secondary-light-color);
+    border-color: var(--secondary-light-color);
+}
+
+.Button:active {
+    background-color: #0487ba;
+    border-color: var(--primary-color);
+}
+
+.Button:disabled,
+.Button.disabled {
+    background-color: var(--border-color-secondary);
+    border-color: var(--border-color-secondary);
+}

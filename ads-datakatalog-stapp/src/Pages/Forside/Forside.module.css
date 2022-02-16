@@ -7,7 +7,7 @@
 }
 
 .Forside-search-container {
-    background-image: url('/img/robotisering.svg');
+    background-image: url('../../../public/img/robotisering.svg');
     background-repeat: no-repeat;
     background-position: calc(100% - var(--base-padding)) 0;
     background-size: contain;

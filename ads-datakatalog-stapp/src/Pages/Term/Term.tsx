@@ -7,12 +7,13 @@ import { Container } from '../../Components/Container/Container';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
 import { NavigationLink } from '../../Components/NavigationLink/NavigationLink';
 import { Skjemavisning } from './Skjemavisning/Skjemavisning';
-import { Attributt } from './Attributt/Attributt';
 import Style from './Term.module.css';
 import { Layout, LayoutTypes } from '../../Components/Layout/Layout/Layout';
 import { MainArea } from '../../Components/Layout/MainArea/MainArea';
-import { EntityType } from '../../Components/EntityType/EntityType';
 import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
+import { DatasetAttributes } from './DatasetAttributes/DatasetAttributes';
+import { DistributionAttributes } from './DistributionAttributes/DatasetAttributes';
+import { InformationModelAttributes } from './InformationModelAttributes/InformationModelAttributes';
 
 export const Term = () => {
     const { id } = useParams();
@@ -30,59 +31,92 @@ export const Term = () => {
                                 <Breadcrumbs currentLabel={term.tittel} />
                                 <header className={Style['Term-header']}>
                                     <h2>{term.tittel}</h2>
-                                    <div className={Style['Term-type']}>
-                                        <EntityType type={term.type} />
-                                    </div>
+                                    <div className={Style['Term-type']}>{term.type.description}</div>
                                 </header>
                                 <section className={Style['Term-section']}>
                                     <p>{term.beskrivelse}</p>
                                 </section>
-                                {term.attributtes && (
-                                    <section className={Style['Term-section']}>
-                                        <table>
-                                            <tbody>
-                                                {Array.from(term.attributtes.attributeList.keys()).map((attrib, i) => (
-                                                    <Attributt
-                                                        key={attrib}
-                                                        description={attrib}
-                                                        attributes={term.attributtes.attributeList.get(attrib)}
+                                {term.attributes &&
+                                    (() => {
+                                        switch (term.type.code) {
+                                            case 'data':
+                                            case 'code-list':
+                                                return (
+                                                    <DatasetAttributes attributeList={term.attributes.attributeList} />
+                                                );
+                                            case 'distribution':
+                                                return (
+                                                    <DistributionAttributes
+                                                        attributeList={term.attributes.attributeList}
                                                     />
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    </section>
-                                )}
+                                                );
+                                            case 'informationmodel':
+                                                return (
+                                                    <InformationModelAttributes
+                                                        attributeList={term.attributes.attributeList}
+                                                    />
+                                                );
+                                            default:
+                                                return <div>Ukjent term-type "{term.type.code}".</div>;
+                                        }
+                                    })()}
                                 {term.tildelteEntiteter.length !== 0 && (
                                     <section>
-                                        <h3>Informasjonsmodell</h3>
+                                        <h3>Modellbeskrivelse</h3>
 
                                         {term.tildelteEntiteter.map((entitet) => (
                                             <div key={entitet.id}>
                                                 {term.tildelteEntiteter.length !== 1 && <h4>{entitet.name}</h4>}
                                                 <Skjemavisning id={entitet.id} />
-                                                <p>
-                                                    <br />
-                                                    <Link
-                                                        to={`/entity/${entitet.id}/${encodeURIComponent(entitet.name)}`}
-                                                    >
-                                                        Detaljert visning av {entitet.name}.
-                                                    </Link>
-                                                </p>
                                             </div>
                                         ))}
                                     </section>
                                 )}
-                                {term.referanser.length !== 0 && (
+                                {term.referanser.filter((tr) => tr.type === 'distribution').length !== 0 && (
+                                    <section>
+                                        <h3>Distribusjoner</h3>
+                                        <NavigationLinkList>
+                                            {term.referanser
+                                                .filter((tr) => tr.type === 'distribution')
+                                                .map((r) => (
+                                                    <NavigationLink key={r.id}>
+                                                        <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
+                                                            {r.description}
+                                                        </Link>
+                                                    </NavigationLink>
+                                                ))}
+                                        </NavigationLinkList>
+                                    </section>
+                                )}
+                                {term.referanser.filter((tr) => tr.type === 'informationModel').length !== 0 && (
+                                    <section>
+                                        <h3>Informasjonsmodeller</h3>
+                                        <NavigationLinkList>
+                                            {term.referanser
+                                                .filter((tr) => tr.type === 'informationModel')
+                                                .map((r) => (
+                                                    <NavigationLink key={r.id}>
+                                                        <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
+                                                            {r.description}
+                                                        </Link>
+                                                    </NavigationLink>
+                                                ))}
+                                        </NavigationLinkList>
+                                    </section>
+                                )}
+                                {term.referanser.filter((tr) => tr.type === 'dataset').length !== 0 && (
                                     <section>
                                         <h3>Se også</h3>
                                         <NavigationLinkList>
-                                            {term.referanser.map((r) => (
-                                                <NavigationLink key={r.id}>
-                                                    <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
-                                                        {r.description}
-                                                    </Link>
-                                                </NavigationLink>
-                                            ))}
+                                            {term.referanser
+                                                .filter((tr) => tr.type === 'dataset')
+                                                .map((r) => (
+                                                    <NavigationLink key={r.id}>
+                                                        <Link to={`/term/${r.id}/${encodeURIComponent(r.description)}`}>
+                                                            {r.description}
+                                                        </Link>
+                                                    </NavigationLink>
+                                                ))}
                                         </NavigationLinkList>
                                     </section>
                                 )}

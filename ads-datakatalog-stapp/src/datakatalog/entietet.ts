@@ -1,5 +1,4 @@
 import { IEntity } from '../atlasTypes/entityType';
-import { TermReference } from './termReference';
 
 export class Entitet {
     public id: string;
@@ -8,24 +7,14 @@ export class Entitet {
     public sistOppdatert: Date;
     public type: string;
     public skjemaId?: string;
-    public meanings: TermReference[];
 
-    constructor(
-        id: string,
-        tittel: string,
-        beskrivelse: string,
-        sistOppdatert: Date,
-        type: string,
-        skjemaId?: string,
-        meanings?: TermReference[]
-    ) {
+    constructor(id: string, tittel: string, beskrivelse: string, sistOppdatert: Date, type: string, skjemaId?: string) {
         this.id = id;
         this.tittel = tittel;
         this.beskrivelse = beskrivelse;
         this.sistOppdatert = sistOppdatert;
         this.type = type;
         this.skjemaId = skjemaId;
-        this.meanings = meanings ?? [];
     }
 
     public static mapFraApi(apiEntitet: IEntity) {
@@ -36,8 +25,7 @@ export class Entitet {
             e.attributes.description ?? '',
             new Date(e.updateTime),
             e.typeName,
-            e.relationshipAttributes.tabular_schema?.guid ?? e.relationshipAttributes.dbSchema?.guid,
-            e.relationshipAttributes.meanings.map((m) => new TermReference(m.guid, m.displayText))
+            e.relationshipAttributes.tabular_schema?.guid ?? e.relationshipAttributes.dbSchema?.guid
         );
     }
 }

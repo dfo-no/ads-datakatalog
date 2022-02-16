@@ -1,17 +1,33 @@
-import { IGlossary } from '../atlasTypes/glossaryType';
+import { IGlossary, ITermInfoAttributes } from '../atlasTypes/glossaryType';
+import { Attribute } from './attribute';
 import { Attributes } from './attributes';
 import { EntityReference } from './entityReference';
 import { Resource } from './resource';
 import { TermReference } from './termReference';
+
+const mapToType = (attributes: ITermInfoAttributes | undefined) => {
+    if (attributes) {
+        if (attributes.Datasett) {
+            return Attribute.mapFraApi(attributes.Datasett.Type)[0];
+        }
+        if (attributes.Distribusjon) {
+            return new Attribute('distribution', 'Distribusjon');
+        }
+
+        return new Attribute('informationmodel', 'Informasjonsmodell');
+    }
+
+    return new Attribute('unknown', 'Ukjent');
+};
 
 export class Term {
     public id: string;
     public tittel: string;
     public beskrivelse: string;
     public sistOppdatert: Date;
-    public type: string;
+    public type: Attribute;
     public ressurser: Resource[];
-    public attributtes: Attributes;
+    public attributes: Attributes;
     public referanser: TermReference[];
     public tildelteEntiteter: EntityReference[];
 
@@ -20,9 +36,9 @@ export class Term {
         tittel: string,
         beskrivelse: string,
         sistOppdatert: Date,
-        type: string,
+        type: Attribute,
         ressurser: Resource[],
-        attributtes: Attributes,
+        attributes: Attributes,
         referanser: TermReference[],
         tildelteEntiteter: EntityReference[]
     ) {
@@ -32,31 +48,35 @@ export class Term {
         this.sistOppdatert = sistOppdatert;
         this.type = type;
         this.ressurser = ressurser;
-        this.attributtes = attributtes;
+        this.attributes = attributes;
         this.referanser = referanser;
         this.tildelteEntiteter = tildelteEntiteter;
     }
 
     public static mapFraApi(glossary: IGlossary, id: string) {
-        const entitet = glossary.termInfo[id];
-
+        const term = glossary.termInfo[id];
         let attributes: Attributes;
-        if (entitet.attributes) {
-            attributes = Attributes.mapFraApi(entitet.attributes.Datakatalog);
+        if (term.attributes) {
+            attributes = Attributes.mapFraApi(
+                term.attributes.Datasett ?? term.attributes.Informasjonsmodell ?? term.attributes.Distribusjon
+            );
         } else {
             attributes = new Attributes();
         }
 
         return new Term(
-            entitet.guid,
-            entitet.name,
-            entitet.longDescription,
-            new Date(entitet.lastModifiedTS),
-            'Term',
-            entitet.resources?.map((r) => new Resource(r.displayName, r.url)) || [],
+            term.guid,
+            term.attributes?.Datasett?.Tittel ??
+                term.attributes?.Distribusjon?.Tittel ??
+                term.attributes?.Informasjonsmodell?.Tittel ??
+                term.name,
+            term.longDescription,
+            new Date(term.lastModifiedTS),
+            mapToType(term.attributes),
+            term.resources?.map((r) => new Resource(r.displayName, r.url)) || [],
             attributes,
-            entitet.seeAlso?.map((r) => new TermReference(r.termGuid, r.displayText)) || [],
-            entitet.assignedEntities?.map((e) => new EntityReference(e.guid, e.displayText, e.typeName)) || []
+            TermReference.mapFromApi(term.seeAlso, glossary),
+            term.assignedEntities?.map((e) => new EntityReference(e.guid, e.displayText, e.typeName)) || []
         );
     }
 }

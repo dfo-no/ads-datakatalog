@@ -10,6 +10,7 @@
     --primary-color: #012a4c;
     --primary-light-color: #005b91;
     --secondary-color: #009ee1;
+    --secondary-light-color: #009fe3;
     --tertiary-color: #00a982;
     --error-color: #e83f53;
     --warning-color: #f7b715;
@@ -127,6 +128,10 @@ tr {
     border-bottom: 1px solid var(--border-color-secondary);
 }
 
+tr:last-child {
+    border-bottom: none;
+}
+
 th {
     font-weight: bold;
 }
@@ -157,11 +162,11 @@ h2 {
 }
 
 h3 {
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 h4 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 h5 {
     font-size: 1.2rem;
@@ -236,7 +241,8 @@ button {
     font-family: var(--primary-font);
 }
 
-button:disabled {
+button:disabled,
+.btn:disabled {
     background-color: var(--disabled-color);
 }
 

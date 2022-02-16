@@ -24,23 +24,26 @@ const attributtDefinisjoner = new Map<string, AttributeDefinition>([
 interface AttributtProps {
     description: string;
     attributes?: AttributeModel[];
+    children?: React.ReactNode;
 }
 
-export const Attributt = ({ description, attributes }: AttributtProps) => (
+export const Attributt = ({ description, attributes, children }: AttributtProps) => (
     <tr>
         <th style={{ textAlign: 'left' }}>{description}</th>
         <td>
-            {attributes &&
-                (attributtDefinisjoner.has(description)
-                    ? attributes.map((attrib, i) => (
-                          <span key={attrib.code}>
-                              <Link to={`/search?${attributtDefinisjoner.get(description)?.filter}=${attrib.code}`}>
-                                  {attrib.description}
-                              </Link>
-                              {i !== attributes.length - 1 && <span>, </span>}
-                          </span>
-                      ))
-                    : attributes.map((attrib) => <div key={attrib.code}>{attrib.description}</div>))}
+            {children
+                ? children
+                : attributes &&
+                  (attributtDefinisjoner.has(description)
+                      ? attributes.map((attrib, i) => (
+                            <span key={attrib.code}>
+                                <Link to={`/search?${attributtDefinisjoner.get(description)?.filter}=${attrib.code}`}>
+                                    {attrib.description}
+                                </Link>
+                                {i !== attributes.length - 1 && <span>, </span>}
+                            </span>
+                        ))
+                      : attributes.map((attrib) => <div key={attrib.code}>{attrib.description}</div>))}
         </td>
     </tr>
 );

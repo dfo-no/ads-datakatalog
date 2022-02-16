@@ -70,18 +70,39 @@ export enum ITypeName {
 }
 
 export interface ITermInfoAttributes {
-    Datakatalog: IDatakatalog;
+    Datasett?: IDatasett;
+    Distribusjon?: IDistribusjon;
+    Informasjonsmodell?: IInformasjonsmodell;
 }
 
-export interface IDatakatalog {
-    Utgiver: string | null;
+export interface ITemplate {
+    Tittel: string | null;
+}
+
+export interface IDatasett extends ITemplate {
+    TidsmessigAvgrensetTil: number;
     Tema: string | null;
-    Tilgangsnivå: string | null;
+    Utgiver: string | null;
     Dokumentasjon: string | null;
-    Identifikator: string | null;
+    DataeierEpost: string | null;
+    Emneord: string | null;
+    TidsmessigAvgrensetFra: number;
+    GeografiskAvgrensing: string | null;
+    Type: string | null;
+    Tilgangsnivå: string | null;
     Oppdateringsfrekvens: string | null;
     Dataeier: string | null;
-    Type: string | null;
+}
+
+export interface IDistribusjon extends ITemplate {
+    Utgiver: string | null;
+    TilgangsUrl: string | null;
+    Format: string | null;
+    Nedlastningslenke: string | null;
+}
+
+export interface IInformasjonsmodell extends ITemplate {
+    Utgiver: string | null;
 }
 
 export interface IResource {
