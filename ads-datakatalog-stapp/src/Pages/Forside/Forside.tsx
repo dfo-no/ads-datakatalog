@@ -35,10 +35,14 @@ export const Forside = () => {
                 <Container>
                     <h2>Aktuelle tema</h2>
                     <div className={Styles['Forside-shortcuts-grid']}>
-                        <Shortcut title="Anskaffelser" url="/search?theme=offentlig-innkjop" variant="primary" />
+                        <Shortcut
+                            title="Anskaffelser"
+                            url="/search?theme=https%3A%2F%2Fpsi.norge.no%2Flos%2Ford%2Foffentlig-innkjop"
+                            variant="primary"
+                        />
                         <Shortcut title="Miljø" url="/search?theme=natur-klima-og-miljo" variant="primary" />
                         <Shortcut title="Regnskap" url="/search?theme=gove" variant="primary" />
-                        <Shortcut title="Bla i datakatalogen" url="/search?access-right=offentlig" variant="tertiary" />
+                        <Shortcut title="Bla i datakatalogen" url="/search" variant="tertiary" />
                     </div>
                 </Container>
             </section>
