@@ -70,3 +70,19 @@
         display: none;
     }
 }
+
+.Header::after {
+    content: attr(data-beta-label);
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform-origin: 50% 50%;
+    transform: rotate(-45deg) translateX(-3rem) translateY(-2rem);
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    background-color: var(--tertiary-color);
+    color: #fff;
+    text-align: center;
+    width: 10rem;
+}

@@ -4,7 +4,7 @@ import { Container } from '../Container/Container';
 import styles from './Header.module.css';
 
 export const Header = () => (
-    <div className={styles['Header']}>
+    <div className={styles['Header']} data-beta-label="beta">
         <Container>
             <div className={styles['Header-wrapper']}>
                 <Link to="/" className={styles['Header-logo']}>
