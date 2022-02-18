@@ -14,6 +14,7 @@ import { Sidebar } from '../../Components/Layout/Sidebar/Sidebar';
 import { MainArea } from '../../Components/Layout/MainArea/MainArea';
 import { Heading, HeadingLevel } from '../../Components/Heading/Heading';
 import { doesIntersect } from '../../arrayUtils';
+import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
 
 export const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -59,43 +60,46 @@ export const Search = () => {
 
     return (
         <div className={Style['Search']}>
-            <Container withPadding>
-                <LoadIndicator isLoading={isLoading}>
-                    <Layout type={LayoutTypes.Sidebar}>
-                        <Sidebar>
-                            <div className={Style['Search-header']}>
-                                <div className={Style['Search-field']}>
-                                    <SearchBox
-                                        onSearch={(query) => setSearchParams({ query: query })}
-                                        value={query}
-                                        tabIndex={0}
-                                    />
+            <Container>
+                <>
+                    <Breadcrumbs currentLabel="Søk" />
+                    <LoadIndicator isLoading={isLoading}>
+                        <Layout type={LayoutTypes.Sidebar}>
+                            <Sidebar>
+                                <div className={Style['Search-header']}>
+                                    <div className={Style['Search-field']}>
+                                        <SearchBox
+                                            onSearch={(query) => setSearchParams({ query: query })}
+                                            value={query}
+                                            tabIndex={0}
+                                        />
+                                    </div>
+                                    <div className={Style['Search-expandFilter']}>
+                                        <button onClick={() => setExpandedFilter(!expandedFilter)}>
+                                            {expandedFilter ? 'Skjul filter' : 'Vis filter'}
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className={Style['Search-expandFilter']}>
-                                    <button onClick={() => setExpandedFilter(!expandedFilter)}>
-                                        {expandedFilter ? 'Skjul filter' : 'Vis filter'}
-                                    </button>
+                                <div
+                                    className={`${Style['Search-filter']} ${
+                                        expandedFilter
+                                            ? Style['Search-filter__expanded']
+                                            : Style['Search-filter__collapsed']
+                                    }`}
+                                >
+                                    <Filter filter={filter} />
                                 </div>
-                            </div>
-                            <div
-                                className={`${Style['Search-filter']} ${
-                                    expandedFilter
-                                        ? Style['Search-filter__expanded']
-                                        : Style['Search-filter__collapsed']
-                                }`}
-                            >
-                                <Filter filter={filter} />
-                            </div>
-                        </Sidebar>
-                        <MainArea>
-                            {filtrertSøkEtterTermer.length !== 0 ? (
-                                <GlossaryResults resultater={filtrertSøkEtterTermer} />
-                            ) : (
-                                <Heading level={HeadingLevel.h3}>Ingen resultat</Heading>
-                            )}
-                        </MainArea>
-                    </Layout>
-                </LoadIndicator>
+                            </Sidebar>
+                            <MainArea>
+                                {filtrertSøkEtterTermer.length !== 0 ? (
+                                    <GlossaryResults resultater={filtrertSøkEtterTermer} />
+                                ) : (
+                                    <Heading level={HeadingLevel.h3}>Ingen resultat</Heading>
+                                )}
+                            </MainArea>
+                        </Layout>
+                    </LoadIndicator>
+                </>
             </Container>
         </div>
     );

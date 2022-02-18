@@ -1,3 +1,10 @@
 .Breadcrumbs {
     margin: var(--base-padding) 0;
 }
+
+.Breadcrumbs-item:not(:first-child)::before {
+    content: '/';
+    padding: 0 var(--tiny-gap);
+    display: inline-block;
+    color: var(--text-color);
+}

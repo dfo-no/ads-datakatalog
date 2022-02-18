@@ -2,21 +2,26 @@ a.Shortcut {
     display: flex;
     border: 2px solid var(--border-color-secondary);
     color: #fff;
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     padding: var(--small-padding);
     flex-direction: column;
     gap: var(--tiny-gap);
-    font-size: 1.2rem;
+    font-size: 1.22rem;
+    justify-content: center;
 }
 
-a.Shortcut:hover,
+a.Shortcut:hover {
+    border-color: #fff;
+}
+
 a.Shortcut:focus {
-    border-color: var(--primary-color);
+    border-color: #fff;
+    outline: 1px solid #fff;
 }
 
 .Shortcut_primary {
-    background-color: var(--primary-light-color);
+    background-color: var(--primary-color);
 }
 
 .Shortcut_secondary {

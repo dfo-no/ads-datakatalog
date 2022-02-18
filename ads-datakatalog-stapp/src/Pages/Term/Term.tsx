@@ -28,10 +28,14 @@ export const Term = () => {
                         {isError && <p>Det har skjedd en feil.</p>}
                         {term && (
                             <article>
-                                <Breadcrumbs currentLabel={term.tittel} />
+                                <Breadcrumbs
+                                    currentLabel={term.tittel}
+                                    breadcrumbItems={[
+                                        { link: `/search?type=${term.type.code}`, text: term.type.description }
+                                    ]}
+                                />
                                 <header className={Style['Term-header']}>
-                                    <h2>{term.tittel}</h2>
-                                    <div className={Style['Term-type']}>{term.type.description}</div>
+                                    <h1>{term.tittel}</h1>
                                 </header>
                                 <section className={Style['Term-section']}>
                                     <p>{term.beskrivelse}</p>
@@ -62,7 +66,7 @@ export const Term = () => {
                                     })()}
                                 {term.tildelteEntiteter.length !== 0 && (
                                     <section>
-                                        <h3>Modellbeskrivelse</h3>
+                                        <h2>Modellbeskrivelse</h2>
 
                                         {term.tildelteEntiteter.map((entitet) => (
                                             <div key={entitet.id}>
@@ -74,7 +78,7 @@ export const Term = () => {
                                 )}
                                 {term.referanser.filter((tr) => tr.type === 'distribution').length !== 0 && (
                                     <section>
-                                        <h3>Distribusjoner</h3>
+                                        <h2>Distribusjoner</h2>
                                         <NavigationLinkList>
                                             {term.referanser
                                                 .filter((tr) => tr.type === 'distribution')
@@ -90,7 +94,7 @@ export const Term = () => {
                                 )}
                                 {term.referanser.filter((tr) => tr.type === 'informationModel').length !== 0 && (
                                     <section>
-                                        <h3>Informasjonsmodeller</h3>
+                                        <h2>Informasjonsmodeller</h2>
                                         <NavigationLinkList>
                                             {term.referanser
                                                 .filter((tr) => tr.type === 'informationModel')
@@ -106,7 +110,7 @@ export const Term = () => {
                                 )}
                                 {term.referanser.filter((tr) => tr.type === 'dataset').length !== 0 && (
                                     <section>
-                                        <h3>Se også</h3>
+                                        <h2>Se også</h2>
                                         <NavigationLinkList>
                                             {term.referanser
                                                 .filter((tr) => tr.type === 'dataset')
@@ -122,7 +126,7 @@ export const Term = () => {
                                 )}
                                 {term.ressurser.length !== 0 && (
                                     <section>
-                                        <h3>Ressurser</h3>
+                                        <h2>Ressurser</h2>
                                         <NavigationLinkList>
                                             {term.ressurser.map((r) => (
                                                 <NavigationLink key={r.name}>

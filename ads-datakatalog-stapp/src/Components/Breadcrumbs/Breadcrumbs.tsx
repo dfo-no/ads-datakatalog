@@ -3,14 +3,28 @@ import { Link } from 'react-router-dom';
 
 import Style from './Breadcrumbs.module.css';
 
-interface BreadcrumbsProps {
-    currentLabel: string;
+interface BreadcrumbItems {
+    text: string;
+    link: string;
 }
 
-const Breadcrumbs = (props: BreadcrumbsProps): ReactElement => {
+interface BreadcrumbsProps {
+    currentLabel: string;
+    breadcrumbItems?: BreadcrumbItems[];
+}
+
+const Breadcrumbs = ({ currentLabel, breadcrumbItems = [] }: BreadcrumbsProps): ReactElement => {
     return (
         <div className={Style.Breadcrumbs}>
-            <Link to="/">Start</Link> / {props.currentLabel}
+            <span className={Style['Breadcrumbs-item']}>
+                <Link to="/">Start</Link>
+            </span>
+            {breadcrumbItems.map((item) => (
+                <span className={Style['Breadcrumbs-item']}>
+                    <Link to={item.link}>{item.text}</Link>
+                </span>
+            ))}
+            <span className={Style['Breadcrumbs-item']}>{currentLabel}</span>
         </div>
     );
 };

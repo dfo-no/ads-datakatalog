@@ -8,3 +8,7 @@
 .Container__withPadding {
     padding-top: var(--base-padding);
 }
+
+.Container__narrow {
+    max-width: 705px;
+}
