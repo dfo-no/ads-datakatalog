@@ -1,8 +1,7 @@
 
 from typing import Dict
 from datacatalogtordf import Catalog, Dataset, Distribution
-
-from dcat_mapper.term_type import TermType
+from helpers.dcat_mapper.term_type import TermType
 
 dfo_uri = "https://data.dfo.no"
 dfo_orgnr = "986252932"
