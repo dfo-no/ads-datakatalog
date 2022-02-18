@@ -12,7 +12,7 @@ import { Layout, LayoutTypes } from '../../Components/Layout/Layout/Layout';
 import { MainArea } from '../../Components/Layout/MainArea/MainArea';
 import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
 import { DatasetAttributes } from './DatasetAttributes/DatasetAttributes';
-import { DistributionAttributes } from './DistributionAttributes/DatasetAttributes';
+import { DistributionAttributes } from './DistributionAttributes/DistributionAttributes';
 import { InformationModelAttributes } from './InformationModelAttributes/InformationModelAttributes';
 
 export const Term = () => {

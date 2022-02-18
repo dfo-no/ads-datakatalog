@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button } from '../../../Components/Button/Button';
+import { Icon } from '../../../Components/Icon/Icon';
 import { Attributes } from '../../../datakatalog/attributes';
 import { Attributt } from '../Attributt/Attributt';
-import Style from './DatasetAttributes.module.css';
+import Style from './DistributionAttributes.module.css';
 
 export const DistributionAttributes = (attributes: Attributes) => {
     return (
@@ -16,13 +17,13 @@ export const DistributionAttributes = (attributes: Attributes) => {
             <div className={Style['Download-links']}>
                 {attributes.attributeList.get('Nedlastningslenke') &&
                     attributes.attributeList.get('Nedlastningslenke')?.map((a) => (
-                        <Button key={a.code} to={a.code}>
+                        <Button key={a.code} to={a.code} icon={<Icon icon="download" />}>
                             Last ned
                         </Button>
                     ))}
                 {attributes.attributeList.get('TilgangsUrl') &&
                     attributes.attributeList.get('TilgangsUrl')?.map((a) => (
-                        <Button key={a.code} to={a.code}>
+                        <Button key={a.code} to={a.code} icon={<Icon icon="arrow-right" />}>
                             Få tilgang
                         </Button>
                     ))}

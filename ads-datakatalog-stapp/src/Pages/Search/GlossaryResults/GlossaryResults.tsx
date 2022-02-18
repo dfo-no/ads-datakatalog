@@ -16,9 +16,12 @@ export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
                     <div className={Style['GlossaryResults-result']} key={sr.id}>
                         <div className={Style['GlossaryResults-result-header']}>
                             <div>
-                                <h3 className={Style['GlossaryResults-link']}>
-                                    <Link to={`/${sr.typeOfResult}/${sr.id}/${sr.title}`}>{sr.title}</Link>
-                                </h3>
+                                <Link
+                                    className={Style['GlossaryResults-link']}
+                                    to={`/${sr.typeOfResult}/${sr.id}/${sr.title}`}
+                                >
+                                    {sr.title}
+                                </Link>
                             </div>
                             <div>
                                 <p>

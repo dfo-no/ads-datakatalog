@@ -1,3 +1,9 @@
+.Button {
+    display: flex;
+    gap: var(--tiny-gap);
+    align-items: center;
+}
+
 .Button,
 .Button:visited {
     background-color: var(--primary-light-color);

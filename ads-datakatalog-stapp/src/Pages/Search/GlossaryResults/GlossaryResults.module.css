@@ -2,6 +2,7 @@
     margin-bottom: var(--base-padding);
     padding: var(--small-padding);
     background-color: #fff;
+    border: 2px solid var(--border-color-secondary);
 }
 
 .GlossaryResults-result-header {
@@ -15,8 +16,16 @@
 }
 
 .GlossaryResults-link {
-    font-weight: bold;
-    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-size: 1.22rem;
+    font-weight: 600;
+}
+
+a.GlossaryResults-link:link,
+a.GlossaryResults-link:visited,
+a.GlossaryResults-link:hover,
+a.GlossaryResults-link:active {
+    color: var(--primary-color);
 }
 
 @media only screen and (max-width: 768px) {

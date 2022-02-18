@@ -1,5 +1,6 @@
 .Download-links {
     display: flex;
-    margin-top: var(--base-padding);
+    margin: var(--base-padding) 0;
     gap: var(--base-gap);
+    justify-content: center;
 }

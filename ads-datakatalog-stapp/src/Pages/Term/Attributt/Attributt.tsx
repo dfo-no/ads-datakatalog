@@ -37,7 +37,11 @@ export const Attributt = ({ description, attributes, children }: AttributtProps)
                   (attributtDefinisjoner.has(description)
                       ? attributes.map((attrib, i) => (
                             <span key={attrib.code}>
-                                <Link to={`/search?${attributtDefinisjoner.get(description)?.filter}=${attrib.code}`}>
+                                <Link
+                                    to={`/search?${attributtDefinisjoner.get(description)?.filter}=${encodeURIComponent(
+                                        attrib.code
+                                    )}`}
+                                >
                                     {attrib.description}
                                 </Link>
                                 {i !== attributes.length - 1 && <span>, </span>}

@@ -16,9 +16,9 @@ export const Forside = () => {
                 <Container className={Styles['Forside-search-container']}>
                     <div className={Styles['Forside-search-wrapper']}>
                         <p className={Styles['Forside-welcomeText']}>
-                            data.anskaffelser.no gir en strukturert oversikt over data som anskaffelser.no har
-                            tilgjengelig. Dette gir deg mulighet for å kunne oppdage, vurdere og ta i bruk data. Her
-                            finner du detaljert informasjon om datasett, informasjonsmodeller og åpne data som vi har.
+                            data.dfo.no gir en strukturert oversikt over data som anskaffelser.no har tilgjengelig.
+                            Dette gir deg mulighet for å kunne oppdage, vurdere og ta i bruk data. Her finner du
+                            detaljert informasjon om datasett, informasjonsmodeller og åpne data som vi har.
                         </p>
                         <div className={`${Styles['Forside-search-searchBox']}`}>
                             <SearchBox
