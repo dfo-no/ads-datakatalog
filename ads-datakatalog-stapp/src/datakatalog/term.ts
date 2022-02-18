@@ -1,4 +1,4 @@
-import { IGlossary, ITermInfo, ITermInfoAttributes } from '../atlasTypes/glossaryType';
+import { ITermInfo, ITermInfoAttributes } from '../atlasTypes/glossaryType';
 import { Attribute } from './attribute';
 import { Attributes } from './attributes';
 import { EntityReference } from './entityReference';
