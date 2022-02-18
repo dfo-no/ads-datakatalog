@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Term as TermModel } from '../../datakatalog/term';
-import { useGetGlossaryQuery } from '../../datakatalog/datakatalogApi';
+import { useGetTermsQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
 import { Container } from '../../Components/Container/Container';
 import { NavigationLinkList } from '../../Components/NavigationLinkList/NavigationLinkList';
@@ -17,7 +17,7 @@ import { InformationModelAttributes } from './InformationModelAttributes/Informa
 
 export const Term = () => {
     const { id } = useParams();
-    const { isLoading, data, isError } = useGetGlossaryQuery();
+    const { isLoading, data, isError } = useGetTermsQuery();
     const term = id && data ? TermModel.mapFraApi(data, id) : undefined;
 
     return (

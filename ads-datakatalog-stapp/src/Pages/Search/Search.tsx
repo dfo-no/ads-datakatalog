@@ -5,7 +5,7 @@ import { GlossaryResults } from './GlossaryResults/GlossaryResults';
 import SearchResults from '../../datakatalog/search/searchResults';
 import { Filter } from './Filter/Filter';
 import { SearchFilter } from '../../datakatalog/search/searchFilter';
-import { useGetGlossaryQuery } from '../../datakatalog/datakatalogApi';
+import { useGetTermsQuery } from '../../datakatalog/datakatalogApi';
 import { LoadIndicator } from '../../Components/LoadIndicator/LoadIndicator';
 import Style from './Search.module.css';
 import { Container } from '../../Components/Container/Container';
@@ -18,7 +18,7 @@ import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
 
 export const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const { isLoading, data } = useGetGlossaryQuery();
+    const { isLoading, data } = useGetTermsQuery();
     const [expandedFilter, setExpandedFilter] = useState(false);
 
     const query = searchParams.get('query')?.trim() ?? '';

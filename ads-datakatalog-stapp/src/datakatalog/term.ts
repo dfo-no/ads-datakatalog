@@ -1,7 +1,8 @@
-import { IGlossary, ITermInfoAttributes } from '../atlasTypes/glossaryType';
+import { IGlossary, ITermInfo, ITermInfoAttributes } from '../atlasTypes/glossaryType';
 import { Attribute } from './attribute';
 import { Attributes } from './attributes';
 import { EntityReference } from './entityReference';
+import { Feil } from './feil';
 import { Resource } from './resource';
 import { TermReference } from './termReference';
 
@@ -53,9 +54,14 @@ export class Term {
         this.tildelteEntiteter = tildelteEntiteter;
     }
 
-    public static mapFraApi(glossary: IGlossary, id: string) {
-        const term = glossary.termInfo[id];
+    public static mapFraApi(terms: ITermInfo[], id: string) {
+        const term = terms.find((t) => t.guid === id);
         let attributes: Attributes;
+
+        if (!term) {
+            throw new Feil(`Fant ikke termen med id ${id}`);
+        }
+
         if (term.attributes) {
             attributes = Attributes.mapFraApi(
                 term.attributes.Datasett ?? term.attributes.Informasjonsmodell ?? term.attributes.Distribusjon
@@ -75,7 +81,7 @@ export class Term {
             mapToType(term.attributes),
             term.resources?.map((r) => new Resource(r.displayName, r.url)) || [],
             attributes,
-            TermReference.mapFromApi(term.seeAlso, glossary),
+            TermReference.mapFromApi(term.seeAlso, terms),
             term.assignedEntities?.map((e) => new EntityReference(e.guid, e.displayText, e.typeName)) || []
         );
     }

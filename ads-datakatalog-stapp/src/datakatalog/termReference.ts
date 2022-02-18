@@ -1,6 +1,6 @@
-import { IGlossary, ITerm } from '../atlasTypes/glossaryType';
+import { ITerm, ITermInfo } from '../atlasTypes/glossaryType';
 
-type TypeTypes = 'dataset' | 'distribution' | 'informationModel';
+type TypeTypes = 'dataset' | 'distribution' | 'informationModel' | 'unknown';
 
 export class TermReference {
     public id: string;
@@ -13,13 +13,17 @@ export class TermReference {
         this.type = type;
     }
 
-    public static mapFromApi(terms: ITerm[] | undefined, glossary: IGlossary): TermReference[] {
+    public static mapFromApi(terms: ITerm[] | undefined, allTerms: ITermInfo[]): TermReference[] {
         if (!terms) {
             return [];
         }
 
         return terms.map((term) => {
-            const realTerm = glossary.termInfo[term.termGuid];
+            const realTerm = allTerms.find((t) => t.guid === term.termGuid);
+
+            if (!realTerm) {
+                return new TermReference('', '', 'unknown');
+            }
 
             if (realTerm.attributes?.Informasjonsmodell) {
                 return new TermReference(

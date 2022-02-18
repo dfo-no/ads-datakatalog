@@ -1,4 +1,4 @@
-import { IGlossary, ITermInfoAttributes } from '../../atlasTypes/glossaryType';
+import { ITermInfo, ITermInfoAttributes } from '../../atlasTypes/glossaryType';
 import { Attribute } from '../attribute';
 import SearchResult from './searchResult';
 
@@ -9,9 +9,7 @@ export default class SearchResults {
 
     public resultList: SearchResult[];
 
-    public static mapFraApi(glossary: IGlossary) {
-        const resultatsett: SearchResult[] = [];
-
+    public static mapFraApi(terms: ITermInfo[]) {
         const mapToType = (attributes: ITermInfoAttributes | undefined) => {
             if (attributes) {
                 if (attributes.Datasett) {
@@ -27,26 +25,23 @@ export default class SearchResults {
             return [];
         };
 
-        for (const key of Object.keys(glossary.termInfo)) {
-            const entitet = glossary.termInfo[key];
-            const attributes = entitet.attributes;
-            resultatsett.push(
+        const resultatsett = terms.map(
+            (term) =>
                 new SearchResult(
-                    key,
+                    term.guid,
                     'term',
-                    attributes?.Datasett?.Tittel ??
-                        attributes?.Distribusjon?.Tittel ??
-                        attributes?.Informasjonsmodell?.Tittel ??
-                        entitet.name,
-                    entitet.longDescription,
-                    mapToType(attributes),
-                    Attribute.mapFraApi(attributes?.Datasett?.Oppdateringsfrekvens),
-                    Attribute.mapFraApi(attributes?.Datasett?.Tilgangsnivå),
-                    Attribute.mapFraApi(attributes?.Datasett?.Utgiver ?? attributes?.Distribusjon?.Utgiver),
-                    Attribute.mapFraApi(attributes?.Datasett?.Tema)
+                    term.attributes?.Datasett?.Tittel ??
+                        term.attributes?.Distribusjon?.Tittel ??
+                        term.attributes?.Informasjonsmodell?.Tittel ??
+                        term.name,
+                    term.longDescription,
+                    mapToType(term.attributes),
+                    Attribute.mapFraApi(term.attributes?.Datasett?.Oppdateringsfrekvens),
+                    Attribute.mapFraApi(term.attributes?.Datasett?.Tilgangsnivå),
+                    Attribute.mapFraApi(term.attributes?.Datasett?.Utgiver ?? term.attributes?.Distribusjon?.Utgiver),
+                    Attribute.mapFraApi(term.attributes?.Datasett?.Tema)
                 )
-            );
-        }
+        );
 
         return new SearchResults(resultatsett);
     }
