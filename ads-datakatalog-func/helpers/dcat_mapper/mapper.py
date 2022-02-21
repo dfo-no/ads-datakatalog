@@ -3,8 +3,9 @@ from typing import Dict
 from datacatalogtordf import Catalog, Dataset, Distribution
 from helpers.dcat_mapper.term_type import TermType
 
-dfo_uri = "https://data.dfo.no"
-dfo_orgnr = "986252932"
+DFO_URI = 'https://data.dfo.no'
+DFO_ORGNR = '986252932'
+DCAT_LANGUAGE = 'nb'
 
 
 def get_guid_from_uri(uri: str) -> str:
@@ -32,18 +33,25 @@ def parse_value(value: str) -> list:
 
 
 def map_frequency(frequency_codes: list) -> str:
-    frequency_uri = "https://purl.org/dc/terms/Frequency"
-    return f"{frequency_uri}/{frequency_codes[0]}"
+    frequency_uri = 'https://purl.org/dc/terms/Frequency'
+    return f'{frequency_uri}/{frequency_codes[0]}'
+
+
+def map_keywords(keywords: list) -> dict:
+    """Maps to a keyword dictionary. The dictionary has the language identifier as key"""
+    return {
+        DCAT_LANGUAGE: ', '.join(keywords)
+    }
 
 
 def map_publisher(publisher_codes: list) -> str:
-    publisher_uri = "https://organization-catalogue.fellesdatakatalog.digdir.no/organizations"
-    return f"{publisher_uri}/{publisher_codes[0]}"
+    publisher_uri = 'https://organization-catalogue.fellesdatakatalog.digdir.no/organizations'
+    return f'{publisher_uri}/{publisher_codes[0]}'
 
 
 def map_access_rights(access_rights_codes: list) -> str:
-    access_rights_uri = "https://publications.europa.eu/resource/authority/access-right"
-    return f"{access_rights_uri}/{access_rights_codes[0]}"
+    access_rights_uri = 'https://publications.europa.eu/resource/authority/access-right'
+    return f'{access_rights_uri}/{access_rights_codes[0]}'
 
 
 def map_dataset(jsonDataset: Dict, distributions: list[Distribution]) -> Dataset:
@@ -53,9 +61,9 @@ def map_dataset(jsonDataset: Dict, distributions: list[Distribution]) -> Dataset
     dataset = Dataset()
 
     # Map attributes
-    dataset.identifier = f"{dfo_uri}/datasets/{jsonDataset.get('guid')}"
-    dataset.title = {"nb": attributes.get('Tittel')}
-    dataset.description = {"nb": jsonDataset.get('longDescription')}
+    dataset.identifier = f'{DFO_URI}/datasets/{jsonDataset.get("guid")}'
+    dataset.title = {DCAT_LANGUAGE: attributes.get('Tittel')}
+    dataset.description = {DCAT_LANGUAGE: jsonDataset.get('longDescription')}
     dataset.frequency = map_frequency(
         parse_value(attributes.get('Oppdateringsfrekvens')))
     dataset.publisher = map_publisher(
@@ -63,6 +71,7 @@ def map_dataset(jsonDataset: Dict, distributions: list[Distribution]) -> Dataset
     dataset.theme = parse_value(attributes.get('Tema'))
     dataset.access_rights = map_access_rights(
         parse_value(attributes.get('Tilgangsnivå')))
+    dataset.keyword = map_keywords(parse_value(attributes.get('Emneord')))
 
     # Map related terms
     distribution_guids = dict(
@@ -81,9 +90,10 @@ def map_distribution(json_distribution: Dict) -> Distribution:
     attributes: Dict = json_distribution.get('attributes').get('Distribusjon')
 
     distribution = Distribution()
-    distribution.identifier = f"{dfo_uri}/distributions/{json_distribution.get('guid')}"
-    distribution.title = {"nb": attributes.get('Tittel')}
-    distribution.description = {"nb": json_distribution.get('longDescription')}
+    distribution.identifier = f'{DFO_URI}/distributions/{json_distribution.get("guid")}'
+    distribution.title = {DCAT_LANGUAGE: attributes.get('Tittel')}
+    distribution.description = {
+        DCAT_LANGUAGE: json_distribution.get('longDescription')}
     distribution.formats = parse_value(attributes.get('Format'))
     distribution.access_URL = first_if_exists(
         parse_value(attributes.get('TilgangsUrl')))
@@ -106,22 +116,20 @@ def get_term_type(term: Dict) -> TermType:
     return TermType.UNKNOWN
 
 
-def map_json_to_rdf(json: Dict) -> str:
+def map_json_to_rdf(terms: list[dict]) -> str:
     catalog = Catalog()
-    catalog.identifier = f"{dfo_uri}/catalogs/1"
+    catalog.identifier = f'{DFO_URI}/catalogs/1'
     catalog.title = {
-        "no": "Direktoratet for forvaltning og økonomistyrings datakatalog"
+        DCAT_LANGUAGE: 'Direktoratet for forvaltning og økonomistyrings datakatalog'
     }
-    catalog.publisher = map_publisher([dfo_orgnr])
-    catalog.language = ['no']
+    catalog.publisher = map_publisher([DFO_ORGNR])
+    catalog.language = [DCAT_LANGUAGE]
 
     json_datasets = []
     json_models = []
     json_distributions = []
 
-    for termId in json.get('termInfo'):
-        term = json.get('termInfo').get(termId)
-
+    for term in terms:
         termType = get_term_type(term)
         if termType == TermType.DATASET:
             json_datasets.append(term)
