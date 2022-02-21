@@ -16,6 +16,7 @@
     background-color: var(--secondary-light-color);
     border-color: var(--secondary-light-color);
     text-decoration: none;
+    color: white;
 }
 
 .Button:focus {
