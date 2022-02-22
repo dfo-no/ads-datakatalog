@@ -6,7 +6,7 @@ glossary_id = 'ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1'
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    terms = get_terms()
+    terms = get_terms(False, True)
 
     return func.HttpResponse(
         map_json_to_rdf(terms),

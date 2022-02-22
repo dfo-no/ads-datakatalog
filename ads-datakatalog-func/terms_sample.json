@@ -17,20 +17,63 @@
       "termGuid": "c5105ba7-6ac0-4246-9a55-29a46bf15ae7",
       "relationGuid": "405d2fca-607f-4dd1-8075-a97528fc0e03",
       "displayText": "kunngjoringer-csv"
+    },
+    {
+      "termGuid": "b87714c2-31a7-4249-8b94-fa5990eae45c",
+      "relationGuid": "6eb26e41-3cf8-4d27-9533-0e4a0eb63610",
+      "displayText": "cpv"
     }
   ],
   "termInfo": {
+    "b87714c2-31a7-4249-8b94-fa5990eae45c": {
+      "guid": "b87714c2-31a7-4249-8b94-fa5990eae45c",
+      "qualifiedName": "cpv@Glossary",
+      "name": "cpv",
+      "longDescription": "Form\u00e5let med CPV er \u00e5 standardisere betegnelsene som oppdragsgiverne bruker til \u00e5 beskrive gjenstanden i kontrakter. Ved \u00e5 gruppere anskaffelser etter ulike CPV numre, blir det enklere for leverand\u00f8rene \u00e5 s\u00f8ke etter relevante kunngj\u00f8ringer i databasene. Et sentralt hensyn bak systemet er at en tilbyder med et helt annet morsm\u00e5l skal kunne skj\u00f8nne hva oppdragsgiveren er ute etter.",
+      "lastModifiedTS": "3",
+      "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "createTime": 1645529455050,
+      "updateTime": 1645529743484,
+      "status": "Approved",
+      "nickName": "cpv",
+      "anchor": {
+        "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
+        "relationGuid": "6eb26e41-3cf8-4d27-9533-0e4a0eb63610"
+      },
+      "attributes": {
+        "Datasett": {
+          "TidsmessigAvgrensetTil": 0,
+          "Tema": "offentlig-innkjop | Offentlige innkj\u00f8p;GOVE | Forvaltning og offentlig sektor",
+          "Utgiver": "986252932 | Direktoratet for forvaltning og \u00f8konomistyring",
+          "Dokumentasjon": null,
+          "DataeierEpost": "malin.hogstad@dfo.no",
+          "Geografisk avgrensning": null,
+          "Emneord": null,
+          "Tittel": "CPV-koder",
+          "TidsmessigAvgrensetFra": 0,
+          "GeografiskAvgrensning": "https://data.geonorge.no/administrativeEnheter/nasjon/id/173163 | Norge",
+          "Type": "CODE_LIST | Kodelister",
+          "Tilgangsniv\u00e5": "PUBLIC | Allmenn tilgang",
+          "PubliseresP\u00e5FellesDatakatalog": "Ja",
+          "Tidsmessig avgrenset fra": 0,
+          "Oppdateringsfrekvens": "IRREG | Uregelmessig",
+          "Tidsmessig avgrenset til": 0,
+          "Dataeier": "Malin Elisabeth Tvedt Hogstad"
+        }
+      }
+    },
     "0ae16586-ddbd-463a-bac3-ecc57f33e4d3": {
       "guid": "0ae16586-ddbd-463a-bac3-ecc57f33e4d3",
       "qualifiedName": "kunngjoringer@Glossary",
       "name": "kunngjoringer",
       "longDescription": "Doffin er den nasjonale kunngj\u00f8ringsdatabasen for offentlige anskaffelser Doffin hjelpe oppdragsgivere med \u00e5 lage og publisere kunngj\u00f8ringer i samsvar med regelverket, og gj\u00f8re det enkelt for leverand\u00f8rer \u00e5 finne relevante konkurranser i offentlig sektor.",
-      "lastModifiedTS": "4",
+      "lastModifiedTS": "14",
       "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "createTime": 1644927580177,
-      "updateTime": 1645093342194,
-      "status": "Draft",
+      "updateTime": 1645524544164,
+      "status": "Approved",
       "nickName": "kunngjoringer",
       "anchor": {
         "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
@@ -56,12 +99,13 @@
           "Dokumentasjon": null,
           "DataeierEpost": "malin.hogstad@dfo.no",
           "Geografisk avgrensning": null,
-          "Emneord": "Anskaffelser",
+          "Emneord": "Anskaffelser; Innkj\u00f8p; Doffin",
           "Tittel": "Kunngj\u00f8ringer av offentlig anskaffelser",
           "TidsmessigAvgrensetFra": 1640991600000,
           "GeografiskAvgrensning": "https://data.geonorge.no/administrativeEnheter/nasjon/id/173163 | Norge",
           "Type": "DATA | Datasett",
           "Tilgangsniv\u00e5": "PUBLIC | Allmenn tilgang",
+          "PubliseresP\u00e5FellesDatakatalog": "Ja",
           "Tidsmessig avgrenset fra": 0,
           "Oppdateringsfrekvens": "MONTHLY | M\u00e5nedlig",
           "Tidsmessig avgrenset til": 0,
@@ -73,12 +117,13 @@
       "guid": "c5105ba7-6ac0-4246-9a55-29a46bf15ae7",
       "qualifiedName": "kunngjoringer-csv@Glossary",
       "name": "kunngjoringer-csv",
-      "lastModifiedTS": "2",
+      "longDescription": "CSV-fil med kunngj\u00f8ringer om offentlige anskaffelser.",
+      "lastModifiedTS": "9",
       "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "createTime": 1644927834243,
-      "updateTime": 1644929503657,
-      "status": "Draft",
+      "updateTime": 1645526337991,
+      "status": "Approved",
       "nickName": "kunngjoringer-csv",
       "anchor": {
         "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
@@ -96,9 +141,11 @@
           "TilgangsUrl": "https://anskaffelser.no",
           "Utgiver": "986252932 | Direktoratet for forvaltning og \u00f8konomistyring",
           "Tilgangs-URL": null,
-          "Format": "text/csv | CSV",
+          "Format": "CSV | CSV",
+          "Lisens": "http://publications.europa.eu/resource/authority/licence/NLOD_2_0 | Norsk lisens for offentlige data (NLOD)",
           "Nedlastningslenke": "https://anskaffelser.no",
-          "Tittel": "CSV-fil om offentlig anskaffelser"
+          "Tittel": "CSV-fil om offentlig anskaffelser",
+          "PubliseresP\u00e5FellesDatakatalog": "Ja"
         }
       }
     },
@@ -106,12 +153,13 @@
       "guid": "045ac00a-f59c-4734-8962-d90421ce38bb",
       "qualifiedName": "kunngjoringer-informasjonsmodell@Glossary",
       "name": "kunngjoringer-informasjonsmodell",
-      "lastModifiedTS": "1",
+      "longDescription": "Beskrivelse av datamodellen til kunngj\u00f8ringer.",
+      "lastModifiedTS": "3",
       "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "createTime": 1644927712078,
-      "updateTime": 1644927712078,
-      "status": "Draft",
+      "updateTime": 1645196026526,
+      "status": "Approved",
       "nickName": "kunngjoringer-informasjonsmodell",
       "anchor": {
         "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",

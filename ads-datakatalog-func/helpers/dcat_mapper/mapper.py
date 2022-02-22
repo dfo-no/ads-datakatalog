@@ -2,9 +2,14 @@
 from typing import Dict
 from datacatalogtordf import Catalog, Dataset, Distribution
 from helpers.dcat_mapper.term_type import TermType
+from datacatalogtordf import Location
+from concepttordf import Contact
 
+DFO_NAME = 'Direktoratet for forvaltning og økonomistyrings datakatalog'
 DFO_URI = 'https://data.dfo.no'
 DFO_ORGNR = '986252932'
+# Norsk lisens for offentlige data (NLOD)
+LICENCE = 'http://publications.europa.eu/resource/authority/licence/NLOD_2_0'
 DCAT_LANGUAGE = 'nb'
 
 
@@ -16,13 +21,16 @@ def first_if_exists(the_list: list) -> any:
     if len(the_list) >= 1:
         return the_list[0]
 
-    return None
+    return ''
 
 
 def parse_value(value: str) -> list:
     """Parses the value string and returns a list of codes. The value list looks like "code | description; code2 | description" """
     value_seperator = ";"
     code_and_desc_seperator = "|"
+
+    if value == None:
+        return []
 
     codes = map(
         lambda x: x.split(code_and_desc_seperator)[0].strip(' '),
@@ -33,15 +41,29 @@ def parse_value(value: str) -> list:
 
 
 def map_frequency(frequency_codes: list) -> str:
-    frequency_uri = 'https://purl.org/dc/terms/Frequency'
+    frequency_uri = 'http://publications.europa.eu/resource/authority/frequency'
     return f'{frequency_uri}/{frequency_codes[0]}'
 
 
-def map_keywords(keywords: list) -> dict:
-    """Maps to a keyword dictionary. The dictionary has the language identifier as key"""
-    return {
-        DCAT_LANGUAGE: ', '.join(keywords)
+def map_location(locations: list) -> Location:
+    if len(locations) >= 1:
+        return Location(locations[0])
+    return None
+
+
+def map_contact(contact_name: str, email: str) -> Location:
+    contact = Contact()
+    contact.name = {
+        DCAT_LANGUAGE: contact_name
     }
+    contact.email = email
+
+    return contact
+
+
+def map_keywords(keywords: list = []) -> dict:
+    """Maps to a keyword dictionary. The dictionary has the language identifier as key"""
+    return {DCAT_LANGUAGE: ','.join(keywords)}
 
 
 def map_publisher(publisher_codes: list) -> str:
@@ -49,8 +71,13 @@ def map_publisher(publisher_codes: list) -> str:
     return f'{publisher_uri}/{publisher_codes[0]}'
 
 
+def map_formats(formats: list[str]) -> list[str]:
+    formats_uri = 'http://publications.europa.eu/resource/authority/file-type'
+    return list(map(lambda f: f'{formats_uri}/{f.upper()}', formats))
+
+
 def map_access_rights(access_rights_codes: list) -> str:
-    access_rights_uri = 'https://publications.europa.eu/resource/authority/access-right'
+    access_rights_uri = 'http://publications.europa.eu/resource/authority/access-right'
     return f'{access_rights_uri}/{access_rights_codes[0]}'
 
 
@@ -59,7 +86,6 @@ def map_dataset(jsonDataset: Dict, distributions: list[Distribution]) -> Dataset
     attributes: Dict = jsonDataset.get('attributes').get('Datasett')
 
     dataset = Dataset()
-
     # Map attributes
     dataset.identifier = f'{DFO_URI}/datasets/{jsonDataset.get("guid")}'
     dataset.title = {DCAT_LANGUAGE: attributes.get('Tittel')}
@@ -72,6 +98,12 @@ def map_dataset(jsonDataset: Dict, distributions: list[Distribution]) -> Dataset
     dataset.access_rights = map_access_rights(
         parse_value(attributes.get('Tilgangsnivå')))
     dataset.keyword = map_keywords(parse_value(attributes.get('Emneord')))
+    dataset.spatial_coverage = map_location(
+        parse_value(attributes.get('GeografiskAvgrensning')))
+    dataset.contactpoint = map_contact(attributes.get(
+        'Dataeier'), attributes.get('DataeierEpost'))
+    dataset.license = first_if_exists(parse_value(
+        attributes.get('Lisens')))
 
     # Map related terms
     distribution_guids = dict(
@@ -94,11 +126,13 @@ def map_distribution(json_distribution: Dict) -> Distribution:
     distribution.title = {DCAT_LANGUAGE: attributes.get('Tittel')}
     distribution.description = {
         DCAT_LANGUAGE: json_distribution.get('longDescription')}
-    distribution.formats = parse_value(attributes.get('Format'))
+    distribution.formats = map_formats(parse_value(attributes.get('Format')))
     distribution.access_URL = first_if_exists(
         parse_value(attributes.get('TilgangsUrl')))
     distribution.download_URL = first_if_exists(parse_value(
         attributes.get('Nedlastningslenke')))
+    distribution.license = first_if_exists(parse_value(
+        attributes.get('Lisens')))
 
     return distribution
 
@@ -120,10 +154,11 @@ def map_json_to_rdf(terms: list[dict]) -> str:
     catalog = Catalog()
     catalog.identifier = f'{DFO_URI}/catalogs/1'
     catalog.title = {
-        DCAT_LANGUAGE: 'Direktoratet for forvaltning og økonomistyrings datakatalog'
+        DCAT_LANGUAGE: DFO_NAME
     }
     catalog.publisher = map_publisher([DFO_ORGNR])
     catalog.language = [DCAT_LANGUAGE]
+    catalog.license = ''
 
     json_datasets = []
     json_models = []
