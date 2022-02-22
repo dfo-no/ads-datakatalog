@@ -25,13 +25,21 @@ export class SearchFilter {
         this.theme = theme;
     }
 
-    public static genererFraSøkeresultat(searchResults: SearchResult[]): SearchFilter {
+    public static generateFilter(searchResults: SearchResult[]): SearchFilter {
+        const sortByName = (a: Attribute, b: Attribute) => a.description.localeCompare(b.description);
+
         return new SearchFilter(
-            new ObjectSet(searchResults.filter((se) => !!se.type).flatMap((se) => se.type)).asArray(),
-            new ObjectSet(searchResults.filter((se) => !!se.frequency).flatMap((se) => se.frequency)).asArray(),
-            new ObjectSet(searchResults.filter((se) => !!se.publisher).flatMap((se) => se.publisher)).asArray(),
-            new ObjectSet(searchResults.filter((se) => !!se.accessRight).flatMap((se) => se.accessRight)).asArray(),
-            new ObjectSet(searchResults.filter((se) => !!se.theme).flatMap((se) => se.theme)).asArray()
+            new ObjectSet(searchResults.filter((se) => !!se.type).flatMap((se) => se.type)).asArray().sort(sortByName),
+            new ObjectSet(searchResults.filter((se) => !!se.frequency).flatMap((se) => se.frequency))
+                .asArray()
+                .sort(sortByName),
+            new ObjectSet(searchResults.filter((se) => !!se.publisher).flatMap((se) => se.publisher))
+                .asArray()
+                .sort(sortByName),
+            new ObjectSet(searchResults.filter((se) => !!se.accessRight).flatMap((se) => se.accessRight))
+                .asArray()
+                .sort(sortByName),
+            new ObjectSet(searchResults.filter((se) => !!se.theme).flatMap((se) => se.theme)).asArray().sort(sortByName)
         );
     }
 

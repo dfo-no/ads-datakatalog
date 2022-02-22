@@ -41,7 +41,7 @@ export const Search = () => {
             return se.hitScore(query) > 0;
         }) ?? [];
 
-    const filter = SearchFilter.genererFraSøkeresultat(filtrertSøk);
+    const filter = SearchFilter.generateFilter(filtrertSøk);
 
     const filtrertSøkEtterTermer = filtrertSøk
         .filter((se) => {

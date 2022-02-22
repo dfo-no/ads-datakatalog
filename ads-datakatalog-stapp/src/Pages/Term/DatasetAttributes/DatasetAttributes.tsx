@@ -18,6 +18,10 @@ export const DatasetAttributes = (attributes: Attributes) => {
                     />
                     <Attributt description="Tema" attributes={attributes.attributeList.get('Tema')} />
                     <Attributt description="Tilgangsnivå" attributes={attributes.attributeList.get('Tilgangsnivå')} />
+                    <Attributt
+                        description="Oppdateringsfrekvens"
+                        attributes={attributes.attributeList.get('Oppdateringsfrekvens')}
+                    />
                     <Attributt description="Tid">
                         {from && !to ? (
                             <>Ingen tidsavgrensning</>

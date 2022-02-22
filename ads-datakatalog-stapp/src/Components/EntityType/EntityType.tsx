@@ -5,7 +5,7 @@ interface EntityTypeProps {
 }
 
 export const EntityType = ({ type }: EntityTypeProps) => {
-    switch (type.toLowerCase()) {
+    switch (type?.toLowerCase()) {
         case 'term':
             return <>Datasett</>;
         case 'azure_datalake_gen2_resource_set':
