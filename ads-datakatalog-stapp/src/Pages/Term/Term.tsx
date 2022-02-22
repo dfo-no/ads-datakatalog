@@ -25,7 +25,18 @@ export const Term = () => {
             <LoadIndicator isLoading={isLoading}>
                 <Layout type={LayoutTypes.Sidebar}>
                     <MainArea>
-                        {isError && <p>Det har skjedd en feil.</p>}
+                        {isError && (
+                            <div className={Style['Term-error']}>
+                                <h1>Feil</h1>
+                                Det har skjedd en feil.
+                            </div>
+                        )}
+                        {!term && (
+                            <div className={Style['Term-error']}>
+                                <h1>Ikke funnet</h1>
+                                Termen <code>{id}</code> ble ikke funnet.
+                            </div>
+                        )}
                         {term && (
                             <article className={Style['Term-mainArea']}>
                                 <Breadcrumbs
@@ -64,7 +75,7 @@ export const Term = () => {
                                                 return <div>Ukjent term-type "{term.type.code}".</div>;
                                         }
                                     })()}
-                                {term.tildelteEntiteter.length !== 0 && (
+                                {term.tildelteEntiteter?.length !== 0 && (
                                     <section>
                                         <h2>Modellbeskrivelse</h2>
 

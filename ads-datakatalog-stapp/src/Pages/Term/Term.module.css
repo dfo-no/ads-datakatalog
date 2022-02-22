@@ -16,3 +16,7 @@
 .Term-mainArea {
     margin-bottom: var(--base-padding);
 }
+
+.Term-error {
+    margin-top: var(--base-padding);
+}

@@ -59,7 +59,7 @@ export class Term {
         let attributes: Attributes;
 
         if (!term) {
-            throw new Feil(`Fant ikke termen med id ${id}`);
+            return undefined;
         }
 
         if (term.attributes) {

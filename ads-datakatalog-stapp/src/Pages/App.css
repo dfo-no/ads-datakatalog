@@ -142,6 +142,11 @@ th {
     padding: var(--tiny-gap) var(--small-gap);
 }
 
+code {
+    font-family: Consolas, 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
 h1,
 h2,
 h3,

@@ -2,12 +2,14 @@
     font-weight: bold;
     color: var(--primary-color);
     margin-bottom: var(--tiny-gap);
+    cursor: default;
 }
 
 .CheckboxGroup-items {
     padding-left: 0;
     margin: unset;
     margin-bottom: var(--small-gap);
+    user-select: none;
 }
 
 .CheckboxGroup-items > li {
