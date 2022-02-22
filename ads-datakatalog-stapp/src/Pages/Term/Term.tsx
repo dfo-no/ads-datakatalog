@@ -27,7 +27,7 @@ export const Term = () => {
                     <MainArea>
                         {isError && <p>Det har skjedd en feil.</p>}
                         {term && (
-                            <article>
+                            <article className={Style['Term-mainArea']}>
                                 <Breadcrumbs
                                     currentLabel={term.tittel}
                                     breadcrumbItems={[
@@ -44,7 +44,7 @@ export const Term = () => {
                                     (() => {
                                         switch (term.type.code) {
                                             case 'data':
-                                            case 'code-list':
+                                            case 'code_list':
                                                 return (
                                                     <DatasetAttributes attributeList={term.attributes.attributeList} />
                                                 );

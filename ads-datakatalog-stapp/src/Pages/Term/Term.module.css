@@ -12,3 +12,7 @@
 .Term-section {
     margin: var(--base-padding) 0;
 }
+
+.Term-mainArea {
+    margin-bottom: var(--base-padding);
+}

@@ -20,7 +20,7 @@ const Breadcrumbs = ({ currentLabel, breadcrumbItems = [] }: BreadcrumbsProps): 
                 <Link to="/">Start</Link>
             </span>
             {breadcrumbItems.map((item) => (
-                <span className={Style['Breadcrumbs-item']}>
+                <span key={item.link} className={Style['Breadcrumbs-item']}>
                     <Link to={item.link}>{item.text}</Link>
                 </span>
             ))}

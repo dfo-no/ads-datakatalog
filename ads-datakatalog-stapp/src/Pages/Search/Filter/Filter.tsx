@@ -16,6 +16,18 @@ export const Filter = ({ filter }: FilterProps) => {
 
     return (
         <>
+            <CheckboxGroup title="Type">
+                {filter.typer.map((t) => (
+                    <Checkbox
+                        checked={filter.filterIsOn(query, 'type', t)}
+                        onChange={() => navigate(filter.generateUrl(query, 'type', t.code))}
+                        key={`type-${t.code}`}
+                        title={t.description}
+                    >
+                        <EntityType type={t.description} />
+                    </Checkbox>
+                ))}
+            </CheckboxGroup>
             <CheckboxGroup title="Tema">
                 {filter.theme.map((t) => (
                     <Checkbox
@@ -61,18 +73,6 @@ export const Filter = ({ filter }: FilterProps) => {
                         title={f.description}
                     >
                         {f.description}
-                    </Checkbox>
-                ))}
-            </CheckboxGroup>
-            <CheckboxGroup title="Type">
-                {filter.typer.map((t) => (
-                    <Checkbox
-                        checked={filter.filterIsOn(query, 'type', t)}
-                        onChange={() => navigate(filter.generateUrl(query, 'type', t.code))}
-                        key={`type-${t.code}`}
-                        title={t.description}
-                    >
-                        <EntityType type={t.description} />
                     </Checkbox>
                 ))}
             </CheckboxGroup>

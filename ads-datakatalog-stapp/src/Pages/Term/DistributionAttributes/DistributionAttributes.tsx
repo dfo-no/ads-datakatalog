@@ -12,6 +12,7 @@ export const DistributionAttributes = (attributes: Attributes) => {
                 <tbody>
                     <Attributt description="Utgiver" attributes={attributes.attributeList.get('Utgiver')} />
                     <Attributt description="Format" attributes={attributes.attributeList.get('Format')} />
+                    <Attributt description="Lisens" attributes={attributes.attributeList.get('Lisens')} />
                 </tbody>
             </table>
             <div className={Style['Download-links']}>
