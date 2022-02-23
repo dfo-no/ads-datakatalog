@@ -22,7 +22,7 @@
     animation-duration: 2.2s;
     animation-timing-function: cubic-bezier;
     animation-iteration-count: infinite;
-    stroke: var(--primary-color);
+    stroke: var(--primary-light-color);
     fill: transparent;
     stroke-width: 7px;
     stroke-linecap: round;
