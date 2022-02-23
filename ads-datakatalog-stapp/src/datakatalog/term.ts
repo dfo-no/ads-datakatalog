@@ -2,7 +2,6 @@ import { ITermInfo, ITermInfoAttributes } from '../atlasTypes/glossaryType';
 import { Attribute } from './attribute';
 import { Attributes } from './attributes';
 import { EntityReference } from './entityReference';
-import { Feil } from './feil';
 import { Resource } from './resource';
 import { TermReference } from './termReference';
 
