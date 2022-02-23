@@ -1,6 +1,7 @@
 import json
 from typing import final
 from helpers.purview.purview_api import get_purview_client
+from cachetools import cached, LRUCache, TTLCache
 
 glossary_id: final = 'ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1'
 
@@ -18,6 +19,15 @@ def terms_filter(term: dict, include_drafts: bool, only_include_felles_datakatal
     )
 
 
+@cached(cache=TTLCache(maxsize=1024, ttl=300))
+def get_entity(guid: str) -> dict:
+    purview_client = get_purview_client()
+
+    # TODO: Check if entity is draft
+    return purview_client.entity.get_by_guid(guid)
+
+
+@cached(cache=TTLCache(maxsize=1024, ttl=300))
 def get_terms(include_drafts: bool = False, only_include_felles_datakatalog_terms: bool = False) -> list[dict]:
     purview_client = get_purview_client()
 

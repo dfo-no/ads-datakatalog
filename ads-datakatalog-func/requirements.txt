@@ -2,3 +2,5 @@ azure-functions
 azure-identity
 azure-purview-catalog
 datacatalogtordf
+cachetools
+types-cachetools

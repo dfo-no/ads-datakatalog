@@ -9,6 +9,11 @@
       "displayText": "kunngjoringer-informasjonsmodell"
     },
     {
+      "termGuid": "a25dfc99-2f86-41df-8b6b-4a924421e321",
+      "relationGuid": "075f043d-638d-42fa-aa42-0aee49501fd5",
+      "displayText": "regnskapsdata"
+    },
+    {
       "termGuid": "0ae16586-ddbd-463a-bac3-ecc57f33e4d3",
       "relationGuid": "b690ea08-c6fe-417b-8861-e7894e5a3b24",
       "displayText": "kunngjoringer"
@@ -22,31 +27,134 @@
       "termGuid": "b87714c2-31a7-4249-8b94-fa5990eae45c",
       "relationGuid": "6eb26e41-3cf8-4d27-9533-0e4a0eb63610",
       "displayText": "cpv"
+    },
+    {
+      "termGuid": "63ce0a90-2b84-4bde-891a-f2cc4f1af12d",
+      "relationGuid": "84ae8df3-6e15-420f-88dc-8a9d7b9c59f4",
+      "displayText": "kommuneinndeling"
+    },
+    {
+      "termGuid": "fd8bca51-640a-4930-a31b-446c8aec9bc2",
+      "relationGuid": "2856053c-23a2-4149-87fc-ca30804299ca",
+      "displayText": "sektorkodeliste"
+    },
+    {
+      "termGuid": "2ce1fe15-04b3-4617-ad86-647fa829de7e",
+      "relationGuid": "0ab49900-0287-4566-a1de-4d10d24ffeed",
+      "displayText": "enhetsregisteret"
+    },
+    {
+      "termGuid": "e4c86fd7-73f9-4957-b286-8d6c7181c69e",
+      "relationGuid": "547aadbc-00ec-4ac9-bf3f-6f63d7563dc7",
+      "displayText": "kjoretoy"
     }
   ],
   "termInfo": {
+    "a25dfc99-2f86-41df-8b6b-4a924421e321": {
+      "guid": "a25dfc99-2f86-41df-8b6b-4a924421e321",
+      "qualifiedName": "regnskapsdata@Glossary",
+      "name": "regnskapsdata",
+      "longDescription": "Generell informasjon om regnskapet til de ulike statlige virksomhetene",
+      "lastModifiedTS": "3",
+      "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "createTime": 1645535473771,
+      "updateTime": 1645535602620,
+      "status": "Approved",
+      "nickName": "regnskapsdata",
+      "anchor": {
+        "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
+        "relationGuid": "075f043d-638d-42fa-aa42-0aee49501fd5"
+      },
+      "attributes": {
+        "Datasett": {
+          "TidsmessigAvgrensetTil": 0,
+          "Tema": "https://psi.norge.no/los/ord/skatt-og-avgift | Skatt og avgift",
+          "Utgiver": "986252932 | Direktoratet for forvaltning og \u00f8konomistyring",
+          "Dokumentasjon": null,
+          "DataeierEpost": "Erik.Auset@dfo.no",
+          "Geografisk avgrensning": null,
+          "Emneord": "Regnskap",
+          "Tittel": "Regnskapsdata",
+          "TidsmessigAvgrensetFra": 0,
+          "GeografiskAvgrensning": "https://data.geonorge.no/administrativeEnheter/nasjon/id/173163 | Norge",
+          "Type": "DATA | Datasett",
+          "Tilgangsniv\u00e5": "RESTRICTED | Betinget tilgang",
+          "PubliseresP\u00e5FellesDatakatalog": "Nei",
+          "Tidsmessig avgrenset fra": 0,
+          "Oppdateringsfrekvens": "ANNUAL | \u00c5rlig",
+          "Tidsmessig avgrenset til": 0,
+          "Dataeier": "Erik Auset"
+        }
+      }
+    },
+    "2ce1fe15-04b3-4617-ad86-647fa829de7e": {
+      "guid": "2ce1fe15-04b3-4617-ad86-647fa829de7e",
+      "qualifiedName": "enhetsregisteret@Glossary",
+      "name": "enhetsregisteret",
+      "longDescription": "Inneholder grunndata om virksomheter. Enhetsregisteret tildeler et ni-sifret organisasjonsnummer til alle som blir registrert. Strukturert i enheter og underenheter.",
+      "lastModifiedTS": "4",
+      "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "createTime": 1645538502441,
+      "updateTime": 1645538744633,
+      "status": "Approved",
+      "nickName": "enhetsregisteret",
+      "anchor": {
+        "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
+        "relationGuid": "0ab49900-0287-4566-a1de-4d10d24ffeed"
+      },
+      "attributes": {
+        "Datasett": {
+          "TidsmessigAvgrensetTil": 0,
+          "Tema": "http://publications.europa.eu/resource/authority/data-theme/GOVE | Forvaltning og offentlig sektor",
+          "Utgiver": "974760673 | Br\u00f8nn\u00f8ysundregisterne",
+          "Dokumentasjon": "https://data.brreg.no/enhetsregisteret/api/docs/index.html",
+          "DataeierEpost": "malin.hogstad@dfo.no",
+          "Geografisk avgrensning": null,
+          "Emneord": "Organisasjoner",
+          "Tittel": "Enhetsregisteret",
+          "TidsmessigAvgrensetFra": 0,
+          "GeografiskAvgrensning": "https://data.geonorge.no/administrativeEnheter/nasjon/id/173163 | Norge",
+          "Type": "DATA | Datasett",
+          "Tilgangsniv\u00e5": "PUBLIC | Allmenn tilgang",
+          "PubliseresP\u00e5FellesDatakatalog": "Nei",
+          "Tidsmessig avgrenset fra": 0,
+          "Oppdateringsfrekvens": "MONTHLY | M\u00e5nedlig",
+          "Tidsmessig avgrenset til": 0,
+          "Dataeier": "Malin Elisabeth Tvedt Hogstad"
+        }
+      }
+    },
     "b87714c2-31a7-4249-8b94-fa5990eae45c": {
       "guid": "b87714c2-31a7-4249-8b94-fa5990eae45c",
       "qualifiedName": "cpv@Glossary",
       "name": "cpv",
       "longDescription": "Form\u00e5let med CPV er \u00e5 standardisere betegnelsene som oppdragsgiverne bruker til \u00e5 beskrive gjenstanden i kontrakter. Ved \u00e5 gruppere anskaffelser etter ulike CPV numre, blir det enklere for leverand\u00f8rene \u00e5 s\u00f8ke etter relevante kunngj\u00f8ringer i databasene. Et sentralt hensyn bak systemet er at en tilbyder med et helt annet morsm\u00e5l skal kunne skj\u00f8nne hva oppdragsgiveren er ute etter.",
-      "lastModifiedTS": "3",
+      "lastModifiedTS": "5",
       "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
       "createTime": 1645529455050,
-      "updateTime": 1645529743484,
+      "updateTime": 1645535318808,
       "status": "Approved",
       "nickName": "cpv",
       "anchor": {
         "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
         "relationGuid": "6eb26e41-3cf8-4d27-9533-0e4a0eb63610"
       },
+      "seeAlso": [
+        {
+          "termGuid": "0ae16586-ddbd-463a-bac3-ecc57f33e4d3",
+          "relationGuid": "1350b843-f63c-4fc8-82f2-af0c5d27d39a",
+          "displayText": "kunngjoringer"
+        }
+      ],
       "attributes": {
         "Datasett": {
           "TidsmessigAvgrensetTil": 0,
-          "Tema": "offentlig-innkjop | Offentlige innkj\u00f8p;GOVE | Forvaltning og offentlig sektor",
+          "Tema": "https://psi.norge.no/los/ord/offentlig-innkjop | Offentlige innkj\u00f8p;http://publications.europa.eu/resource/authority/data-theme/GOVE | Forvaltning og offentlig sektor",
           "Utgiver": "986252932 | Direktoratet for forvaltning og \u00f8konomistyring",
-          "Dokumentasjon": null,
+          "Dokumentasjon": "https://simap.ted.europa.eu/web/simap/cpv",
           "DataeierEpost": "malin.hogstad@dfo.no",
           "Geografisk avgrensning": null,
           "Emneord": null,
@@ -84,6 +192,11 @@
           "termGuid": "c5105ba7-6ac0-4246-9a55-29a46bf15ae7",
           "relationGuid": "cf309777-719c-48d7-bb16-be0050c9931a",
           "displayText": "kunngjoringer-csv"
+        },
+        {
+          "termGuid": "b87714c2-31a7-4249-8b94-fa5990eae45c",
+          "relationGuid": "1350b843-f63c-4fc8-82f2-af0c5d27d39a",
+          "displayText": "cpv"
         },
         {
           "termGuid": "045ac00a-f59c-4734-8962-d90421ce38bb",
@@ -199,6 +312,120 @@
         "Informasjonsmodell": {
           "Utgiver": "986252932 | Direktoratet for forvaltning og \u00f8konomistyring",
           "Tittel": "Informasjonsmodell - Kunngj\u00f8ringer"
+        }
+      }
+    },
+    "63ce0a90-2b84-4bde-891a-f2cc4f1af12d": {
+      "guid": "63ce0a90-2b84-4bde-891a-f2cc4f1af12d",
+      "qualifiedName": "kommuneinndeling@Glossary",
+      "name": "kommuneinndeling",
+      "longDescription": "Informasjon om areal og befolkning i kommuner",
+      "lastModifiedTS": "2",
+      "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "createTime": 1645535920208,
+      "updateTime": 1645535929119,
+      "status": "Approved",
+      "nickName": "kommuneinndeling",
+      "anchor": {
+        "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
+        "relationGuid": "84ae8df3-6e15-420f-88dc-8a9d7b9c59f4"
+      },
+      "attributes": {
+        "Datasett": {
+          "TidsmessigAvgrensetTil": 0,
+          "Tema": "http://publications.europa.eu/resource/authority/data-theme/GOVE | Forvaltning og offentlig sektor",
+          "Utgiver": "971526920 | Statistisk sentralbyr\u00e5",
+          "Dokumentasjon": "https://data.brreg.no/enhetsregisteret/api/docs/index.html",
+          "DataeierEpost": "martin.standley@dfo.no",
+          "Geografisk avgrensning": null,
+          "Emneord": null,
+          "Tittel": "Kommuneinndeling",
+          "TidsmessigAvgrensetFra": 0,
+          "GeografiskAvgrensning": "https://data.geonorge.no/administrativeEnheter/nasjon/id/173163 | Norge",
+          "Type": "CODE_LIST | Kodelister",
+          "Tilgangsniv\u00e5": "PUBLIC | Allmenn tilgang",
+          "PubliseresP\u00e5FellesDatakatalog": "Nei",
+          "Tidsmessig avgrenset fra": 0,
+          "Oppdateringsfrekvens": null,
+          "Tidsmessig avgrenset til": 0,
+          "Dataeier": "Martin de Laine Standley"
+        }
+      }
+    },
+    "e4c86fd7-73f9-4957-b286-8d6c7181c69e": {
+      "guid": "e4c86fd7-73f9-4957-b286-8d6c7181c69e",
+      "qualifiedName": "kjoretoy@Glossary",
+      "name": "kjoretoy",
+      "longDescription": "Generell informasjon om kj\u00f8ret\u00f8y, navn, registreringstidspunkt, registreringsnummer, kj\u00f8ret\u00f8ytype.",
+      "lastModifiedTS": "2",
+      "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "createTime": 1645614828840,
+      "updateTime": 1645614903864,
+      "status": "Approved",
+      "nickName": "kjoretoy",
+      "anchor": {
+        "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
+        "relationGuid": "547aadbc-00ec-4ac9-bf3f-6f63d7563dc7"
+      },
+      "attributes": {
+        "Datasett": {
+          "TidsmessigAvgrensetTil": 0,
+          "Tema": "https://psi.norge.no/los/ord/trafikk-og-transport | Trafikk og transport;https://psi.norge.no/los/ord/natur-klima-og-miljo | Natur klima og milj\u00f8",
+          "Utgiver": "971032081 | Statens vegvesen",
+          "Dokumentasjon": null,
+          "DataeierEpost": "martin.standley@dfo.no",
+          "Geografisk avgrensning": null,
+          "Emneord": "Kj\u00f8ret\u00f8y;Biler",
+          "Tittel": "Kj\u00f8ret\u00f8yregisteret",
+          "TidsmessigAvgrensetFra": 0,
+          "GeografiskAvgrensning": "https://data.geonorge.no/administrativeEnheter/nasjon/id/173163 | Norge",
+          "Type": "DATA | Datasett",
+          "Tilgangsniv\u00e5": "RESTRICTED | Betinget tilgang",
+          "PubliseresP\u00e5FellesDatakatalog": "Nei",
+          "Tidsmessig avgrenset fra": 0,
+          "Oppdateringsfrekvens": "MONTHLY | M\u00e5nedlig",
+          "Tidsmessig avgrenset til": 0,
+          "Dataeier": "Martin de Laine Standley"
+        }
+      }
+    },
+    "fd8bca51-640a-4930-a31b-446c8aec9bc2": {
+      "guid": "fd8bca51-640a-4930-a31b-446c8aec9bc2",
+      "qualifiedName": "sektorkodeliste@Glossary",
+      "name": "sektorkodeliste",
+      "longDescription": "Konvertering fra 2-4 bokstavs organisasjonsformer i enhetsreg til korte og lang navn. Merk navn (sektor men egentlig konverterer org. former)",
+      "lastModifiedTS": "2",
+      "createdBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "updatedBy": "d4c8d5ed-4f9a-42c3-b232-a2134696618c",
+      "createTime": 1645537110836,
+      "updateTime": 1645537153848,
+      "status": "Approved",
+      "nickName": "sektorkodeliste",
+      "anchor": {
+        "glossaryGuid": "ef38fdb9-bbd5-4c5e-92fd-30bebc07a3f1",
+        "relationGuid": "2856053c-23a2-4149-87fc-ca30804299ca"
+      },
+      "attributes": {
+        "Datasett": {
+          "TidsmessigAvgrensetTil": 0,
+          "Tema": "http://publications.europa.eu/resource/authority/data-theme/GOVE | Forvaltning og offentlig sektor",
+          "Utgiver": "974760673 | Br\u00f8nn\u00f8ysundregisterne",
+          "Dokumentasjon": null,
+          "DataeierEpost": "martin.standley@dfo.no",
+          "Geografisk avgrensning": null,
+          "Emneord": "Organisasjoner",
+          "Tittel": "Sektorkodeliste (organisasjonsformer)",
+          "TidsmessigAvgrensetFra": 0,
+          "GeografiskAvgrensning": "https://data.geonorge.no/administrativeEnheter/nasjon/id/173163 | Norge",
+          "Type": "CODE_LIST | Kodelister",
+          "Tilgangsniv\u00e5": "PUBLIC | Allmenn tilgang",
+          "PubliseresP\u00e5FellesDatakatalog": "Nei",
+          "Tidsmessig avgrenset fra": 0,
+          "Oppdateringsfrekvens": "IRREG | Uregelmessig",
+          "Tidsmessig avgrenset til": 0,
+          "Dataeier": "Martin de Laine Standley"
         }
       }
     }
