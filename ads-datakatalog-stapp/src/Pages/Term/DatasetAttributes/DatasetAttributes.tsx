@@ -8,7 +8,7 @@ export const DatasetAttributes = (attributes: Attributes) => {
     const to = attributes.attributeList.get('TidsmessigAvgrensetTil');
     return (
         <section>
-            <table>
+            <table className="horizontal">
                 <tbody>
                     <Attributt description="Utgiver" attributes={attributes.attributeList.get('Utgiver')} />
                     <Attributt description="Dataeier" attributes={attributes.attributeList.get('Dataeier')} />

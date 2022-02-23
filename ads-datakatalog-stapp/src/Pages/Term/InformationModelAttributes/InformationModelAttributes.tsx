@@ -5,7 +5,7 @@ import { Attributt } from '../Attributt/Attributt';
 export const InformationModelAttributes = (attributes: Attributes) => {
     return (
         <section>
-            <table>
+            <table className="horizontal">
                 <tbody>
                     <Attributt description="Utgiver" attributes={attributes.attributeList.get('Utgiver')} />
                 </tbody>

@@ -33,7 +33,12 @@ export const Forside = () => {
                     <h2>Aktuelle tema</h2>
                     <div className={Styles['Forside-shortcuts-grid']}>
                         {frontpageContent.shortcuts.map((shortcut) => (
-                            <Shortcut title={shortcut.title} url={shortcut.link} variant={shortcut.variant as any} />
+                            <Shortcut
+                                key={shortcut.title}
+                                title={shortcut.title}
+                                url={shortcut.link}
+                                variant={shortcut.variant as any}
+                            />
                         ))}
                     </div>
                 </Container>

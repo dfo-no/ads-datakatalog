@@ -8,7 +8,7 @@ import Style from './DistributionAttributes.module.css';
 export const DistributionAttributes = (attributes: Attributes) => {
     return (
         <section>
-            <table>
+            <table className="horizontal">
                 <tbody>
                     <Attributt description="Utgiver" attributes={attributes.attributeList.get('Utgiver')} />
                     <Attributt description="Format" attributes={attributes.attributeList.get('Format')} />

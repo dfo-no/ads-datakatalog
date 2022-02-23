@@ -63,7 +63,7 @@
 
 @media only screen and (max-width: 600px) {
     :root {
-        --base-padding: 0.9rem;
+        /* --base-padding: 0.9rem; */
     }
 }
 
@@ -138,23 +138,23 @@ th {
 }
 
 @media only screen and (max-width: 600px) {
-    th,
-    td {
+    table.horizontal th,
+    table.horizontal td {
         display: block;
         padding: 0;
     }
 
-    th {
+    table.horizontal th {
         font-weight: bold;
     }
 
-    th::after {
+    table.horizontal th::after {
         content: ': ';
     }
 
-    thead,
-    tr,
-    tr:first-child {
+    table.horizontal thead,
+    table.horizontal tr,
+    table.horizontal tr:first-child {
         border: none;
         margin-bottom: var(--tiny-gap);
         display: block;
