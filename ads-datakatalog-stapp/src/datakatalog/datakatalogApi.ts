@@ -4,7 +4,7 @@ import { IGlossary, ITermInfo } from '../atlasTypes/glossaryType';
 
 export const datakatalogApi = createApi({
     reducerPath: 'datakatalog',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://ads-datakatalog-prod-func.azurewebsites.net/api/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://api.data.dfo.no/api/' }),
     endpoints: (builder) => ({
         getTerms: builder.query<ITermInfo[], void>({
             query: () => 'terms'
