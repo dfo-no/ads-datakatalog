@@ -29,7 +29,7 @@ interface AttributtProps {
 
 export const Attributt = ({ description, attributes, children }: AttributtProps) => (
     <tr>
-        <th style={{ textAlign: 'left' }}>{description}</th>
+        <th>{description}</th>
         <td>
             {children
                 ? children
@@ -47,7 +47,12 @@ export const Attributt = ({ description, attributes, children }: AttributtProps)
                                 {i !== attributes.length - 1 && <span>, </span>}
                             </span>
                         ))
-                      : attributes.map((attrib) => <div key={attrib.code}>{attrib.description}</div>))}
+                      : attributes.map((attrib, i) => (
+                            <span key={attrib.code}>
+                                {attrib.description}
+                                {i !== attributes.length - 1 && <span>, </span>}
+                            </span>
+                        )))}
         </td>
     </tr>
 );

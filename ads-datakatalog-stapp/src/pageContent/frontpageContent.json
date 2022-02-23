@@ -1,0 +1,27 @@
+{
+    "$schema": "./schemas/frontpage.schema.json",
+    "title": "Datakatalog",
+    "content": "data.dfo.no gir en strukturert oversikt over data som anskaffelser.no har tilgjengelig. Dette gir deg mulighet for å kunne oppdage, vurdere og ta i bruk data. Her finner du detaljert informasjon om datasett, informasjonsmodeller og åpne data som vi har.",
+    "shortcuts": [
+        {
+            "title": "Anskaffelser",
+            "link": "/search?theme=https%3A%2F%2Fpsi.norge.no%2Flos%2Ford%2Foffentlig-innkjop",
+            "variant": "primary"
+        },
+        {
+            "title": "Miljø",
+            "link": "/search?theme=https%3A%2F%2Fpsi.norge.no%2Flos%2Ford%2Fnatur-klima-og-miljo",
+            "variant": "primary"
+        },
+        {
+            "title": "Regnskap",
+            "link": "/search?theme=https%3A%2F%2Fpsi.norge.no%2Flos%2Ford%2Fskatt-og-avgift",
+            "variant": "primary"
+        },
+        {
+            "title": "Bla i katalogen",
+            "link": "/search",
+            "variant": "tertiary"
+        }
+    ]
+}

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Styles from './Forside.module.css';
 import { Container } from '../../Components/Container/Container';
 import { Shortcut } from './Shortcut/Shortcut';
+import frontpageContent from '../../pageContent/frontpageContent.json';
 
 export const Forside = () => {
     const navigate = useNavigate();
@@ -11,15 +12,11 @@ export const Forside = () => {
         <div className="Forside">
             <section className={Styles['Forside-search']}>
                 <Container>
-                    <h1>Datakatalog</h1>
+                    <h1>{frontpageContent.title}</h1>
                 </Container>
                 <Container className={Styles['Forside-search-container']}>
                     <div className={Styles['Forside-search-wrapper']}>
-                        <p className={Styles['Forside-welcomeText']}>
-                            data.dfo.no gir en strukturert oversikt over data som anskaffelser.no har tilgjengelig.
-                            Dette gir deg mulighet for å kunne oppdage, vurdere og ta i bruk data. Her finner du
-                            detaljert informasjon om datasett, informasjonsmodeller og åpne data som vi har.
-                        </p>
+                        <p className={Styles['Forside-welcomeText']}>{frontpageContent.content}</p>
                         <div className={`${Styles['Forside-search-searchBox']}`}>
                             <SearchBox
                                 placeholder="Søk i datakatalogen"
@@ -35,14 +32,9 @@ export const Forside = () => {
                 <Container>
                     <h2>Aktuelle tema</h2>
                     <div className={Styles['Forside-shortcuts-grid']}>
-                        <Shortcut
-                            title="Anskaffelser"
-                            url="/search?theme=https%3A%2F%2Fpsi.norge.no%2Flos%2Ford%2Foffentlig-innkjop"
-                            variant="primary"
-                        />
-                        <Shortcut title="Miljø" url="/search?theme=natur-klima-og-miljo" variant="primary" />
-                        <Shortcut title="Regnskap" url="/search?theme=gove" variant="primary" />
-                        <Shortcut title="Bla i datakatalogen" url="/search" variant="tertiary" />
+                        {frontpageContent.shortcuts.map((shortcut) => (
+                            <Shortcut title={shortcut.title} url={shortcut.link} variant={shortcut.variant as any} />
+                        ))}
                     </div>
                 </Container>
             </section>

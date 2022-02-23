@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "shortcuts": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "title": {
+                            "type": "string"
+                        },
+                        "link": {
+                            "type": "string"
+                        },
+                        "variant": {
+                            "type": "string",
+                            "enum": ["primary", "secondary", "tertiary"]
+                        }
+                    },
+                    "required": ["title", "link", "variant"]
+                }
+            ]
+        }
+    },
+    "required": ["title", "content", "shortcuts"]
+}
