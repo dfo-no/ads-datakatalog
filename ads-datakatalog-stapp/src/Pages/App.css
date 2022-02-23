@@ -137,6 +137,30 @@ th {
     padding: var(--tiny-gap) var(--small-gap);
 }
 
+@media only screen and (max-width: 600px) {
+    th,
+    td {
+        display: block;
+        padding: 0;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    th::after {
+        content: ': ';
+    }
+
+    thead,
+    tr,
+    tr:first-child {
+        border: none;
+        margin-bottom: var(--tiny-gap);
+        display: block;
+    }
+}
+
 code {
     font-family: Consolas, 'Courier New', Courier, monospace;
     font-weight: 600;
