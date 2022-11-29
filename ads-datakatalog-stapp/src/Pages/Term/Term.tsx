@@ -14,6 +14,7 @@ import Breadcrumbs from '../../Components/Breadcrumbs/Breadcrumbs';
 import { DatasetAttributes } from './DatasetAttributes/DatasetAttributes';
 import { DistributionAttributes } from './DistributionAttributes/DistributionAttributes';
 import { InformationModelAttributes } from './InformationModelAttributes/InformationModelAttributes';
+import { stripHtml } from '../../stringUtils';
 
 export const Term = () => {
     const { id } = useParams();
@@ -49,7 +50,7 @@ export const Term = () => {
                                     <h1>{term.tittel}</h1>
                                 </header>
                                 <section className={Style['Term-section']}>
-                                    <p>{term.beskrivelse}</p>
+                                    <p>{stripHtml(term.beskrivelse)}</p>
                                 </section>
                                 {term.attributes &&
                                     (() => {

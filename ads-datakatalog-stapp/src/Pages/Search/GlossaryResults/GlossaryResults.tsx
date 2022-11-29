@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { EntityType } from '../../../Components/EntityType/EntityType';
 import SearchResult from '../../../datakatalog/search/searchResult';
+import { stripHtml } from '../../../stringUtils';
 import Style from './GlossaryResults.module.css';
 
 interface GlossaryResultsProps {
@@ -29,7 +30,7 @@ export const GlossaryResults = ({ resultater }: GlossaryResultsProps) => (
                                 </p>
                             </div>
                         </div>
-                        <p>{sr.description}</p>
+                        <p>{stripHtml(sr.description)}</p>
                     </div>
                 )
         )}
