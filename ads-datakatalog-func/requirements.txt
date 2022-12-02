@@ -1,6 +1,8 @@
+atlasdcat
 azure-functions
 azure-identity
 azure-purview-catalog
 datacatalogtordf
 cachetools
+pyapacheatlas
 types-cachetools
