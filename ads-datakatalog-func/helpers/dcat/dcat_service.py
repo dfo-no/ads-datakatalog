@@ -58,7 +58,8 @@ def get_dcat() -> str:
         },
     )
 
-    # Fetch glossary and map terms to dataset catalog (RDF)
+    # Fetch glossary and map terms to dataset catalog
     mapper.fetch_glossary()
     catalog = mapper.map_glossary_terms_to_dataset_catalog()
+    # Return RDF (Turtle)
     return catalog.to_rdf()
