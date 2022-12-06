@@ -10,7 +10,7 @@ DEFAULT_CATALOG_ID: final = 'ads-datakatalog-prod'
 def get_dcat() -> str:
     datacatalog_id = os.getenv('DATACATALOG-ID', DEFAULT_CATALOG_ID)
     
-    # Apache Atlas authentication using Service Principal
+    # Apache Atlas authentication using Azure Service Principal
     auth = ServicePrincipalAuthentication(
         tenant_id=os.getenv("AZURE_TENANT_ID", ""),
         client_id=os.getenv("AZURE_CLIENT_ID", ""),
