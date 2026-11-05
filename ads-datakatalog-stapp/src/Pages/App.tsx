@@ -7,6 +7,10 @@ import { Header } from '../Components/Header/Header';
 import './App.css';
 import Footer from '../Components/Footer/Footer';
 import { Forside } from './Forside/Forside';
+import { NotFound } from './NotFound/NotFound';
+
+// The service is being shut down: while true, every route shows the "Siden finnes ikke" page.
+const SERVICE_SHUT_DOWN = true;
 
 function App() {
     return (
@@ -15,15 +19,19 @@ function App() {
                 <Header />
                 <div className="App-maincontent">
                     <Routes>
-                        <Route path="/">
-                            <Route index element={<Forside />} />
-                            <Route path="search" element={<Search />} />
-                            <Route path="term/:id/:tittel" element={<Term />} />
-                            <Route path="term/:id" element={<Term />} />
-                            <Route path="entity/:id/:tittel" element={<Entity />} />
-                            <Route path="entity/:id" element={<Entity />} />
-                            <Route path="*" element={<h2>Siden finnes ikke</h2>} />
-                        </Route>
+                        {SERVICE_SHUT_DOWN ? (
+                            <Route path="*" element={<NotFound />} />
+                        ) : (
+                            <Route path="/">
+                                <Route index element={<Forside />} />
+                                <Route path="search" element={<Search />} />
+                                <Route path="term/:id/:tittel" element={<Term />} />
+                                <Route path="term/:id" element={<Term />} />
+                                <Route path="entity/:id/:tittel" element={<Entity />} />
+                                <Route path="entity/:id" element={<Entity />} />
+                                <Route path="*" element={<NotFound />} />
+                            </Route>
+                        )}
                     </Routes>
                 </div>
             </BrowserRouter>
