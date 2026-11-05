@@ -1,0 +1,47 @@
+.NotFound {
+    padding: 5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.NotFound img {
+    max-height: 30vh;
+}
+
+.NotFound-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 50%;
+}
+
+.NotFound-content p {
+    font-size: 1.375rem;
+    color: var(--text-color);
+}
+
+@media only screen and (max-width: 1180px) {
+    .NotFound {
+        padding: 3.125rem 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .NotFound {
+        padding: 1.25rem 0;
+    }
+
+    .NotFound > img {
+        display: none;
+    }
+
+    .NotFound-content {
+        width: 100%;
+    }
+
+    .NotFound-content h1 {
+        font-size: 1.875rem;
+    }
+}
